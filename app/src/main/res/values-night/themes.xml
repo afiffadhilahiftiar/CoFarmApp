@@ -1,0 +1,44 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme -->
+    <style name="Base.Theme.ContractFarmingApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Brand Colors -->
+        <item name="colorPrimary">@color/teal_700</item>
+        <item name="colorPrimaryVariant">@color/gray1</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSecondary">@color/hijau</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/gray1</item>
+        <item name="colorOnSurface">@color/birumuda</item>
+
+        <!-- Status & Navigation Bar Warna Hitam -->
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:navigationBarColor">#000000</item>
+
+        <!-- Hide notch / cutout -->
+        <item name="android:windowLayoutInDisplayCutoutMode">never</item>
+
+        <!-- Fullscreen -->
+        <item name="android:windowFullscreen">true</item>
+
+        <!-- Konten bisa masuk area sistem (statusbar/navigationbar) -->
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+    </style>
+
+    <!-- Tema utama aplikasi -->
+    <style name="Theme.ContractFarmingApp" parent="Base.Theme.ContractFarmingApp">
+        <!-- Animasi -->
+        <item name="android:windowEnterAnimation">@anim/slide_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_out</item>
+    </style>
+
+    <!-- Tema untuk Splash Screen (API 31+) -->
+    <style name="Theme.ContractFarmingApp.Splash" parent="Theme.SplashScreen" tools:targetApi="31">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_aplikasi</item>
+        <item name="postSplashScreenTheme">@style/Theme.ContractFarmingApp</item>
+    </style>
+
+</resources>

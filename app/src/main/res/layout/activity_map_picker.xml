@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.mapbox.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:mapbox_locationComponentEnabled="true"
+            app:mapbox_locationComponentLocationPuck="location_puck_2_d"
+            app:mapbox_resourceOptions_accessToken="@string/mapbox_access_token" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/focusLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/teal_700"
+            android:src="@drawable/ic_gps" />
+    </FrameLayout>
+
+    <!-- Form bawah -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FAFAFA"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <EditText
+            android:id="@+id/etCoordinates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Koordinat dipilih"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:enabled="false" />
+
+        <Button
+            android:id="@+id/btnSimpanLokasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginBottom="40dp"
+            android:backgroundTint="@color/teal_700"
+            android:text="Simpan Lokasi" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,129 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/statusPaymentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F0EFEF"
+    android:orientation="vertical"
+    tools:context=".activities.StatusPayment">
+
+    <!-- Header -->
+    <LinearLayout
+        android:id="@+id/headerStatus"
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:background="@drawable/sidebar"
+        android:elevation="6dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Tombol Kembali -->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Kembali"
+            android:src="@drawable/baseline_arrow_back_24" />
+
+        <View
+            android:layout_width="8dp"
+            android:layout_height="0dp" />
+
+        <TextView
+            android:id="@+id/headerTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:text="Status Pembayaran"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Kontainer status -->
+    <LinearLayout
+        android:id="@+id/statusCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/statusTitle"
+            android:background="@drawable/border_background"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status Top-Up Anda"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/statusDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="Menunggu verifikasi admin..."
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <ProgressBar
+            android:id="@+id/loadingIndicator"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:indeterminate="true"
+            android:visibility="visible" />
+        <Button
+            android:id="@+id/btnRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:backgroundTint="@color/hijau"
+            android:text="Refresh"
+            android:textColor="@color/white"
+            android:layout_margin="16dp"
+            />
+
+    </LinearLayout>
+
+    <!-- Informasi Email -->
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="82dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginTop="8dp"
+        android:text="email@gmail.com"
+        android:textAlignment="center"
+        android:textColor="#F0EFEF"
+        android:textSize="16sp" />
+
+
+    <!-- Tombol kembali ke Home -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/goHomeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:padding="12dp"
+        android:text="Kembali ke Beranda"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@color/hijau"
+        app:cornerRadius="8dp"
+        android:elevation="4dp" />
+</LinearLayout>

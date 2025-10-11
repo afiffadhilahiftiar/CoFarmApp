@@ -1,0 +1,128 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@drawable/toolbar"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/btnSimpan"
+            android:text="Simpan Sopir"
+            android:backgroundTint="@color/hijau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="16dp"/>
+        <EditText
+            android:id="@+id/etNama"
+            android:hint="Nama Sopir"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etNoHp"
+            android:hint="No HP"
+            android:layout_marginBottom="8dp"
+            android:inputType="phone"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etKendaraan"
+            android:layout_marginBottom="8dp"
+            android:hint="Jenis Kendaraan"
+            android:layout_width="match_parent"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etPlat"
+            android:hint="Plat Nomor"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etKapasitas"
+            android:hint="Kapasitas (kg)"
+            android:inputType="numberDecimal"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Foto Sopir -->
+        <Button
+            android:id="@+id/btnFotoSopir"
+            android:text="Upload Foto Sopir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+        <ImageView
+            android:id="@+id/imgFotoSopir"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Foto SIM -->
+        <Button
+            android:id="@+id/btnFotoSim"
+            android:text="Upload Foto SIM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgFotoSim"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Foto STNK -->
+        <Button
+            android:id="@+id/btnFotoStnk"
+            android:text="Upload Foto STNK"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgFotoStnk"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Foto Kendaraan -->
+        <Button
+            android:id="@+id/btnFotoKendaraan"
+            android:text="Upload Foto Kendaraan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <ImageView
+            android:id="@+id/imgFotoKendaraan"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+</ScrollView>

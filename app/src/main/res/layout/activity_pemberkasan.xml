@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollViewPemberkasan"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header Poktan -->
+        <TextView
+            android:id="@+id/tvNamaPoktan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="KELOMPOK TANI: -"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="2dp" />
+
+        <TextView
+            android:id="@+id/tvIdPoktan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID POKTAN: -"
+            android:textSize="13sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="2dp" />
+
+        <TextView
+            android:id="@+id/tvLokasiPoktan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOKASI: -"
+            android:textSize="13sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginVertical="8dp" />
+
+        <!-- Tanggal dan Perihal -->
+        <TextView
+            android:id="@+id/tvTanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal: -"
+            android:textSize="12sp"
+            android:layout_marginBottom="2dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:text="Perihal: Pemberkasan Persyaratan Pengajuan Kontrak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:layout_marginBottom="2dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tvKepada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Kepada Yth. Admin Kelompok Tani - di Tempat"
+            android:layout_marginBottom="4dp"
+            android:textColor="@android:color/black" />
+
+        <!-- Identitas Petani -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Saya yang bertanda tangan di bawah ini:"
+            android:layout_marginBottom="2dp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvNamaPetani"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="Nama: -"
+            android:layout_marginBottom="0dp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvIdPetani"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ID Petani: -"
+            android:textSize="12sp"
+            android:layout_marginBottom="0dp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvPerusahaan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Perusahaan: -"
+            android:textSize="12sp"
+            android:layout_marginBottom="0dp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvAlamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alamat: -"
+            android:textSize="12sp"
+            android:layout_marginBottom="2dp"
+            android:textColor="@android:color/black" />
+
+        <!-- Detail Kontrak -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dengan ini mengajukan permohonan untuk bekerja sama dalam bentuk kontrak pengadaan:"
+            android:layout_marginBottom="2dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvKomoditas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Komoditas: -"
+            android:layout_marginBottom="0dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvJumlah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jumlah: - kg"
+            android:layout_marginBottom="0dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvLahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lahan: -"
+            android:layout_marginBottom="0dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvStatusLahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status Lahan: -"
+            android:layout_marginBottom="0dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <TextView android:id="@+id/tvWaktu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Waktu Dibutuhkan: -"
+            android:layout_marginBottom="0dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+        <TextView
+            android:id="@+id/tvAsuransi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Asuransi: -"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+
+        <TextView android:id="@+id/tvCatatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dukungan yang diharapkan dari Perusahaan: -"
+            android:layout_marginBottom="0dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <!-- Lampiran -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bersama surat ini, saya juga melampirkan dokumen persyaratan sebagai berikut:"
+            android:layout_marginBottom="2dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1. Fotokopi KTP\n2. Fotokopi Sertifikat Lahan\n3. Asuransi Pertanian\n4. Foto Kondisi Lahan Terkini\n5. Dokumen tambahan yang diminta perusahaan"
+            android:layout_marginBottom="4dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <!-- Penutup -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Demikian surat permohonan dan pemberkasan ini saya sampaikan. Atas perhatian dan kerjasamanya, saya ucapkan terima kasih."
+            android:layout_marginBottom="12dp"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hormat saya,"
+            android:layout_marginBottom="2dp"
+            android:gravity="end"
+            android:textSize="12sp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/tvTtdNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(Nama Petani)"
+            android:textStyle="bold"
+            android:gravity="end"
+            android:textColor="@android:color/black" />
+        <TextView
+            android:id="@+id/tvPemberitahuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Silahkan kirimkan atau kumpulkan surat ini dan berkas lampiran persyaratan ke admin poktan untuk dilakukan validasi."
+            android:layout_marginBottom="0dp"
+            android:textSize="11sp"
+            android:background="#FAFAFA"
+            android:gravity="center"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black" />
+
+        <!-- Tombol Cetak PDF -->
+        <Button
+            android:id="@+id/btnCetakPdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cetak PDF"
+            android:layout_marginTop="0dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/teal_700"
+            android:layout_marginBottom="0dp" />
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,178 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/toolbar"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etNamaPetani"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Petani"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etNamaOfftaker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Perusahaan"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:layout_marginBottom="12dp" />
+        <EditText
+            android:id="@+id/etNamaPoktan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Poktan"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:layout_marginBottom="12dp" />
+        <EditText
+            android:id="@+id/etIdPoktan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ID Poktan"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:layout_marginBottom="12dp" />
+        <EditText
+            android:id="@+id/etLokasiPoktan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lokasi Poktan"
+            android:textSize="14sp"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:layout_marginBottom="12dp" />
+        <EditText
+            android:id="@+id/etContractId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contract ID"
+            android:textSize="14sp"
+            android:background="@drawable/edittext_background"
+            android:inputType="text"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etLahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lahan"
+            android:enabled="false"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:inputType="text"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etKebutuhan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Kebutuhan Komoditas"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:inputType="text"
+            android:enabled="false"
+            android:layout_marginBottom="12dp" />
+
+        <EditText
+            android:id="@+id/etTanggal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tanggal Kegiatan"
+            android:background="@drawable/edittext_background"
+            android:inputType="date"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="12dp" />
+
+        <Spinner
+            android:id="@+id/spinnerKegiatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/edittext_background"
+            android:backgroundTint="#ABA8A8"
+            android:padding="10dp"
+            android:spinnerMode="dropdown" />
+
+
+        <EditText
+            android:id="@+id/etDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:hint="Deskripsi kegiatan"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp"
+            android:background="@drawable/edittext_background"
+            android:gravity="top"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnPilihFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih Foto (Max 5)"
+            android:layout_marginBottom="12dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerFoto"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal" />
+        <Button
+            android:id="@+id/btnExportPdf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Export ke PDF"
+            android:backgroundTint="#2196F3"
+            android:textColor="#FFFFFF" />
+        <Button
+            android:id="@+id/btnKirimAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kirim Ulang ke Admin Poktan"
+            android:backgroundTint="#2196F3"
+            android:textColor="#FFFFFF" />
+        <Button
+            android:id="@+id/btnKirimEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bagikan"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/toolbar"
+    android:padding="0dp">
+
+    <!-- Toolbar -->
+
+    <!-- FrameLayout sebagai container untuk tombol filter -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+
+        <!-- LinearLayout untuk menyusun tombol secara horizontal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EADCDCDC"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+            <!-- Tombol untuk Belum Dibaca (Kiri) -->
+            <Button
+                android:id="@+id/buttonUnread"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:backgroundTint="@color/birumuda"
+                android:elevation="10dp"
+                android:text="Belum Dibaca"
+                android:textColor="@android:color/black" />
+
+            <!-- Tombol untuk Semua (Tengah) -->
+            <Button
+                android:id="@+id/buttonAll"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:backgroundTint="@color/birumuda"
+                android:text="Semua"
+                android:textColor="@android:color/black" />
+
+            <!-- Tombol untuk Sudah Dibaca (Kanan) -->
+            <Button
+                android:id="@+id/buttonRead"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
+                android:backgroundTint="@color/birumuda"
+                android:text="Sudah Dibaca"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- RecyclerView untuk menampilkan notifikasi -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewNotification"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="12dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never" />
+
+</LinearLayout>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout"
+android:background="@drawable/toolbar"
+    android:fitsSystemWindows="false"
+    tools:openDrawer="start"
+    tools:context=".MainActivity">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Toolbar berisi elemen pencarian dan ikon -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:padding="8dp"
+            android:theme="@style/Theme.ContractFarmingApp"
+            app:title="">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <!-- Gambar kotak pencarian -->
+
+                <!-- EditText Cari -->
+                <ImageView
+                    android:id="@+id/iconDehaze"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="4dp"
+                    android:contentDescription="Menu"
+                    android:src="@drawable/baseline_dehaze_24" />
+
+                <ImageView
+                    android:id="@+id/imageCari"
+                    android:layout_width="230dp"
+                    android:layout_height="40dp"
+                    android:layout_toEndOf="@id/iconDehaze"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="3dp"
+                    android:backgroundTint="#D0FFFFFF"
+                    android:src="@drawable/kotakcari_2" />
+
+
+                <!-- Notifikasi -->
+
+                <!-- Keranjang -->
+                <!-- FrameLayout untuk Icon Notifikasi + Badge -->
+                <EditText
+                    android:id="@+id/editTextCari"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@id/imageCari"
+                    android:layout_alignTop="@id/imageCari"
+                    android:layout_alignBottom="@+id/imageCari"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@null"
+                    android:hint="Cari"
+                    android:inputType="text"
+                    android:textColor="@color/hijau"
+                    android:textColorHint="@color/hijau"
+                    android:textSize="14sp" />
+
+                <FrameLayout
+                    android:id="@+id/frameNotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginEnd="16dp">
+
+                    <ImageView
+                        android:id="@+id/iconNotification"
+                        android:layout_width="30dp"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="36dp"
+                        android:contentDescription="Notifikasi"
+                        android:src="@drawable/baseline_circle_notifications_24" />
+
+                    <TextView
+                        android:id="@+id/badgeNotification"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|top"
+                        android:layout_marginTop="40dp"
+                        android:background="@drawable/badge_background"
+                        android:padding="4dp"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:visibility="gone"  />
+                </FrameLayout>
+
+                <!-- FrameLayout untuk Icon Keranjang + Badge -->
+                <FrameLayout
+                    android:id="@+id/frameCart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_toStartOf="@id/frameNotification">
+
+                    <ImageView
+                        android:id="@+id/iconCart"
+                        android:layout_width="30dp"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="36dp"
+                        android:contentDescription="Keranjang"
+                        android:src="@drawable/bookmarks" />
+
+                    <TextView
+                        android:id="@+id/badgeCart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|top"
+                        android:layout_marginTop="40dp"
+                        android:background="@drawable/badge_background"
+                        android:padding="4dp"
+                        android:text="5"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:visibility="gone"/>
+                </FrameLayout>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF" />
+
+    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/bg_produk_card"
+        android:elevation="4dp"
+        app:headerLayout="@layout/nav_header"
+        app:itemIconSize="32dp"
+        app:itemIconTint="@color/hijau"
+        app:itemTextColor="@color/black"
+        app:itemBackground="@drawable/nav_item_background"
+        app:menu="@menu/nav_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

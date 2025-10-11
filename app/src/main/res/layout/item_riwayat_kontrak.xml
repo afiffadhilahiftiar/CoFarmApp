@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="#BBE0F7FA"
+    android:elevation="2dp"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/tvKebutuhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvJumlahKebutuhan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvPerusahaan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#555" />
+    <TextView
+        android:id="@+id/tvWaktuDibutuhkan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#555" />
+
+    <TextView
+        android:id="@+id/tvLahan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#555" />
+    <TextView
+        android:id="@+id/tvStatusLahan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#555" />
+    <TextView
+        android:id="@+id/tvCatatan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#555" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#009688" />
+
+    <TextView
+        android:id="@+id/tvTanggal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#888" />
+    <Button
+        android:id="@+id/btnChat"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="@color/teal_700"
+        android:text="Chat Perusahaan" />
+    <Button
+        android:id="@+id/btnLihatKontrak"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@color/teal_700"
+        android:backgroundTint="@color/teal_700"
+        android:text="Lihat" />
+    <Button
+        android:id="@+id/btnCetak"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/com_facebook_messenger_blue"
+        android:text="Cetak" />
+    <Button
+        android:id="@+id/btnUploadBukti"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:backgroundTint="@color/com_facebook_messenger_blue"
+        android:text="Unggah Bukti/Laporan" />
+</LinearLayout>

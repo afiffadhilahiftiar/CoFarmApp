@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:id="@+id/checkboxContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:divider="?android:attr/dividerHorizontal"
+        android:dividerPadding="8dp"
+        android:showDividers="middle"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/validationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Validasi Kontrak"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#222222"
+            android:paddingBottom="12dp" />
+
+        <CheckBox
+            android:id="@+id/check1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Petani sudah mengisi data dengan lengkap"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Lahan dan komoditas sesuai dengan kesepakatan"
+            android:textSize="15sp"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Petani memahami isi kontrak"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Petani bersedia mengikuti aturan perusahaan"
+            android:textSize="15sp"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Petani tidak memiliki kontrak ganda"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lahan tidak bermasalah (sengketa/hukum)"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lahan dalam kondisi siap tanam"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Petani bisa dihubungi dan aktif"
+            android:textSize="15sp"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Luas lahan sesuai yang didaftarkan"
+            android:textSize="15sp"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Petani siap memulai sesuai jadwal"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingVertical="6dp" />
+        <EditText
+            android:id="@+id/editCatatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan alasan penolakan (opsional)"
+            android:textColor="@color/black"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:padding="8dp"
+            android:background="@drawable/edittext_background" />
+
+
+    </LinearLayout>
+</ScrollView>

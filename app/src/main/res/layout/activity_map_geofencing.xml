@@ -1,0 +1,144 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/tools">
+
+    <com.mapbox.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:mapbox_resourceOptions_accessToken="@string/mapbox_access_token" />/>
+
+    <EditText
+        android:id="@+id/etNamaArea"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toStartOf="@id/spinnerStatus"
+        android:layout_weight="1"
+        android:background="@drawable/edittext_background"
+        android:backgroundTint="#A2FFFFFF"
+        android:hint="Nama Area"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:textSize="12sp" />
+
+    <Spinner
+        android:id="@+id/spinnerStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/etNamaArea"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:entries="@array/status_lahan"
+        android:background="@drawable/edittext_background"
+        android:backgroundTint="#A2FFFFFF" />
+
+    <!-- Baris 2: etKomoditas dan spinnerColor -->
+    <EditText
+        android:id="@+id/etKomoditas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etNamaArea"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/spinnerColor"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:hint="Jenis Komoditas"
+        android:background="@drawable/edittext_background"
+        android:backgroundTint="#A2FFFFFF"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray" />
+
+    <Spinner
+        android:id="@+id/spinnerColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/etKomoditas"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:entries="@array/polygon_colors"
+        android:background="@drawable/edittext_background"
+        android:backgroundTint="#A2FFFFFF" />
+
+
+    <EditText
+        android:id="@+id/etAreaSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_above="@+id/linearLayout2"
+        android:hint="Luas Area (m²)"
+        android:inputType="number"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
+        android:padding="11dp" />
+
+    <Spinner
+        android:id="@+id/spinnerPetani"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_toEndOf="@+id/etAreaSize"
+        android:background="@drawable/edittext_background"
+        android:spinnerMode="dropdown" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/focusMyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/teal_700"
+        android:src="@drawable/ic_gps" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <Button
+            android:id="@+id/btnReset"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Reset" />
+        <Button
+            android:id="@+id/btnDeletePoint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Hapus Titik"
+            android:layout_margin="8dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Simpan" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="12dp">
+
+    <!-- Baris: Informasi Produk -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <!-- Kolom: Nama dan Variasi Produk -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtNamaProduk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Produk"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtVariasiProduk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ukuran M / Warna Merah"
+                android:textColor="@color/gray"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <!-- Kolom: Jumlah -->
+        <TextView
+            android:id="@+id/txtJumlah"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="x1"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <!-- Kolom: Harga -->
+        <TextView
+            android:id="@+id/txtHarga"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Rp20.000"
+            android:textAlignment="viewEnd"
+            android:textColor="@color/teal_700"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/edtCatatanPenjual"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tinggalkan pesan"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:background="#FAFAFA"
+        android:textSize="14dp"
+    android:padding="10dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="4dp"
+    android:minLines="2"
+    android:maxLines="4"
+    android:inputType="textMultiLine" />
+</LinearLayout>

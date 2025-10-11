@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/toolbar"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content">
+
+        <!-- Tombol Export PDF -->
+        <Button
+            android:id="@+id/btnExportPdf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Export PDF"
+            android:layout_marginTop="20dp" />
+
+        <!-- Detail Jenis Traktor -->
+        <TextView
+            android:id="@+id/tvDetailJenisTraktor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jenis Traktor"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp" />
+
+        <!-- Detail Kapasitas -->
+        <TextView
+            android:id="@+id/tvDetailKapasitas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kapasitas"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp" />
+
+        <!-- Detail Nama Operator -->
+        <TextView
+            android:id="@+id/tvDetailNamaOperator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Operator"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp" />
+
+        <!-- Detail Nomor HP Operator -->
+        <TextView
+            android:id="@+id/tvDetailNoHp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No HP"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp" />
+
+        <!-- Foto Traktor -->
+        <ImageView
+            android:id="@+id/ivFotoTraktor"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/annotationLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/border_background"
+    android:padding="8dp"
+    android:elevation="6dp">
+
+    <TextView
+        android:id="@+id/textNativeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Koordinat"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/closeNativeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tutup" />
+</LinearLayout>

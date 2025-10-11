@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/toolbar"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Judul -->
+        <TextView
+            android:id="@+id/tvHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CoFarm App"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:paddingBottom="12dp" />
+
+        <!-- Kartu Konsep -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="347dp"
+                    android:layout_height="369dp"
+                    android:src="@drawable/image_intro" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="📘 Konsep"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="#2C3E50" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Contract Farming adalah sistem kemitraan pertanian berbasis digital antara petani, kelompok tani, dan perusahaan. Aplikasi ini mendigitalisasi proses kontrak, distribusi input, laporan tanam hingga transaksi panen secara transparan dan efisien."
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Kartu Peran -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="👥 Peran Pengguna"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="#2C3E50" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="• Petani: Input data lahan, daftar kontrak, menanam sesuai SOP lapor tanam dan panen.\n\n• Admin Poktan: Kelola petani, validasi petani, memberikan pendampingan teknis, memantau progres kontrak petani atau anggota kelompok, memverifikasi hasil panen.\n\n• Offtaker: Buat kontrak, menyediakan dukungan produksi (opsional), membeli atau mengambil hasil panen sesuai harga pada kontrak yang disepakati."
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Kartu Fitur -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="⚙️ Fitur Utama"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="#2C3E50" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="✓ Kontrak Digital dan Tracking Produksi\n✓ Laporan Tanam dan Panen\n✓ Geolokasi lahan\n✓ Pembayaran Hasil Panen\n✓ Notifikasi dan Chat Internal\n✓ Validasi Poktan dan Monitoring Offtaker"
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Kartu Alur Kerja -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="32dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🧭 Alur Kerja"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="#2C3E50" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="1. Offtaker buat kontrak kemitraan
+                    \n2. Petani mendaftar menjadi anggota poktan
+                    \n3. Petani mendaftarkan lahannya sesuai data pada poktan
+                    \n4. Admin Poktan verifikasi dan monitoring
+                    \n5. Petani mendaftar kontrak pada aplikasi, dan mengirimkan berkas persyaratan ke admin poktan
+                    \n6. Admin Poktan melakukan validasi kontrak
+                    \n7. Petani menerima notifikasi validasi
+                    \n8. Perusahaan atau offtaker melakukan validasi penerimaan kontrak dan membayar uang muka atau pengiriman saprotan (opsional)
+                    \n9. Petani menanam sesuai komoditas pada kontrak dengan dan lapor bukti penanaman, perawatan, panen
+                    \n10. Admin Poktan memverifikasi laporan petani melalui dashboard
+                    \n11. Setelah panen, petani melaporkan realisasi dan mutu hasil panen
+                    \n12. Poktan memverifikasi dan menyusun pengiriman ke offtaker
+                    \n13. Offtaker menerima panen dan melakukan pengecekan mutu
+                    \n14. Berdasarkan hasil panen yang diterima dan disetujui, offtaker melakukan pembayaran
+                    \n15. Offtaker memberikan evaluasi terhadap poktan dan petani. Poktan mengevaluasi kerja sama dan hasil petani. Kontrak ditutup secara otomatis di sistem."
+                    android:textSize="15sp"
+                    android:textColor="#333333" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

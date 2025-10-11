@@ -1,0 +1,74 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/bg_produk_card"
+    android:backgroundTint="#B1E0F7FA"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/txtNamaLahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Lahan"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/txtPerusahaan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Perusahaaan"
+        android:textColor="@color/teal_700"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtEmailLahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email: -"
+        android:textColor="#555555"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/txtStatusLahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_status_green"
+        android:text="Status: Penanaman"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/txtKomoditasLahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Komoditas: Jagung"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtLuasLahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Luas Area Tanam: 1.5 Ha"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/txtLokasiLahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lokasi: Desa ABC"
+        android:textColor="@color/black" />
+    <Button
+        android:id="@+id/btnHapus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hapus"
+        android:textColor="@android:color/holo_red_dark"
+        android:backgroundTint="@color/zxing_transparent"
+        android:layout_gravity="end" />
+
+</LinearLayout>

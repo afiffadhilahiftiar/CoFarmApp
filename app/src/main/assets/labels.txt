@@ -1,0 +1,4 @@
+Bacterial_leaf_blight
+Brownspot
+Rice_Blast
+Tungro

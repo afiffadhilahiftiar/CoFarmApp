@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA"
+    tools:context=".PerusahaanActivity">
+
+    <!-- Konten scroll -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/footerLayout"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="#FAFAFA">
+
+            <!-- Logo + Nama -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical|center_horizontal"
+                android:background="@drawable/border_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:id="@+id/companyLogo"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/store_icon"
+                    android:contentDescription="Logo Perusahaan" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:gravity="center_vertical">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/companyName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Perusahaan"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black" />
+                        <ImageView
+                            android:id="@+id/icVerified"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_gravity="bottom"
+                            android:src="@drawable/ic_verified"
+                            android:contentDescription="Verified" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/companyJenis"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis Perusahaan"
+                        android:textSize="13sp"
+                        android:textColor="@color/teal_700" />
+
+                    <!-- Rating dan Terbayar -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="8dp">
+
+                        <!-- Rating -->
+                        <TextView android:id="@+id/companyRating" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="⭐ 4.5" android:textSize="13sp" android:textColor="#FF9800" />
+
+                        <!-- Spacer kecil -->
+                        <Space
+                            android:layout_width="8dp"
+                            android:layout_height="wrap_content" />
+
+                        <!-- Terbayar -->
+                        <TextView
+                            android:id="@+id/tvTerbayar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terbayar: 10 Kontrak"
+                            android:textColor="@color/com_facebook_blue"
+                            android:textSize="12sp"
+                            android:layout_marginStart="8dp" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/companyId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="0dp"
+                        android:textAlignment="center"
+                        android:text="ID."
+                        android:visibility="gone"
+                        android:textColor="@color/teal_700"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Deskripsi -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_background"
+                android:padding="12dp"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:id="@+id/companyDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Deskripsi singkat perusahaan Anda."
+                    android:textSize="13sp"
+                    android:textColor="@color/gray" />
+            </LinearLayout>
+
+            <!-- Informasi Tambahan -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/border_background"
+                android:padding="12dp">
+                <Button
+                    android:id="@+id/btnChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chat Offtaker"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/shape_kanan"
+                    android:textColor="@android:color/white"/>
+                <TextView
+                    android:id="@+id/companyWebsite"
+                    android:layout_width="wrap_content"
+                    android:clickable="true"
+                    android:layout_height="wrap_content"
+                    android:text="🌐 www.perusahaan.com"
+                    android:textSize="13sp"
+                    android:textColor="@color/hijau" />
+
+                <TextView
+                    android:id="@+id/companyLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🗺️ Alamat Perusahaan"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/companyKoordinat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📍 Titik Koordinat"
+                    android:textSize="12sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/companyCertificate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📄 Sertifikasi:"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/black" />
+                <!-- Tambahan: Nomor SK -->
+                <TextView
+                    android:id="@+id/companyNomorSk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📑 Nomor SK Pengesahan:"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/black" />
+
+                <!-- Tambahan: Button Preview SK -->
+
+
+                <TextView
+                    android:id="@+id/companySocialMedia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📱 IG: @perusahaan"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/employeeCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="👥 Jumlah Anggota: 50"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/logistikCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚚 Kendaraan Logistik: 10"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tractorCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🚜 Jumlah Traktor: 5"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/luasLahan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🏞️ Luas Lahan: 120 Ha"
+                    android:textSize="13sp"
+                    android:layout_marginTop="6dp"
+                    android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/btnPreviewSk"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/teal_700"
+                    android:text="🔍 Preview SK"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                android:id="@+id/tvUlasanTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ulasan Perusahaan"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvUlasan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:overScrollMode="never"/>
+
+
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tvNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Note: Perusahaan ini adalah mitra resmi dalam program Contract Farming."
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:textColor="#888"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:padding="8dp"
+                android:background="#EFEFEF" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Footer -->
+    <LinearLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="106dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:background="@drawable/border_background"
+        android:padding="8dp"
+        android:elevation="4dp"
+        android:gravity="top">
+
+        <LinearLayout
+            android:id="@+id/layoutDaftarKaryawan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btnDaftarKaryawan"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_groups_24"
+                android:background="?android:selectableItemBackgroundBorderless"
+                app:tint="@color/teal_700"
+                android:contentDescription="Anggota" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anggota"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutDaftarLogistik"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btnDaftarLogistik"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_truck"
+                android:background="?android:selectableItemBackgroundBorderless"
+                app:tint="@color/teal_700"
+                android:scaleType="centerInside"
+                android:contentDescription="Logistik" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logistik"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutLahan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btnLahan"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_lahan"
+                android:background="?android:selectableItemBackgroundBorderless"
+                app:tint="@color/teal_700"
+                android:contentDescription="Lahan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lahan"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutDaftarTraktor"
+            android:layout_width="0dp"
+            android:clickable="true"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/btnDaftarTraktor"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/baseline_agriculture_24"
+                android:background="?android:selectableItemBackgroundBorderless"
+                app:tint="@color/teal_700"
+                android:contentDescription="Traktor" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Traktor"
+                android:textSize="12sp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

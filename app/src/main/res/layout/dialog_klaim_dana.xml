@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#FAFAFA"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/editJumlahDana"
+        android:hint="Jumlah klaim (Rp)"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
+        android:background="@drawable/edittext_background"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/editCatatanDana"
+        android:hint="Alasan"
+        android:inputType="text"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
+        android:background="@drawable/edittext_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

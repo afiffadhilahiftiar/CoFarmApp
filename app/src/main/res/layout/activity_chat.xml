@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/toolbar"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <TextView
+        android:id="@+id/txtNamaPetani"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B1E0E0E0"
+        android:padding="16dp"
+        android:text="Chat dengan Petani"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:layout_marginBottom="0dp"
+        android:background="#FFFFFF">
+        <ImageButton
+            android:id="@+id/btnAttachment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/zxing_transparent"
+            android:src="@drawable/ic_attach"
+            android:contentDescription="Lampirkan File"
+            />
+
+        <ImageButton
+            android:id="@+id/btnSticker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_emoji"
+            android:backgroundTint="@color/zxing_transparent"
+            android:contentDescription="Sticker" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/stickerGrid"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="gone"
+            android:layout_marginTop="8dp"/>
+
+        <EditText
+            android:id="@+id/editMessage"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:hint="Ketik pesan..."
+            android:background="@android:drawable/edit_text"
+            android:imeOptions="actionSend"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:maxLines="3"
+            android:inputType="text"/>
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_send"
+            android:layout_gravity="center_vertical"
+            android:background="?android:selectableItemBackground"
+            android:contentDescription="Kirim"/>
+        <ProgressBar
+            android:id="@+id/uploadProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:visibility="gone"
+            android:layout_gravity="center_vertical"
+            style="?android:attr/progressBarStyleSmallTitle" />
+z
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <CheckBox
+        android:id="@+id/checkbox1"
+        android:text="Petani telah menyelesaikan semua kewajiban"
+        android:layout_width="match_parent"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+
+    <CheckBox
+        android:id="@+id/checkbox2"
+        android:text="Dokumentasi dan laporan telah lengkap"
+        android:layout_width="match_parent"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tvGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Grade Panen"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="12dp" />
+
+    <Spinner
+        android:id="@+id/spinnerGrade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp" />
+
+    <!-- Input Persentase Potongan -->
+    <TextView
+        android:id="@+id/tvPotongan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Persentase Potongan (%)"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:id="@+id/etPersentase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contoh: 10"
+        android:textColor="@color/black"
+        android:inputType="number"
+        android:padding="10dp"
+        android:background="@drawable/edittext_background"
+        android:layout_marginTop="6dp" />
+    <Button
+        android:id="@+id/btnBayar"
+        android:text="Pembayaran Kontrak"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/material_dynamic_primary40"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" />
+    <ProgressBar
+        android:id="@+id/progressBarBayar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="6dp" />
+    <Button
+        android:id="@+id/btnUploadFoto"
+        android:text="Upload Bukti Pembayaran (Opsional)"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp" />
+
+    <ImageView
+        android:id="@+id/imgPreview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="10dp" />
+</LinearLayout>

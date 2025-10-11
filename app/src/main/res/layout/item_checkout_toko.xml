@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- Nama Toko -->
+    <TextView
+        android:id="@+id/txtNamaToko"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Toko"
+        android:textColor="#FBC02D"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <!-- Voucher Toko -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_voucher"
+            android:layout_marginEnd="8dp"
+            app:tint="@color/teal_700"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Voucher Toko"
+            android:layout_weight="1"
+            android:textColor="@color/teal_700"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btnPilihVoucher"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_forward"
+            app:tint="@color/teal_700"
+            android:backgroundTint="@color/white"/>
+    </LinearLayout>
+
+    <!-- Opsi Pengiriman -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_truck"
+            android:layout_marginEnd="8dp"
+            app:tint="@color/teal_700"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Opsi Pengiriman"
+            android:textColor="@color/teal_700"
+            android:layout_weight="1"
+            android:textSize="14sp" />
+
+        <ImageButton
+            android:id="@+id/btnPilihPengiriman"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_forward"
+            app:tint="@color/teal_700"
+            android:backgroundTint="@color/white" />
+    </LinearLayout>
+        <TextView
+            android:id="@+id/txtOngkirInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Belum memilih pengiriman"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="4dp"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- RecyclerView Produk -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProduk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" />
+</LinearLayout>

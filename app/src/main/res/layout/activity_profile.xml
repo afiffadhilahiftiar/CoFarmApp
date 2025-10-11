@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/toolbar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/toolbar"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <!-- Header dengan foto profil dan background -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="244dp">
+
+            <ImageView
+                android:id="@+id/imgFotoProfil"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="-30dp"
+                android:backgroundTint="#E5FFE9"
+                android:padding="3dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/baseline_account_box_24" />
+
+        </FrameLayout>
+
+        <!-- Form input -->
+
+        <Button
+            android:id="@+id/btnPilihFotoProfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="1dp"
+            android:backgroundTint="@color/teal_700"
+            android:text="Pilih Foto Profil"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/etNama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/kotak"
+            android:hint="Nama"
+            android:inputType="textCapCharacters"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#62000000"
+            android:textSize="14sp" />
+        <Spinner
+            android:id="@+id/spinnerProvinsi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:background="@drawable/kotak"
+            android:prompt="@string/pilih_provinsi" />
+
+        <Spinner
+            android:id="@+id/spinnerKabupaten"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/kotak"
+            android:layout_gravity="center"
+            android:prompt="@string/pilih_kabupaten" />
+
+        <EditText
+            android:id="@+id/etAlamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:enabled="false"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/kotak"
+            android:hint="Alamat (Kabupaten, Provinsi)"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:inputType="textCapCharacters"
+            android:textColorHint="#62000000"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="12dp"
+            android:text="Jenis Bank"
+            android:textColor="@color/white"/>
+        <Spinner
+            android:id="@+id/spinnerJenisBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/edittext_background"
+            android:padding="8dp"
+            android:layout_marginBottom="0dp"
+            android:spinnerMode="dropdown" />
+        <EditText
+            android:id="@+id/etNamaAkunBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:inputType="textCapCharacters"
+            android:layout_marginEnd="40dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/edittext_background"
+            android:hint="Nama Akun Bank"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#62000000"
+            android:textSize="14sp" />
+        <EditText
+            android:id="@+id/etNoRekening"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/edittext_background"
+            android:hint="Nomor Rekening"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#62000000"
+            android:textSize="14sp" />
+
+
+        <EditText
+            android:id="@+id/etNoHp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/kotak"
+            android:hint="No HP"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#62000000"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etKtp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/kotak"
+            android:hint="Nomor KTP"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#62000000"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:id="@+id/rgGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbLaki"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laki-laki"
+                android:textColor="@color/white" />
+
+            <RadioButton
+                android:id="@+id/rbPerempuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Perempuan"
+                android:textColor="@color/white" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="12dp"
+            android:text="Tanggal Lahir"
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/etTanggalLahir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/kotak"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="Tanggal Lahir"
+            android:inputType="datetime"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#62000000"
+            android:textSize="14sp" />
+
+        <!-- Foto KTP -->
+        <Button
+            android:id="@+id/btnPilihFotoKtp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/teal_700"
+            android:text="Pilih Foto KTP"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/imgFotoKtp"
+            android:layout_width="315dp"
+            android:layout_height="219dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="#E5FFE9"
+            android:scaleType="center"
+            app:srcCompat="@drawable/baseline_add_card_24" />
+
+        <!-- Tombol Simpan -->
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="315dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:backgroundTint="@color/teal_700"
+            android:text="Simpan"
+            android:textColor="@android:color/white" />
+
+        <!-- ProgressBar -->
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:text="Pastikan sudah lengkap"
+            android:textColor="@color/white"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+</ScrollView>

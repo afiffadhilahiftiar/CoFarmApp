@@ -1,0 +1,142 @@
+<!-- res/layout/dialog_ajukan_kontrak.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tvUserId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User ID: "
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/tvCompanyId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company ID: "
+        android:visibility="gone"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/tvCompanyEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company Email: "
+        android:textStyle="bold"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/tvNamaPerusahaan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Perusahaan"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Pilih Lahan:" />
+
+    <Spinner
+        android:id="@+id/spinnerLahan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="Nama:"
+        android:layout_marginBottom="2dp"
+        android:textColor="@android:color/black" />
+    <EditText
+        android:id="@+id/etNama"
+        android:hint="Nama Petani"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="Status lahan saat ini:"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/black" />
+
+    <EditText
+        android:id="@+id/etProgress"
+        android:hint="Status Lahan Saat Ini"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/black"
+        android:focusable="false"
+        android:textSize="12sp"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="@color/gray"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="Jumlah Kontrak diambil:"
+        android:layout_marginBottom="2dp"
+        android:textColor="@android:color/black" />
+    <EditText
+        android:id="@+id/etJumlah"
+        android:hint="Misal: 10 Kg"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:background="@drawable/edittext_background"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textColorHint="@color/gray"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:text="Dukungan yang diharapkan dari Perusahaan:"
+        android:layout_marginBottom="2dp"
+        android:textColor="@android:color/black" />
+    <EditText
+        android:id="@+id/etCatatan"
+        android:hint="Contoh: Bibit, pupuk, pestisida, pendampingan teknis"
+        android:layout_width="match_parent"
+        android:background="@drawable/edittext_background"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textColorHint="@color/gray"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:id="@+id/cbAsuransi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Potong 1% dari nilai kontrak untuk Dana Cadangan (Asuransi Pertanian)"
+        android:textColor="@color/black"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/tvInfoAsuransi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lihat penjelasan penggunaan dana cadangan"
+        android:textColor="@color/teal_700"
+
+        android:paddingTop="4dp"
+        android:textStyle="bold" />
+
+
+</LinearLayout>

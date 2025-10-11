@@ -1,0 +1,79 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/toolbar"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnSimpan"
+            android:text="Simpan Traktor"
+            android:backgroundTint="@color/hijau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/etJenisTraktor"
+            android:hint="Jenis Traktor"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etNamaOperator"
+            android:hint="Nama Operator"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etNoHp"
+            android:hint="No HP Operator"
+            android:layout_marginBottom="8dp"
+            android:inputType="phone"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etKapasitas"
+            android:hint="Kapasitas (HP)"
+            android:inputType="numberDecimal"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!-- Foto Traktor -->
+        <Button
+            android:id="@+id/btnFotoTraktor"
+            android:text="Upload Foto Traktor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+
+        <ImageView
+            android:id="@+id/imgFotoTraktor"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"/>
+    </LinearLayout>
+</ScrollView>

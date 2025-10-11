@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "830213695722",
+    "project_id": "contractfarmingapp",
+    "storage_bucket": "contractfarmingapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:830213695722:android:3e7fb2f91852b7186acf93",
+        "android_client_info": {
+          "package_name": "com.example.contractfarmingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "830213695722-4ut8alppmptkqrs9ti9ftimmrbla9ss2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.contractfarmingapp",
+            "certificate_hash": "73e3d8110d7119e3baa8e6b58157f76d01a09002"
+          }
+        },
+        {
+          "client_id": "830213695722-rea496epaaodrh7uc04do8ubank9g7ak.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPAstLrKOFjmtP2HS8nMu05MrzJb8tnFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "830213695722-rea496epaaodrh7uc04do8ubank9g7ak.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

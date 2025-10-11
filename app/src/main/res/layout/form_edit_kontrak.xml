@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FAFAFA">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Nama Perusahaan -->
+        <EditText
+            android:id="@+id/etNamaPerusahaan"
+            android:hint="Nama Perusahaan"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Lokasi -->
+        <EditText
+            android:id="@+id/etLokasi"
+            android:hint="Lokasi"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Rating -->
+        <EditText
+            android:id="@+id/etRating"
+            android:hint="Rating (1-5)"
+            android:focusable="false"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Jenis Kebutuhan -->
+        <EditText
+            android:id="@+id/etKebutuhan"
+            android:hint="Jenis Kebutuhan (contoh: Gabah)"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Jumlah Kebutuhan -->
+        <EditText
+            android:id="@+id/etJumlahKebutuhan"
+            android:hint="Jumlah Kebutuhan"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Spinner Satuan -->
+        <Spinner
+            android:id="@+id/spinnerSatuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"
+            android:spinnerMode="dropdown" />
+
+        <!-- Harga -->
+        <EditText
+            android:id="@+id/etHargaPerKg"
+            android:hint="Harga per satuan"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Waktu Dibutuhkan -->
+        <EditText
+            android:id="@+id/etWaktuDibutuhkan"
+            android:hint="Waktu Dibutuhkan"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Jumlah Kontrak (hidden default) -->
+        <EditText
+            android:id="@+id/etJumlahKontrak"
+            android:hint="Jumlah Kontrak"
+            android:inputType="number"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Persyaratan -->
+        <EditText
+            android:id="@+id/etPersyaratan"
+            android:hint="Persyaratan"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Deskripsi -->
+        <EditText
+            android:id="@+id/etDeskripsi"
+            android:hint="Deskripsi"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <!-- Tombol Submit -->
+        <Button
+            android:id="@+id/btnSubmitKontrak"
+            android:text="Ubah Kontrak"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/hijau"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

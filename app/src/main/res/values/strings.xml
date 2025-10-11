@@ -1,0 +1,110 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">CoFarm</string>
+    <string name="open_nav">Open Navigation Drawer</string>
+    <string name="close_nav">Close Navigation Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">830213695722-rea496epaaodrh7uc04do8ubank9g7ak.apps.googleusercontent.com</string>
+    <string name="mapbox_access_token" translatable="false" tools:ignore="UnusedResources">sk.eyJ1IjoiYXBpcHZheHMiLCJhIjoiY21jNHNjd3RvMGE5MTJpc2EzOWxtZXo4bSJ9.rqnsgFwXAnzPrII2XkBCSw</string>
+    <string-array name="notification_status_options">
+        <item>Unread</item>
+        <item>Read</item>
+        <item>All</item>
+    </string-array>
+    <string-array name="report_types">
+        <item>Laporan Kegiatan Penanaman</item>
+        <item>Laporan Kegiatan Perawatan</item>
+        <item>Laporan Hasil Panen</item>
+        <item>Laporan Serangan Hama</item>
+    </string-array>
+
+    <string-array name="jenis_usaha_array">
+        <item>Pilih Jenis Usaha</item>
+        <item>Kelompok Tani</item>
+        <item>Offtaker</item>
+        <item>Fasilitator</item>
+
+    </string-array>
+    <string-array name="polygon_colors">
+        <item>Merah</item>
+        <item>Kuning</item>
+        <item>Biru</item>
+        <item>Oranye</item>
+    </string-array>
+
+    <string-array name="status_lahan">
+        <item>Pilih Status</item>
+        <item>Pengolahan Tanah (Siap Tanam)</item>
+        <item>Persiapan Kandang</item>
+        <item>Persiapan Kolam</item>
+        <item>Pengadaan Bibit</item>
+        <item>Pemberian Pakan</item>
+        <item>Vaksinasi dan Pengobatan</item>
+        <item>Serangan Hama dan Penyakit</item>
+        <item>Penanaman</item>
+        <item>Perawatan</item>
+        <item>Panen</item>
+        <item>Penggilingan</item>
+        <item>Penyosohan</item>
+        <item>Pengemasan</item>
+        <item>Pengiriman</item>
+        <item>Selesai</item>
+        <item>Tidak Aktif</item>
+    </string-array>
+    <string-array name="jenis_kegiatan">
+        <item>Jenis Kegiatan</item>
+        <item>Pengolahan Tanah (Siap Tanam)</item>
+        <item>Persiapan Kandang</item>
+        <item>Persiapan Kolam</item>
+        <item>Pengadaan Bibit</item>
+        <item>Pemberian Pakan</item>
+        <item>Vaksinasi dan Pengobatan</item>
+        <item>Serangan Hama dan Penyakit</item>
+        <item>Penanaman</item>
+        <item>Perawatan</item>
+        <item>Panen</item>
+        <item>Penggilingan</item>
+        <item>Penyosohan</item>
+        <item>Pengemasan</item>
+        <item>Pengiriman</item>
+        <item>Selesai</item>
+        <item>Tidak Aktif</item>
+    </string-array>
+
+    <string-array name="satuan">
+        <item>Kg</item>
+        <item>Buah</item>
+        <item>Ekor</item>
+        <item>Unit</item>
+        <item>Butir</item>
+        <item>Liter</item>
+    </string-array>
+    <string name="pilih_provinsi">Pilih Provinsi</string>
+    <string name="pilih_kabupaten">Pilih Kabupaten/Kota</string>
+    <string-array name="komoditas_array">
+        <item>Padi</item>
+        <item>Jagung</item>
+        <item>Bawang Merah</item>
+        <item>Cabai Hijau</item>
+        <item>Cabai Merah Besar</item>
+        <item>Cabai Merah Keriting</item>
+        <item>Cabai Rawit</item>
+        <item>Unggas</item>
+        <item>Ikan</item>
+        <item>Ruminansia</item>
+    </string-array>
+    <string-array name="jenis_bank">
+        <item>BRI</item>
+        <item>BNI</item>
+        <item>BNC</item>
+        <item>BTN</item>
+        <item>MANDIRI</item>
+        <item>MANDIRI_SYR</item>
+        <item>BCA</item>
+        <item>BCA_SYR</item>
+        <item>BCA_DIGITAL</item>
+        <item>BJB</item>
+        <item>DANAMON</item>
+        <item>SEABANK</item>
+    </string-array>
+</resources>

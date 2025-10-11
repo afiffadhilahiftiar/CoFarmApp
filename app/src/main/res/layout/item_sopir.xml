@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:backgroundTint="#B1E0F7FA"
+    android:elevation="4dp"
+    android:radius="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/birumuda"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <TextView
+            android:id="@+id/tvNamaSopir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Sopir"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tvNoHp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No HP:"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tvKendaraan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Kendaraan:"/>
+
+        <TextView
+            android:id="@+id/tvPlatNomor"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plat Nomor:"/>
+
+        <TextView
+            android:id="@+id/tvKapasitas"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kapasitas:"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="vertical"
+        android:padding="4dp">
+        <Button
+            android:id="@+id/btnEditSopir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/teal_700"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="0dp"
+            android:text="Edit" />
+        <Button
+            android:id="@+id/btnChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/hijau"
+            android:backgroundTint="@color/hijau"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="0dp"
+            android:text="Chat Whatsapp" />
+
+    </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/btnHapusSopir"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:src="@android:drawable/ic_delete"
+        android:contentDescription="Hapus" />
+
+</androidx.cardview.widget.CardView>

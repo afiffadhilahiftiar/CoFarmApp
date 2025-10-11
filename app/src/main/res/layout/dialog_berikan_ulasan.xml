@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:background="#FAFAFA"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:layout_gravity="center"
+        android:stepSize="1.0"
+        android:rating="0" />
+
+    <EditText
+        android:id="@+id/editUlasan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tulis ulasan Anda..."
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:background="@drawable/edittext_background"
+        android:textColorHint="@color/gray"
+        android:textColor="@color/black"
+        android:gravity="top|start"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

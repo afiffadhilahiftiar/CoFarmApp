@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:backgroundTint="#B1E0F7FA"
+    android:elevation="4dp"
+    android:radius="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Foto Traktor -->
+        <ImageView
+            android:id="@+id/ivFotoTraktor"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="8dp"
+
+            android:contentDescription="Foto Traktor" />
+
+        <!-- Jenis Traktor -->
+        <TextView
+            android:id="@+id/tvJenisTraktor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jenis Traktor"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <!-- Kapasitas -->
+        <TextView
+            android:id="@+id/tvKapasitas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kapasitas:"
+            android:textColor="@color/black"/>
+
+        <!-- Nama Operator -->
+        <TextView
+            android:id="@+id/tvNamaOperator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Operator:"
+            android:textColor="@color/black"/>
+
+        <!-- Nomor HP -->
+        <TextView
+            android:id="@+id/tvNoHp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No HP:"
+            android:textColor="@color/black"/>
+
+        <!-- Tombol Edit dan Chat -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <Button
+                android:id="@+id/btnEditTraktor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/teal_700"
+                android:text="Edit" />
+
+            <Button
+                android:id="@+id/btnChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/hijau"
+                android:backgroundTint="@color/hijau"
+                android:text="Chat WhatsApp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Tombol Hapus -->
+    <ImageView
+        android:id="@+id/btnHapusTraktor"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:src="@android:drawable/ic_delete"
+        android:contentDescription="Hapus" />
+</androidx.cardview.widget.CardView>

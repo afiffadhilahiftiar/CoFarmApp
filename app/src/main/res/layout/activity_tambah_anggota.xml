@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/toolbar"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="@color/gray"
+        android:textSize="12sp"
+        android:textColor="@color/gray"
+        android:layout_marginTop="30dp"
+        android:hint="Masukkan Email Pengguna"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:background="@drawable/edittext_background"/>
+
+    <Button
+        android:id="@+id/btnCari"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cari"
+        android:elevation="3dp"
+        android:backgroundTint="@color/com_facebook_button_send_background_color"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/txtNama"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama: -"
+        android:textColor="@color/white"
+        android:layout_marginTop="24dp"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/txtPeran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Peran: -"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/btnTambah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#0277BD"
+        android:text="+Tambah" />
+</LinearLayout>

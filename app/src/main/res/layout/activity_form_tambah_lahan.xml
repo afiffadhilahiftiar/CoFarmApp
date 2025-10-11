@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editNamaLahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Lahan"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/editLuasLahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Luas Lahan (ha)"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/editLokasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lokasi Lahan"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnSimpanLahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan Data" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/toolbar"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    android:paddingTop="36dp"
+    android:paddingBottom="46dp">
+
+    <LinearLayout
+        android:id="@+id/layoutForm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/border_background">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logo Perusahaan"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="30dp"/>
+
+        <ImageView
+            android:id="@+id/imgLogoPreview"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/store_icon"
+            android:scaleType="centerCrop"
+            android:background="@drawable/border_background"
+            android:backgroundTint="#FAFAFA"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/btnUploadLogo"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="Pilih Logo"
+            android:textSize="12sp"
+            android:background="@color/white"
+            android:backgroundTint="@color/teal_700"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp" />
+
+        <!-- Email (otomatis dari Firebase) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:textSize="12sp"
+            android:background="@drawable/edittext_background"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black" />
+
+        <!-- Nama Perusahaan -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Perusahaan"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etNamaPerusahaan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan nama perusahaan"
+            android:inputType="text"
+            android:textSize="12sp"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"/>
+        <!-- Jenis Usaha -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis Usaha"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="12dp" />
+
+        <Spinner
+            android:id="@+id/spinnerJenisUsaha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="8dp"
+            android:layout_marginBottom="4dp"
+            android:spinnerMode="dropdown" />
+        <EditText
+            android:id="@+id/etKodepoktan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:textColorHint="@color/gray"
+            android:hint="ID Poktan"
+            android:inputType="number"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:visibility="gone"/>
+        <!-- Logo Perusahaan (image picker trigger) -->
+
+        <!-- Lokasi -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lokasi Perusahaan"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="12dp"/>
+        <EditText
+            android:id="@+id/etKodepos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:textColorHint="@color/gray"
+            android:hint="Kode Pos"
+            android:inputType="number"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/btnCekRegion"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/teal_700"
+            android:text="Validasi Kode Pos"
+            android:visibility="gone"
+            android:textSize="12sp" />
+        <EditText
+            android:id="@+id/etRegionid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColorHint="@color/gray"
+            android:inputType="number"
+            android:visibility="gone"
+            android:hint="Kode Pengiriman"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black" />
+        <Spinner
+            android:id="@+id/spinnerProvinsi"
+            android:layout_width="match_parent"
+            android:background="@drawable/edittext_background"
+            android:layout_height="wrap_content"
+            android:prompt="@string/pilih_provinsi" />
+
+        <Spinner
+            android:id="@+id/spinnerKabupaten"
+            android:layout_width="match_parent"
+            android:background="@drawable/edittext_background"
+            android:layout_height="wrap_content"
+            android:prompt="@string/pilih_kabupaten" />
+
+
+        <EditText
+            android:id="@+id/etLokasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:layout_marginBottom="4dp"
+            android:enabled="false"
+            android:textColorHint="@color/gray"
+            android:hint="Kabupaten, Provinsi | ex: Purbalingga, Jawa Tengah"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/tvJenisBank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jenis Bank untuk Asuransi / Dana Cadangan"
+            android:layout_marginTop="4dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
+        <Spinner
+            android:id="@+id/spinnerJenisBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:background="@drawable/edittext_background"
+            android:padding="8dp"
+            android:layout_marginBottom="0dp"
+            android:spinnerMode="dropdown" />
+        <EditText
+            android:id="@+id/etNamaAkunBank"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:inputType="textCapCharacters"
+            android:background="@drawable/edittext_background"
+            android:hint="Nama Akun Bank"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#62000000"
+            android:textSize="12sp" />
+        <EditText
+            android:id="@+id/etNoRekening"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/edittext_background"
+            android:hint="Nomor Rekening"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="@android:color/black"
+            android:textColorHint="#62000000"
+            android:textSize="12sp" />
+        <!-- Deskripsi -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Deskripsi"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:inputType="textLongMessage"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:hint="Deskripsikan perusahaan" />
+
+        <!-- Website -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Website"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etWebsite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="https://example.com"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="12sp"
+            android:inputType="textUri" />
+
+        <!-- Koordinat -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Koordinat (Latitude, Longitude)"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etKoordinat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Latitude, Longitude"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textColorHint="@color/gray"
+            android:inputType="text" />
+        <Button
+            android:id="@+id/btnPilihLokasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih dari Peta"
+            android:background="@color/white"
+            android:backgroundTint="@color/teal_700"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="start"/>
+
+
+        <!-- Sertifikat -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sertifikat"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etSertifikat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contoh: SRT-XXXXX-2025"
+            android:textColorHint="@color/gray"
+            android:background="@drawable/edittext_background"
+            android:textSize="12sp"
+            android:textColor="@color/black"/>
+        <Button
+            android:id="@+id/btnCaraSertifikat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/hijau"
+            android:text="Cara Mendapatkan Nomor Sertifikat"
+            android:layout_marginTop="8dp"/>
+        <!-- SK Keputusan Pendirian Perusahaan -->
+        <TextView
+            android:id="@+id/tvSkPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Surat Keputusan Pengesahan Pendirian Badan Hukum"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="12dp" />
+
+        <!-- Preview Foto SK -->
+        <ImageView
+            android:id="@+id/imgSkPreview"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:background="@drawable/border_background"
+        android:backgroundTint="#FAFAFA"
+        android:padding="8dp" />
+
+        <!-- Tombol upload foto SK -->
+        <Button
+            android:id="@+id/btnUploadSk"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="Pilih Foto SK"
+            android:textSize="12sp"
+            android:background="@color/white"
+            android:backgroundTint="@color/teal_700"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp" />
+
+        <!-- Nomor SK -->
+        <EditText
+            android:id="@+id/etNomorSk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan Nomor SK"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:inputType="text" />
+
+        <!-- Sosial Media -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Instagram"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="12dp"/>
+
+        <EditText
+            android:id="@+id/etSosialMedia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:textSize="12sp"
+            android:textColorHint="@color/gray"
+            android:hint="Contoh: @perusahaanku"
+            android:textColor="@color/black"/>
+
+        <!-- Tombol Simpan -->
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:text="Simpan"
+            android:textSize="12sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="40dp"
+            android:background="@color/white"
+            android:backgroundTint="@color/teal_700"
+            android:textColor="@android:color/white" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_marginTop="300dp"/>
+
+    </LinearLayout>
+</ScrollView>

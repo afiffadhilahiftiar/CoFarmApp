@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/toolbar"
+    android:padding="24dp"
+    tools:context=".activities.LoginActivity">
+
+    <!-- Logo -->
+
+    <!-- Judul Login -->
+
+    <!-- Subjudul -->
+
+    <!-- Background kotak Email -->
+
+    <!-- Email Field -->
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Buat Akun"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Background kotak Password -->
+
+    <!-- Password Field -->
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:fontFamily="@font/poppins"
+        android:text="Silahkan daftar akun baru!"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageKotakNama"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageKotakNama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="188dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/kotak" />
+
+    <ImageView
+        android:id="@+id/imageKotakEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageKotakNama"
+        app:srcCompat="@drawable/kotak" />
+
+    <ImageView
+        android:id="@+id/imageKotakPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageKotakEmail"
+        app:srcCompat="@drawable/kotak" />
+
+    <ImageView
+        android:id="@+id/imageKotakConfirmPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageKotakPassword"
+        app:srcCompat="@drawable/kotak" />
+
+    <EditText
+        android:id="@+id/editNama"
+        android:layout_width="314dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:fontFamily="@font/poppins"
+        android:hint="Nama"
+        android:inputType="text|textPersonName|textAutoComplete|textAutoCorrect"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#62000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imageKotakNama"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imageKotakNama" />
+
+
+    <EditText
+        android:id="@+id/editEmail"
+        android:layout_width="314dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="10dp"
+        android:background="@null"
+        android:fontFamily="@font/poppins"
+        android:hint="Email"
+        android:inputType="text|textEmailAddress|textAutoComplete|textAutoCorrect"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textColorHint="#62000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imageKotakEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imageKotakEmail" />
+
+
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="271dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:fontFamily="@font/poppins"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColor="#0B0B0B"
+        android:textColorHint="#62000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imageKotakPassword"
+        app:layout_constraintEnd_toStartOf="@id/togglePassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/imageKotakPassword" />
+
+    <!-- Eye Icon Toggle -->
+    <ImageView
+        android:id="@+id/togglePassword"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_eye_off"
+        android:contentDescription="Toggle Password"
+        app:layout_constraintEnd_toEndOf="@id/imageKotakPassword"
+        app:layout_constraintTop_toTopOf="@id/imageKotakPassword"
+        app:layout_constraintBottom_toBottomOf="@id/imageKotakPassword"
+        android:layout_marginEnd="16dp" />
+
+    <!-- Eye Icon Toggle -->
+
+    <EditText
+        android:id="@+id/editConfirmPassword"
+        android:layout_width="271dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@null"
+        android:fontFamily="@font/poppins"
+        android:gravity="center_vertical"
+        android:hint="Confirm Password"
+        android:inputType="text|textPassword"
+        android:padding="10dp"
+        android:textColor="#0B0B0B"
+        android:textColorHint="#62000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imageKotakConfirmPassword"
+        app:layout_constraintEnd_toStartOf="@id/toggleConfirmPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageKotakConfirmPassword"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/toggleConfirmPassword"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_eye_off"
+        android:contentDescription="Toggle Password"
+        app:layout_constraintEnd_toEndOf="@id/imageKotakConfirmPassword"
+        app:layout_constraintTop_toTopOf="@id/imageKotakConfirmPassword"
+        app:layout_constraintBottom_toBottomOf="@id/imageKotakConfirmPassword"
+        android:layout_marginEnd="16dp" />
+
+
+    <!-- Tombol Masuk -->
+
+    <!-- Tombol Buat Akun Baru -->
+
+    <!-- Tombol Lupa Password -->
+
+    <Button
+        android:id="@+id/btnToSudah"
+        android:layout_width="358dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="3dp"
+        android:backgroundTint="#FFFFFF"
+        android:elevation="6dp"
+        android:fontFamily="@font/poppins"
+        android:text="Sudah punya akun?"
+        android:textColor="#040000"
+        android:translationZ="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnDaftar" />
+
+    <Button
+        android:id="@+id/btnDaftar"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/teal_700"
+        android:elevation="6dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Daftar"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageKotakConfirmPassword" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

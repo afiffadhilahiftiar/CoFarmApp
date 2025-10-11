@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <!-- SCROLLABLE FORM YANG AKAN DICETAK -->
+    <ScrollView
+        android:id="@+id/scrollViewForm"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/formContainer"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- KOP SURAT -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="20dp"
+                android:paddingBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/imgLogoPoktan"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/ic_launcher_foreground"
+                    android:layout_marginEnd="12dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNamaPoktan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:id="@+id/tvIdPoktan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kelompok Tani"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/black"/>
+
+                    <TextView
+                        android:id="@+id/tvLokasiPoktan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jl. Pertanian No. 1, Jakarta"
+                        android:textSize="14sp"
+                        android:textColor="@android:color/darker_gray"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- JUDUL -->
+            <TextView
+                android:text="SURAT PENGAJUAN KONTRAK PETANI"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- ISIAN FORM DENGAN LABEL KIRI -->
+            <!-- Contoh satu field (ulang untuk semua) -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Petani"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+
+                <EditText
+                    android:id="@+id/etNamaPetani"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="12sp"
+                    android:enabled="false"
+                    android:hint="Nama Petani"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="@android:color/darker_gray"/>
+            </LinearLayout>
+
+            <!-- Ulangi struktur di atas untuk semua kolom lainnya -->
+
+            <!-- ID Petani -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:layout_height="wrap_content"
+                    android:text="ID Petani"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etIdPetani" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:textSize="12sp" android:inputType="number" android:hint="ID Petani" android:textColor="@android:color/black" android:enabled="false"/>
+            </LinearLayout>
+
+            <!-- Nama Perusahaan -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:textSize="12sp" android:layout_height="wrap_content" android:text="Perusahaan" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etNamaPerusahaan" android:enabled="false" android:textSize="12sp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Nama Perusahaan" android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- ID Kontrak -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:textSize="12sp" android:layout_height="wrap_content" android:text="ID Kontrak" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etContractId" android:enabled="false" android:textSize="12sp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="number" android:hint="ID Kontrak" android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Ulangi untuk kebutuhan lainnya -->
+            <!-- Kebutuhan -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:textSize="12sp" android:layout_height="wrap_content" android:text="Kebutuhan" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etKebutuhan" android:enabled="false" android:textSize="12sp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Komoditas" android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Jumlah Kebutuhan -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:textSize="12sp" android:layout_height="wrap_content" android:text="Jumlah" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etJumlahKebutuhan" android:enabled="false" android:textSize="12sp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="number" android:hint="Jumlah Kebutuhan" android:textColor="@android:color/black"/>
+
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:textSize="12sp" android:layout_height="wrap_content" android:text="Satuan" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etSatuan" android:enabled="false" android:textSize="12sp" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="number" android:hint="Satuan" android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Lahan -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:textSize="12sp" android:layout_height="wrap_content" android:text="Lahan" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etLahan" android:enabled="false" android:layout_width="0dp" android:textSize="12sp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Nama Lahan" android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Status Lahan -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:layout_height="wrap_content" android:textSize="12sp" android:text="Status Lahan" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etStatusLahan" android:enabled="false" android:layout_width="0dp" android:textSize="12sp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Status (Siap tanam, dll)" android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Waktu Dibutuhkan -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:layout_height="wrap_content" android:textSize="12sp" android:text="Waktu Dibutuhkan" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etWaktuDibutuhkan" android:enabled="false" android:layout_width="0dp" android:textSize="12sp" android:layout_height="wrap_content" android:layout_weight="1" android:hint="Contoh: 3 Bulan" android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Tanggal Pengajuan -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:layout_height="wrap_content" android:textSize="12sp" android:text="Tanggal Pengajuan" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etTanggalPengajuan"  android:layout_width="0dp" android:layout_height="wrap_content" android:textSize="12sp" android:layout_weight="1" android:hint="dd-MM-yyyy" android:textColor="@android:color/black" android:enabled="false"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="4dp">
+                <TextView android:layout_width="120dp" android:layout_height="wrap_content" android:textSize="12sp" android:text="Asuransi" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText
+                    android:id="@+id/etAsuransi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Asuransi (Ya/Tidak)"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    android:enabled="false"
+                    android:inputType="text" />
+
+            </LinearLayout>
+
+            <!-- Catatan -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+                <TextView android:layout_width="120dp" android:layout_height="wrap_content" android:text="Catatan" android:textSize="12sp" android:textColor="@android:color/black"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"
+                    android:gravity="start|center_vertical" />
+                <EditText android:id="@+id/etCatatan"  android:layout_width="0dp" android:layout_height="wrap_content" android:textSize="12sp" android:layout_weight="1" android:hint="Catatan Tambahan" android:minLines="2" android:gravity="top" android:textColor="@android:color/black"/>
+            </LinearLayout>
+            <!-- TANDA TANGAN -->
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="end">
+
+                <TextView
+                    android:text="Hormat saya,"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:textColor="@android:color/black"/>
+
+
+                <TextView
+                    android:id="@+id/tvNamaPetaniTtd"
+                    android:text="(Nama Petani)"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="end"
+                    android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- TOMBOL SIMPAN TIDAK AKAN TERIKUT CETAK -->
+    <Button
+        android:id="@+id/btnSimpan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simpan Surat"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="30dp"/>
+</LinearLayout>

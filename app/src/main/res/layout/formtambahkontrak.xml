@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#FAFAFA"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etNamaPerusahaan"
+            android:hint="Nama Perusahaan"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:focusable="false"
+            android:textColor="@color/black"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etLokasi"
+            android:hint="Lokasi"
+            android:layout_marginBottom="8dp"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:focusable="false"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etRating"
+            android:hint="Rating (1-5)"
+            android:textColorHint="@color/gray"
+            android:visibility="visible"
+            android:textColor="@color/black"
+            android:focusable="false"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:inputType="numberDecimal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etKebutuhan"
+            android:hint="Jenis Kebutuhan (contoh: Gabah)"
+            android:textColorHint="@color/gray"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etJumlahKebutuhan"
+            android:hint="Jumlah Kebutuhan (Kg)"
+            android:inputType="number"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Spinner
+            android:id="@+id/spinnerSatuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:padding="8dp"
+            android:layout_marginBottom="8dp"
+            android:spinnerMode="dropdown" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etHargaPerKg"
+            android:hint="Harga per satuan"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etHargaPerKgFinal"
+            android:hint="Harga+biaya layanan"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:enabled="false"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etGradeB"
+            android:hint="Potongan Grade B (Contoh: 10%)"
+            android:layout_marginEnd="3dp"
+            android:inputType="number"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etHargaB"
+            android:hint="Harga Grade B"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:enabled="false"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="0dp"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/etGradeC"
+            android:hint="Potongan Grade C (Contoh: 20%)"
+            android:inputType="number"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_weight="1"
+            android:layout_marginEnd="3dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/etHargaC"
+            android:hint="Harga Grade C"
+            android:inputType="number"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:enabled="false"
+            android:layout_weight="1"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+        <EditText
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+
+            android:background="@drawable/edittext_background"
+            android:id="@+id/etWaktuDibutuhkan"
+            android:layout_marginBottom="8dp"
+            android:hint="Waktu Dibutuhkan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etJumlahKontrak"
+            android:hint="Jumlah Kontrak"
+            android:inputType="number"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:visibility="gone"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/etPersyaratan"
+            android:hint="Persyaratan"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine" />
+
+        <EditText
+            android:id="@+id/etDeskripsi"
+            android:hint="Deskripsi (Wajib menyertakan penjelasan potongan harga sesuai grade : Grade A, Grade B, Grade C, Gagal Panen)"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine" />
+
+        <EditText
+            android:id="@+id/etLogoUrl"
+            android:hint="Logo URL (Opsional)"
+            android:inputType="textUri"
+            android:textColorHint="@color/gray"
+            android:visibility="gone"
+            android:textColor="@color/black"
+            android:background="@drawable/edittext_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

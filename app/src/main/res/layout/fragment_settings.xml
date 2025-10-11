@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnAturAkun"
+            android:layout_width="match_parent"
+            android:background="@drawable/edittext_background"
+            android:textAlignment="viewStart"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:text="Atur Akun" />
+
+        <Button
+            android:id="@+id/btnEditProfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Profil"
+            android:textAlignment="viewStart"
+            android:background="@drawable/edittext_background"
+            android:layout_marginTop="4dp"/>
+
+        <Button
+            android:id="@+id/btnHapusAkun"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_background"
+            android:text="Hapus Akun"
+            android:visibility="gone"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="4dp"/>
+
+        <Button
+            android:id="@+id/btnKebijakanPrivasi"
+            android:layout_width="match_parent"
+            android:background="@drawable/edittext_background"
+            android:layout_height="wrap_content"
+            android:text="Kebijakan Privasi"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="4dp"/>
+
+        <Button
+            android:id="@+id/btnKebijakanPenggunaan"
+            android:layout_width="match_parent"
+            android:background="@drawable/edittext_background"
+            android:layout_height="wrap_content"
+            android:text="Kebijakan Penggunaan"
+            android:textAlignment="viewStart"
+            android:layout_marginTop="4dp"/>
+    </LinearLayout>
+
+</ScrollView>
