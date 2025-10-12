@@ -104,6 +104,102 @@ Sebuah aplikasi kontrak digital dengan fitur:
     </tr>
   </tbody>
 </table>
+## 📊 Perbandingan CoFarm dengan Kompetitor
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+  <thead>
+    <tr style="background-color:#009688; color:white; text-align:center;">
+      <th>Aspek</th>
+      <th>CoFarm</th>
+      <th>TaniHub</th>
+      <th>Agree (Telkom)</th>
+      <th>eFishery</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🌾 <b>Fokus Utama</b></td>
+      <td style="background-color:#E0F2F1;">Digital Contract Farming + Risk Management</td>
+      <td>Marketplace pertanian</td>
+      <td style="background-color:#E0F2F1;">Contract Farming Digital</td>
+      <td>Automasi pemberian pakan ikan</td>
+    </tr>
+    <tr>
+      <td>💡 <b>Nilai Tambah</b></td>
+      <td style="background-color:#E0F2F1;">Dana cadangan digital, AI risk analysis, chat + mediasi</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>❗ <b>Masalah yang Dipecahkan</b></td>
+      <td style="background-color:#E0F2F1;">Fluktuasi harga, gagal panen, keterlambatan pasokan, mediasi kontrak</td>
+      <td>Distribusi & jual beli produk</td>
+      <td style="background-color:#E0F2F1;">Manajemen kontrak petani & offtaker</td>
+      <td>Efisiensi pakan & produksi ikan</td>
+    </tr>
+    <tr>
+      <td>🎯 <b>Target Pasar</b></td>
+      <td style="background-color:#E0F2F1;">Petani, offtaker, perusahaan agribisnis</td>
+      <td>Petani & konsumen</td>
+      <td style="background-color:#E0F2F1;">Petani & korporasi</td>
+      <td>Petani ikan & tambak</td>
+    </tr>
+    <tr>
+      <td>📈 <b>Potensi & Dampak</b></td>
+      <td style="background-color:#E0F2F1;">Transparansi kontrak, perlindungan risiko, efisiensi distribusi</td>
+      <td>Mempermudah transaksi</td>
+      <td style="background-color:#E0F2F1;">Meningkatkan kepastian kontrak</td>
+      <td>Meningkatkan efisiensi pakan & produksi</td>
+    </tr>
+    <tr>
+      <td>💻 <b>Teknologi</b></td>
+      <td style="background-color:#E0F2F1;">Android App, Web Dashboard, AI Risk Analysis, Maps Integration</td>
+      <td>Mobile App & Web Marketplace</td>
+      <td style="background-color:#E0F2F1;">Web-based platform</td>
+      <td>IoT + Automation</td>
+    </tr>
+    <tr>
+      <td>💰 <b>Model Pendapatan</b></td>
+      <td style="background-color:#E0F2F1;">Fee dari transaksi + potongan dana cadangan</td>
+      <td>Margin penjualan produk</td>
+      <td style="background-color:#E0F2F1;">Fee kontrak</td>
+      <td>Subscription & hardware</td>
+    </tr>
+    <tr>
+      <td>👥 <b>Peran Fasilitator</b></td>
+      <td style="background-color:#E0F2F1;">Mediates disputes & approves claims via chat</td>
+      <td>-</td>
+      <td style="background-color:#E0F2F1;">Mediates kontrak</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>🔗 <b>Rantai Pasok</b></td>
+      <td style="background-color:#E0F2F1;">Petani → Offtaker → Distributor → Konsumen</td>
+      <td>Petani → Konsumen</td>
+      <td style="background-color:#E0F2F1;">Petani → Offtaker</td>
+      <td>Petani ikan → Distributor → Konsumen</td>
+    </tr>
+    <tr>
+      <td>🏦 <b>Pemodalan</b></td>
+      <td style="background-color:#E0F2F1;">Dana cadangan bersama untuk menutupi risiko</td>
+      <td>Mandiri / pribadi</td>
+      <td style="background-color:#E0F2F1;">Tidak ada proteksi risiko khusus</td>
+      <td>Mandiri / investor</td>
+    </tr>
+  </tbody>
+</table>
+
+---
+
+### 🏆 Ringkasan Keunggulan CoFarm
+✅ **Transparansi penuh** dari kontrak hingga distribusi hasil.  
+💬 **Mediasi otomatis** antara petani dan offtaker tanpa birokrasi.  
+🤖 **Analisis risiko cerdas (AI)** untuk prediksi potensi gagal panen.  
+🗺️ **Integrasi peta komoditas** untuk efisiensi distribusi logistik.  
+💰 **Dana cadangan digital** sebagai proteksi kerugian semua pihak.  
+
+> 📈 *CoFarm menjadi satu-satunya platform yang menyatukan aspek keuangan, teknologi, sosial, dan risiko pertanian digital dalam satu ekosistem di Indonesia.*
 
 ---
 
