@@ -1,6 +1,6 @@
 # 🌾 CoFarm – Digital Contract Farming Platform
 
-![CoFarm Banner](https://raw.githubusercontent.com/afiffadhilahiftiar/repo/main/assets/cofarm-banner.png)
+![CoFarm Banner](https://raw.githubusercontent.com/afiffadhilahiftiar/repo/main/assets/banner.jpg)
 
 > 🌱 *Menghubungkan Petani, Offtaker, dan Fasilitator dalam satu ekosistem digital transparan dan aman.*
 
