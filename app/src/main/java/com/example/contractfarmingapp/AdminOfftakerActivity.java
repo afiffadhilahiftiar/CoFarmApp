@@ -163,19 +163,20 @@ public class AdminOfftakerActivity extends AppCompatActivity implements PetaniAd
                             String ikutAsuransi = obj.optString("ikut_asuransi", "Tidak");
                             String jumlahKebutuhan = obj.optString("jumlah_kebutuhan", "0");
                             String tanggalAjukan = obj.optString("tanggal_ajukan", "-");
-
+                            String statusKlaim = obj.optString("status_klaim", "-");
                             // 🔄 Konversi nilai ikut_asuransi (1 => Ya, null/0 => Tidak)
                             if (ikutAsuransi.equals("1")) {
                                 ikutAsuransi = "Ya";
                             } else if (ikutAsuransi.equals("0") || ikutAsuransi.equalsIgnoreCase("null")) {
                                 ikutAsuransi = "Tidak";
                             }
+                            int countAsuransi = obj.optInt("count_asuransi", 0);
 
                             Petani p = new Petani(
                                     id, userId, nama, harga, lahan, progres, catatan,
                                     companyName, companyId, contractId, oftakerId,
                                     status, statusLahan, kebutuhan, satuan, waktuDibutuhkan,
-                                    ikutAsuransi, jumlahKebutuhan, tanggalAjukan
+                                    ikutAsuransi, jumlahKebutuhan, tanggalAjukan, statusKlaim, countAsuransi
                             );
 
                             listPetani.add(p);
@@ -591,30 +592,6 @@ public class AdminOfftakerActivity extends AppCompatActivity implements PetaniAd
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogView)
                 .setTitle("Konfirmasi Selesai Kontrak")
-                .setPositiveButton("Kirim", (dialog, which) -> {
-                    String selectedGrade = spinnerGrade.getSelectedItem().toString();
-                    String persenPotonganStr = etPersentase.getText().toString().trim();
-
-                    if (checkBox1.isChecked() && checkBox2.isChecked()
-                            && selectedImageUri != null
-                            && !persenPotonganStr.isEmpty()) {
-
-                        int persenPotongan = Integer.parseInt(persenPotonganStr);
-
-                        // Kirim data ke server dengan tambahan grade & potongan
-                        uploadSelesaiKontrak(petani, selectedImageUri);
-                        kirimStatusValidasi(
-                                petani.user_id,
-                                petani.contract_id,
-                                "Memilih logistik",
-                                ""
-                        );
-
-                        dialog.dismiss();
-                    } else {
-                        Toast.makeText(this, "Harap centang semua, pilih grade, isi potongan, dan upload foto", Toast.LENGTH_SHORT).show();
-                    }
-                })
                 .setNegativeButton("Batal", null)
                 .show();
 

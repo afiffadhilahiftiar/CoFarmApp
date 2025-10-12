@@ -25,6 +25,7 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
     public interface OnPetaniActionListener {
         void onItemClick(Petani petani);
         void onValidasiClick(Petani petani);
+        void onKlaimDiterimaClick(Petani petani);
         void onBeriUlasan(Petani petani);
         void onChatClick(Petani petani);
         void onLihatKontrakClick(Petani petani);
@@ -62,6 +63,39 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
 
         // Status & tombol validasi
         String status = petani.status != null ? petani.status : "";
+        String statusKlaim = petani.statusKlaim != null ? petani.statusKlaim : "";
+        holder.btnKlaimDana.setEnabled(true);
+        switch (statusKlaim) {
+            case "Klaim Dana":
+                holder.btnKlaimDana.setText("Klaim dana cadangan untuk petani");
+                holder.btnKlaimDana.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+                holder.btnKlaimDana.setOnClickListener(v -> listener.onKlaimDanaClick(petani));
+                break;
+            case "Menunggu Validasi":
+                holder.btnKlaimDana.setText("Menunggu validasi klaim dana");
+                holder.btnKlaimDana.setVisibility(View.VISIBLE);
+                holder.btnKlaimDana.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+                holder.btnKlaimDana.setOnClickListener(null);
+                break;
+            case "Ditolak":
+                holder.btnKlaimDana.setText("Klaim Dana Ditolak");
+                holder.btnKlaimDana.setVisibility(View.VISIBLE);
+                holder.btnKlaimDana.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F44336")));
+                holder.btnKlaimDana.setOnClickListener(null);
+                break;
+            case "Dibayar":
+                holder.btnKlaimDana.setText("Klaim dana dibayar fasilitator (Konfirmasi)");
+                holder.btnKlaimDana.setVisibility(View.VISIBLE);
+                holder.btnKlaimDana.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+                holder.btnKlaimDana.setOnClickListener(v -> listener.onKlaimDiterimaClick(petani));
+                break;
+            case "Dana Cadangan Diterima":
+                holder.btnKlaimDana.setText("Pembayaran klaim diterima petani");
+                holder.btnKlaimDana.setVisibility(View.VISIBLE);
+                holder.btnKlaimDana.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+                holder.btnKlaimDana.setOnClickListener(null);
+                break;
+        }
 
         holder.btnValidasi.setEnabled(true); // Reset sebelum diproses
         switch (status) {
@@ -90,7 +124,7 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
                 holder.btnValidasi.setOnClickListener(null);
                 holder.btnKlaimDana.setEnabled(true);
                 holder.btnKlaimDana.setVisibility(View.VISIBLE);
-                holder.btnKlaimDana.setOnClickListener(v -> listener.onKlaimDanaClick(petani));
+
                 break;
             case "Perusahaan tidak memproses kontrak lebih lanjut":
                 holder.btnValidasi.setText("Ditolak Offtaker");

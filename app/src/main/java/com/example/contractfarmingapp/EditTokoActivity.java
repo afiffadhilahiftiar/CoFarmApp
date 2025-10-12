@@ -377,7 +377,7 @@ public class EditTokoActivity extends AppCompatActivity {
                 },
                 error -> {
                     dialog.dismiss();
-                    Toast.makeText(this, "Gagal mengupdate data. Periksa koneksi internet!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Gagal mengupdate data. (Sertifikat tidak bisa diganti jika sudah punya))", Toast.LENGTH_SHORT).show();
                 }) {
 
             @Override

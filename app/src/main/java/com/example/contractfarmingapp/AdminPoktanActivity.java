@@ -105,7 +105,9 @@ public class AdminPoktanActivity extends AppCompatActivity implements PetaniAdap
                                     obj.optString("waktuDibutuhkan", "-"),
                                     obj.optString("ikut_asuransi", "Tidak"),
                                     obj.optString("jumlahKebutuhan", "0"),
-                                    obj.optString("tanggal_ajukan", "-")
+                                    obj.optString("tanggal_ajukan", "-"),
+                                    obj.optString("status_klaim", "Belum ada status"),
+                                    obj.getInt("count_asuransi")
                             );
 
                             listPetani.add(p);
@@ -269,7 +271,10 @@ public class AdminPoktanActivity extends AppCompatActivity implements PetaniAdap
                 return;
             }
 
-            // Buat PDF
+            // === Simpan data klaim ke database ===
+            simpanKlaimKeDatabase(petani.id, jumlahStr, catatan);
+
+            // === Buat PDF ===
             File pdfFile = buatPdfKlaim(petani, jumlah, catatan);
             if (pdfFile != null) {
                 // Kirim PDF ke chat fasilitator
@@ -279,6 +284,41 @@ public class AdminPoktanActivity extends AppCompatActivity implements PetaniAdap
             dialog.dismiss();
         });
     }
+    private void simpanKlaimKeDatabase(int petaniId, String jumlahKlaim, String catatanKlaim) {
+        String url = ApiConfig.BASE_URL + "update_klaim_petani.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        if (obj.getBoolean("success")) {
+                            Toast.makeText(this, "Klaim berhasil disimpan", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Gagal menyimpan klaim: " + obj.getString("message"), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Error parsing response", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    error.printStackTrace();
+                    Toast.makeText(this, "Gagal terhubung ke server", Toast.LENGTH_SHORT).show();
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("petani_id", String.valueOf(petaniId));
+                params.put("jumlah_klaim", jumlahKlaim);
+                params.put("catatan_klaim", catatanKlaim);
+                params.put("status_klaim", "Menunggu Validasi");
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(this).add(stringRequest);
+    }
+
     @Override
     public void onItemClick(Petani petani) {
         Intent intent = new Intent(this, FormKontrakActivity.class);
@@ -376,22 +416,24 @@ public class AdminPoktanActivity extends AppCompatActivity implements PetaniAdap
 
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(1);
-            canvas.drawRect(tableLeft, tableTop, tableRight, tableTop + (5 * rowHeight), paint);
+            canvas.drawRect(tableLeft, tableTop, tableRight, tableTop + (6 * rowHeight), paint);
 
             paint.setStyle(Paint.Style.FILL);
             paint.setTextAlign(Paint.Align.LEFT);
             NumberFormat rupiahFormat = NumberFormat.getInstance(new Locale("id", "ID"));
             String jumlahStr = "Rp " + rupiahFormat.format(jumlah);
             String[] labels = {
-                    "Nama Petani", "Lahan", "Jumlah Klaim (Rp)", "Alasan", "Tanggal Pengajuan"
+                    "Nama Petani", "Lahan", "Jumlah Klaim (Rp)", "Riwayat Ikut Asuransi", "Alasan", "Tanggal Pengajuan"
             };
             String[] values = {
                     petani.nama,
                     petani.lahan,
                     jumlahStr,
+                    String.valueOf(petani.countAsuransi + " Kali"), // ubah integer ke String
                     catatan.isEmpty() ? "-" : catatan,
                     sdf.format(new Date())
             };
+
 
             for (int i = 0; i < labels.length; i++) {
                 int rowY = tableTop + (i * rowHeight) + 20;
@@ -443,8 +485,51 @@ public class AdminPoktanActivity extends AppCompatActivity implements PetaniAdap
         intent.putExtra("pdf_path", pdfFile.getAbsolutePath());
         startActivity(intent);
     }
+    private void updateStatusKlaim(int petaniId, String statusKlaim, String catatanKlaim) {
+        String url = ApiConfig.BASE_URL + "update_status_klaim.php";
 
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        if (obj.getBoolean("success")) {
+                            Toast.makeText(this, "Status klaim diperbarui: " + statusKlaim, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Gagal memperbarui klaim", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(this, "Respon tidak valid", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> Toast.makeText(this, "Koneksi server gagal", Toast.LENGTH_SHORT).show()
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("petani_id", String.valueOf (petaniId));
+                params.put("status_klaim", statusKlaim);
+                params.put("catatan_klaim", catatanKlaim);
+                return params;
+            }
+        };
 
+        Volley.newRequestQueue(this).add(stringRequest);
+    }
+    public void onKlaimDiterimaClick(Petani petani) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Update Status Klaim Dana Cadangan");
+        builder.setMessage("Apakah petani sudah menerima klaim dana cadangan?");
+
+        builder.setPositiveButton("Ya", (dialog, which) -> {
+            updateStatusKlaim(petani.id, "Dana Cadangan Diterima", "Sudah menerima dana cadangan");
+            Toast.makeText(this, "Sudah menerima dana cadangan", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+        builder.setNegativeButton("Batal", (dialog, which) -> dialog.dismiss());
+
+        builder.show();
+    }
     public void onUpdateSopir(Petani petani) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Update Status Sopir");

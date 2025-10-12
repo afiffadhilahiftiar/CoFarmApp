@@ -1,14 +1,21 @@
 package com.example.contractfarmingapp;
 
+
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,14 +35,31 @@ import com.example.contractfarmingapp.activities.ContractDetailActivity;
 import com.example.contractfarmingapp.adapters.PetaniAdapterFasilitator;
 import com.example.contractfarmingapp.models.Petani;
 import com.example.contractfarmingapp.models.PetaniFasilitator;
+import com.example.contractfarmingapp.network.ApiClient;
+import com.example.contractfarmingapp.network.UploadService;
+import com.example.contractfarmingapp.network.UploadServiceKlaim;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
 
 public class AdminFasilitatorActivity extends AppCompatActivity implements PetaniAdapterFasilitator.OnPetaniActionListener {
 
@@ -44,8 +68,11 @@ public class AdminFasilitatorActivity extends AppCompatActivity implements Petan
     private PetaniAdapterFasilitator adapter;
     private List<PetaniFasilitator> listPetani;
     private Button btnUploadPanduan;
-
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private Uri selectedImageUri;
+    private ImageView imgPreview;
     private String API_URL = ""; // Awalnya kosong, nanti akan diisi di onCreate
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -124,11 +151,13 @@ public class AdminFasilitatorActivity extends AppCompatActivity implements Petan
                             String waktuDibutuhkan = obj.optString("waktu_dibutuhkan", "-");
                             String ikutAsuransi = obj.optString("ikut_asuransi", "Tidak");
                             String tanggalAjukan = obj.optString("tanggal_ajukan", "-");
-
+                            String jumlahKlaim = obj.optString("jumlah_klaim", "0");
+                            String statusKlaim = obj.optString("status_klaim", "-");
+                            String catatanKlaim= obj.optString("catatan_klaim", "-");
                             PetaniFasilitator p = new PetaniFasilitator(
                                     id, userId, nama, harga, lahan, progres, catatan,
                                     companyName, poktanName, companyId, contractId, oftakerId, status, statusLahan,
-                                    kebutuhan, satuan, waktuDibutuhkan, ikutAsuransi, jumlahKebutuhan, tanggalAjukan
+                                    kebutuhan, satuan, waktuDibutuhkan, ikutAsuransi, jumlahKebutuhan, tanggalAjukan, jumlahKlaim, statusKlaim, catatanKlaim
                             );
 
                             listPetani.add(p);
@@ -158,8 +187,35 @@ public class AdminFasilitatorActivity extends AppCompatActivity implements Petan
 
         Volley.newRequestQueue(this).add(request);
     }
+    private String getPathFromUri(Uri uri) {
+        String[] projection = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            String filePath = cursor.getString(columnIndex);
+            cursor.close();
+            return filePath;
+        }
+        return null;
+    }
 
 
+    private void pickImageFromGallery() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Pilih Gambar"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            selectedImageUri = data.getData();
+            imgPreview.setImageURI(selectedImageUri); // atau simpan preview ke variabel agar bisa digunakan nanti
+        }
+    }
     private void loadDashboardInfo() {
         totalKontrak.setText("Kontrak Aktif: " + listPetani.size());
         totalPetani.setText("Total Petani: " + listPetani.size());
@@ -255,6 +311,221 @@ public class AdminFasilitatorActivity extends AppCompatActivity implements Petan
             }
         });
     }
+    public void onValidasiKlaimClick(PetaniFasilitator petani) {
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_validasi_klaim, null);
+
+        CheckBox checkVerifikasi = dialogView.findViewById(R.id.checkboxVerifikasi);
+        CheckBox checkVerifikasi2 = dialogView.findViewById(R.id.checkboxVerifikasi2);
+        CheckBox checkVerifikasi3 = dialogView.findViewById(R.id.checkboxVerifikasi3);
+        EditText etCatatan = dialogView.findViewById(R.id.etCatatan);
+        Button btnUploadBukti = dialogView.findViewById(R.id.btnUploadBukti);
+        Button btnBayar = dialogView.findViewById(R.id.btnBayar);
+        Button btnTolak = dialogView.findViewById(R.id.btnTolak);
+        ProgressBar progressBar = dialogView.findViewById(R.id.progressBarBayar);
+        imgPreview = dialogView.findViewById(R.id.imgPreview);
+        btnUploadBukti.setOnClickListener(v -> pickImageFromGallery());
+        AlertDialog builder = new AlertDialog.Builder(this)
+                .setTitle("Validasi Klaim Dana")
+                .setPositiveButton("Kirim", (dialog, which) -> {
+                    if (!checkVerifikasi.isChecked() && checkVerifikasi2.isChecked() && checkVerifikasi3.isChecked()) {
+                        Toast.makeText(this, "Centang verifikasi klaim terlebih dahulu", Toast.LENGTH_SHORT).show();
+                        return;
+
+                    }
+
+
+                    String catatan = etCatatan.getText().toString().trim();
+
+                    uploadBuktiKlaim(petani, selectedImageUri, catatan);
+                    updateStatusKlaim(petani.id, "Dibayar", catatan);
+                })
+                .setView(dialogView)
+                .setNegativeButton("Batal", (d, w) -> d.dismiss())
+                .create();
+
+        builder.show();
+
+        // Tombol Upload Bukti Pembayaran
+
+
+        // Tombol BAYAR
+        btnBayar.setOnClickListener(v -> {
+            if (!checkVerifikasi.isChecked()) {
+                Toast.makeText(this, "Centang verifikasi klaim terlebih dahulu", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+
+            String catatan = etCatatan.getText().toString().trim();
+
+            int jumlahKlaim;
+            try {
+                jumlahKlaim = Integer.parseInt(petani.jumlahKlaim.replace(".", ""));
+            } catch (Exception e) {
+                Toast.makeText(this, "Jumlah klaim tidak valid", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Upload bukti bayar ke server
+
+
+            // Buat invoice pembayaran klaim
+            createInvoicePetani(jumlahKlaim, petani, progressBar);
+
+            // Update status klaim ke "Dibayar"
+
+
+            builder.dismiss();
+        });
+
+        // Tombol TOLAK
+        btnTolak.setOnClickListener(v -> {
+            if (!checkVerifikasi.isChecked()) {
+                Toast.makeText(this, "Centang verifikasi klaim terlebih dahulu", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            String catatan = etCatatan.getText().toString().trim();
+            if (catatan.isEmpty()) {
+                Toast.makeText(this, "Berikan alasan penolakan di kolom catatan", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            updateStatusKlaim(petani.id, "Ditolak", catatan);
+            builder.dismiss();
+        });
+    }
+    private void createInvoicePetani(int amount, PetaniFasilitator petani, ProgressBar progressBar) {
+        progressBar.setVisibility(View.VISIBLE);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String email = (user != null) ? user.getEmail() : null;
+
+        if (email == null || email.isEmpty()) {
+            Toast.makeText(this, "Email pengguna tidak tersedia", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
+            return;
+        }
+
+        if (amount < 1) {
+            Toast.makeText(this, "Jumlah pembayaran tidak valid", Toast.LENGTH_SHORT).show();
+            progressBar.setVisibility(View.GONE);
+            return;
+        }
+
+        String url = ApiConfig.BASE_URL + "create_invoice_klaim.php";
+
+        new Thread(() -> {
+            try {
+                URL obj = new URL(url);
+                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+                con.setRequestMethod("POST");
+                con.setDoOutput(true);
+
+                String postData = "amount=" + petani.jumlahKlaim
+                        + "&email=" + URLEncoder.encode(email, "UTF-8")
+                        + "&contract_id=" + petani.contract_id
+                        + "&user_id=" + petani.user_id;
+
+                OutputStream os = con.getOutputStream();
+                os.write(postData.getBytes());
+                os.flush();
+                os.close();
+
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+
+                JSONObject jsonResponse = new JSONObject(response.toString());
+
+                String invoiceUrl = jsonResponse.getString("invoice_url");
+                String externalId = jsonResponse.getString("external_id");
+
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    Intent intent = new Intent(this, WebViewActivity.class);
+                    intent.putExtra("invoice_url", invoiceUrl);
+                    intent.putExtra("external_id", externalId);
+                    intent.putExtra("harga", petani.jumlahKlaim);
+                    intent.putExtra("payment_method", "Xendit");
+                    startActivity(intent);
+                });
+
+            } catch (Exception e) {
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(this, "Gagal membuat invoice", Toast.LENGTH_SHORT).show();
+                });
+                e.printStackTrace();
+            }
+        }).start();
+    }
+    private void uploadBuktiKlaim(PetaniFasilitator petani, Uri imageUri, String catatan) {
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String loggedInUserId = prefs.getString("company_id", null); // Ini ID dari pengguna yang login (admin offtaker)
+        File file = new File(getPathFromUri(imageUri));
+        RequestBody requestFile = RequestBody.create(file, okhttp3.MediaType.parse("image/*"));
+        MultipartBody.Part fotoPart = MultipartBody.Part.createFormData("foto", file.getName(), requestFile);
+
+        RequestBody petaniId = RequestBody.create(String.valueOf(petani.id), okhttp3.MediaType.parse("text/plain"));
+        RequestBody userId = RequestBody.create(loggedInUserId, okhttp3.MediaType.parse("text/plain")); // Diganti ke loggedInUserId
+        RequestBody companyIdBody = RequestBody.create(String.valueOf(petani.companyId), okhttp3.MediaType.parse("text/plain"));
+        RequestBody catatanBody = RequestBody.create(catatan, okhttp3.MediaType.parse("text/plain"));
+
+        UploadServiceKlaim service = ApiClient.getClient().create(UploadServiceKlaim.class);
+        Call<ResponseBody> call = service.uploadBuktiKlaim(petaniId, userId, companyIdBody, catatanBody, fotoPart);
+
+        call.enqueue(new retrofit2.Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Bukti pembayaran berhasil diunggah", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Upload gagal: " + response.code(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    private void updateStatusKlaim(int petaniId, String statusKlaim, String catatanKlaim) {
+        String url = ApiConfig.BASE_URL + "update_status_klaim.php";
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                response -> {
+                    try {
+                        JSONObject obj = new JSONObject(response);
+                        if (obj.getBoolean("success")) {
+                            Toast.makeText(this, "Status klaim diperbarui: " + statusKlaim, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "Gagal memperbarui klaim", Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e) {
+                        Toast.makeText(this, "Respon tidak valid", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> Toast.makeText(this, "Koneksi server gagal", Toast.LENGTH_SHORT).show()
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("petani_id", String.valueOf (petaniId));
+                params.put("status_klaim", statusKlaim);
+                params.put("catatan_klaim", catatanKlaim);
+                return params;
+            }
+        };
+
+        Volley.newRequestQueue(this).add(stringRequest);
+    }
+
     // Tambahkan method baru di AdminPoktanActivity
     public void onKlaimDanaClick(PetaniFasilitator petani) {
         // Inflate layout klaim dana

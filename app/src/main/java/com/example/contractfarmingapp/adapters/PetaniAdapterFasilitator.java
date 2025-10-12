@@ -25,6 +25,7 @@ public class PetaniAdapterFasilitator extends RecyclerView.Adapter<PetaniAdapter
 
     public interface OnPetaniActionListener {
         void onValidasiClick(PetaniFasilitator petani);
+        void onValidasiKlaimClick(PetaniFasilitator petani);
         void onBeriUlasan(PetaniFasilitator petani);
         void onChatClick(PetaniFasilitator petani);
         void onLihatKontrakClick(PetaniFasilitator petani);
@@ -59,6 +60,14 @@ public class PetaniAdapterFasilitator extends RecyclerView.Adapter<PetaniAdapter
         } catch (Exception e) {
             e.printStackTrace();
         }
+        NumberFormat rupiahklaimFormat = NumberFormat.getInstance(new Locale("id", "ID"));
+
+        double jumlahKlaim = 0;
+        try {
+            jumlahKlaim = Double.parseDouble(petani.jumlahKlaim);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         holder.txtHarga.setText("Rp" + rupiahFormat.format(harga));
         holder.txtPerusahaan.setText("Offtaker: " + petani.companyName);
@@ -66,10 +75,33 @@ public class PetaniAdapterFasilitator extends RecyclerView.Adapter<PetaniAdapter
         holder.txtLahan.setText("Lahan: " + petani.lahan);
         holder.txtProgres.setText("Progres: " + petani.progres);
         holder.txtCatatan.setText("Catatan: " + petani.catatan);
-
+        holder.txtCatatanKlaim.setText("Alasan Klaim Dana Cadangan: " + petani.catatanKlaim);
+        holder.txtJumlahKlaim.setText("Jumlah Klaim: " + "Rp" + rupiahklaimFormat.format(jumlahKlaim));
         // Status & tombol validasi
         String status = petani.status != null ? petani.status : "";
+        String statusKlaim = petani.statusKlaim != null ? petani.statusKlaim : "";
+        holder.btnKlaimDana.setEnabled(true);
+        switch (statusKlaim) {
 
+            case "Menunggu Validasi":
+                holder.btnKlaimDana.setText("Validasi Klaim Dana");
+                holder.btnKlaimDana.setVisibility(View.VISIBLE);
+                holder.btnKlaimDana.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+                holder.btnKlaimDana.setOnClickListener(v -> listener.onValidasiKlaimClick(petani));
+                break;
+            case "Ditolak":
+                holder.btnKlaimDana.setText("Klaim Dana Ditolak");
+                holder.btnKlaimDana.setVisibility(View.VISIBLE);
+                holder.btnKlaimDana.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F44336")));
+                holder.btnKlaimDana.setOnClickListener(null);
+                break;
+            case "Dibayar":
+                holder.btnKlaimDana.setText("Klaim dana dibayar fasilitator");
+                holder.btnKlaimDana.setVisibility(View.VISIBLE);
+                holder.btnKlaimDana.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50")));
+                holder.btnKlaimDana.setOnClickListener(null);
+                break;
+        }
         holder.btnValidasi.setEnabled(true); // Reset sebelum diproses
         switch (status) {
 
@@ -90,8 +122,6 @@ public class PetaniAdapterFasilitator extends RecyclerView.Adapter<PetaniAdapter
                 holder.btnValidasi.setText("Diterima Offtaker");
                 holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500")));
                 holder.btnKlaimDana.setEnabled(true);
-                holder.btnKlaimDana.setVisibility(View.GONE);
-                holder.btnKlaimDana.setOnClickListener(v -> listener.onKlaimDanaClick(petani));
                 holder.btnValidasi.setOnClickListener(null);
                 break;
 
@@ -170,7 +200,7 @@ public class PetaniAdapterFasilitator extends RecyclerView.Adapter<PetaniAdapter
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNama, txtHarga, txtPerusahaan, txtPoktan, txtLahan, txtProgres, txtCatatan;
+        TextView txtNama, txtHarga, txtPerusahaan, txtPoktan, txtLahan, txtProgres, txtCatatan, txtCatatanKlaim, txtJumlahKlaim;
         Button btnValidasi, btnChat, btnLihatKontrak, btnKlaimDana;
 
         public ViewHolder(@NonNull View itemView) {
@@ -182,6 +212,8 @@ public class PetaniAdapterFasilitator extends RecyclerView.Adapter<PetaniAdapter
             txtLahan = itemView.findViewById(R.id.txtLahan);
             txtProgres = itemView.findViewById(R.id.txtProgres);
             txtCatatan = itemView.findViewById(R.id.txtCatatan);
+            txtCatatanKlaim = itemView.findViewById(R.id.txtCatatanKlaim);
+            txtJumlahKlaim = itemView.findViewById(R.id.txtJumlahKlaim);
             btnValidasi = itemView.findViewById(R.id.btnValidasi);
             btnChat = itemView.findViewById(R.id.btnChat);
             btnLihatKontrak = itemView.findViewById(R.id.btnLihatKontrak);

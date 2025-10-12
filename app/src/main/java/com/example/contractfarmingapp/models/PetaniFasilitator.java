@@ -23,11 +23,13 @@ public class PetaniFasilitator {
     public String ikutAsuransi;
     public String jumlahKebutuhan;
     public String tanggalAjukan;
-
+    public String jumlahKlaim;
+    public String statusKlaim;
+    public String catatanKlaim;
     public PetaniFasilitator(int id, int user_id, String nama, String harga, String lahan, String progres,
                              String catatan, String companyName, String poktanName, int companyId, int contract_id, int oftaker_id,
                              String status, String statusLahan, String kebutuhan, String satuan, String waktuDibutuhkan,
-                             String ikutAsuransi, String jumlahKebutuhan, String tanggalAjukan) {
+                             String ikutAsuransi, String jumlahKebutuhan, String tanggalAjukan, String jumlahKlaim,String statusKlaim,String catatanKlaim) {
         this.id = id;
         this.user_id = user_id;
         this.nama = nama;
@@ -48,5 +50,8 @@ public class PetaniFasilitator {
         this.ikutAsuransi = ikutAsuransi;
         this.jumlahKebutuhan = jumlahKebutuhan;
         this.tanggalAjukan = tanggalAjukan;
+        this.jumlahKlaim = jumlahKlaim;
+        this.statusKlaim = statusKlaim;
+        this.catatanKlaim = catatanKlaim;
     }
 }

@@ -45,12 +45,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black" />
-
+    <TextView
+        android:id="@+id/txtJumlahKlaim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/teal_700" />
+    <TextView
+        android:id="@+id/txtCatatanKlaim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Catatan Klaim"
+        android:textColor="@color/black" />
     <TextView
         android:id="@+id/txtCatatan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black" />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -89,7 +102,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Klaim Dana"
+            android:text="Validasi Klaim Dana"
             android:backgroundTint="@color/red"
             android:visibility="gone"
             android:textColor="@android:color/white"/>
