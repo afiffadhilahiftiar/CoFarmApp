@@ -49,16 +49,73 @@ Sebuah aplikasi kontrak digital dengan fitur:
 
 ## 📊 Keunggulan Dibanding Kompetitor
 
-| Fitur | CoFarm | TaniHub | Agree | eFishery |
-|:------|:--------|:--------|:--------|
-| Contract Farming Digital | ✅ | ❌ | ✅ | ❌ |
-| Dana Cadangan / Asuransi Bersama | ✅ | ❌ | ❌ | ❌ |
-| AI Risk Analysis | ✅ | ❌ | ❌ | ❌ |
-| Chat Realtime + Mediasi | ✅ | ❌ | ❌ | ❌ |
-| Peta Komoditas dan Lahan | ✅ | ❌ | ✅ | ❌ |
-| Digital Claim Letter Automation | ✅ | ❌ | ❌ | ❌ |
+<table>
+  <thead>
+    <tr>
+      <th style="background-color:#009688; color:white; text-align:center;">Fitur Utama</th>
+      <th style="background-color:#004D40; color:white; text-align:center;">CoFarm</th>
+      <th style="background-color:#00796B; color:white; text-align:center;">TaniHub</th>
+      <th style="background-color:#00796B; color:white; text-align:center;">Agree (Telkom)</th>
+      <th style="background-color:#00796B; color:white; text-align:center;">eFishery</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>🌾 <b>Contract Farming Digital</b></td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+    </tr>
+    <tr>
+      <td>💰 <b>Dana Cadangan / Asuransi Bersama</b></td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+    </tr>
+    <tr>
+      <td>🤖 <b>AI Risk Analysis (Analisis Risiko)</b></td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+    </tr>
+    <tr>
+      <td>💬 <b>Chat Realtime + Mediasi Digital</b></td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+    </tr>
+    <tr>
+      <td>🗺️ <b>Peta Komoditas &amp; Lahan Digital</b></td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+    </tr>
+    <tr>
+      <td>📄 <b>Digital Claim Letter Automation</b></td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
+
+### 🏆 Ringkasan Keunggulan CoFarm
+✅ **Transparansi penuh** dari kontrak hingga distribusi hasil.  
+💬 **Mediasi otomatis** antara petani dan offtaker tanpa birokrasi.  
+🤖 **Analisis risiko cerdas (AI)** untuk prediksi potensi gagal panen.  
+🗺️ **Integrasi peta komoditas** untuk efisiensi distribusi logistik.  
+💰 **Dana cadangan digital** sebagai proteksi kerugian semua pihak.  
+
+> 📈 *CoFarm menjadi satu-satunya platform yang menyatukan aspek keuangan, teknologi, dan sosial dalam satu ekosistem pertanian digital di Indonesia.*
+
 
 ## 📍 Peta Komoditas
 
