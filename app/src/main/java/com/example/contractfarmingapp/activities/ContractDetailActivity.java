@@ -177,7 +177,7 @@ public class ContractDetailActivity extends AppCompatActivity {
                 return;
             }
 
-            String shareUrl = "https://sistemcerdasindonesia.com/contract/contract?contract_id=" + contractId;
+            String shareUrl = "https://example.com" + contractId;
 
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
