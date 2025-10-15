@@ -7,18 +7,21 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Optional camera feature -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false"
         tools:node="replace" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -31,6 +34,8 @@
         android:enableOnBackInvokedCallback="true"
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config">
+
+        <!-- FileProvider untuk berbagi file PDF/gambar -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -40,6 +45,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <!-- Firebase Messaging -->
         <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
@@ -47,13 +54,17 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name=".MapForegroundService"
+
+        <!-- Layanan lokasi -->
+        <service
+            android:name=".MapForegroundService"
             android:exported="false"
             android:foregroundServiceType="location" />
         <service
             android:name=".LocationShareService"
-            android:foregroundServiceType="location"
-            android:exported="false" />
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
         <!-- Splash screen (entry point) -->
         <activity
             android:name=".activities.SplashActivity"
@@ -64,26 +75,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImagePreviewActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
 
-
-        <!-- Aktivitas lainnya -->
+        <!-- Aktivitas umum -->
+        <activity android:name=".ImagePreviewActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activities.LoginActivity" android:exported="true" />
         <activity android:name=".activities.RegisterActivity" android:exported="true" />
-        <activity android:name=".MainActivity"
-            android:theme="@style/Base.Theme.ContractFarmingApp"
-            android:exported="true" />
-        <activity android:name=".activities.ProfileActivity"
-            android:theme="@style/Base.Theme.ContractFarmingApp"
-            android:exported="true" />
+        <activity android:name=".MainActivity" android:theme="@style/Base.Theme.ContractFarmingApp" android:exported="true" />
+        <activity android:name=".activities.ProfileActivity" android:theme="@style/Base.Theme.ContractFarmingApp" android:exported="true" />
 
+        <!-- Scanner barcode -->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             tools:replace="android:screenOrientation,android:theme" />
 
+        <!-- Aktivitas lainnya -->
         <activity android:name=".activities.UploadProofActivity" />
         <activity android:name=".activities.StatusPayment" />
         <activity android:name=".activities.NotificationActivity" />
@@ -92,27 +99,25 @@
         <activity android:name=".activities.BankInstructionsActivity" />
         <activity android:name=".activities.DanaInstructionsActivity" />
         <activity android:name=".activities.LogistikActivity" />
+
+        <!-- Detail kontrak (dengan deep link aman) -->
         <activity
             android:name=".activities.ContractDetailActivity"
             android:exported="true">
-
-            <!-- Deep link dari website -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Ganti host ke placeholder agar aman di GitHub -->
                 <data
                     android:scheme="https"
-                    android:host="sistemcerdasindonesia.com"
+                    android:host="example.com"
                     android:pathPrefix="/contract/contract" />
             </intent-filter>
-
-            <!-- Custom URI scheme agar bisa buka lewat contractapp://contract/29 -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
                     android:scheme="contractapp"
                     android:host="contract"
@@ -120,15 +125,12 @@
             </intent-filter>
         </activity>
 
-
-
+        <!-- Daftar aktivitas tambahan -->
         <activity android:name=".activities.ProductActivity" />
         <activity android:name=".activities.SopirDetailActivity" />
         <activity android:name=".activities.TraktorDetailActivity" />
-
         <activity android:name=".activities.RegionCodeActivity" />
         <activity android:name=".activities.AturAkunActivity" />
-
         <activity android:name=".DaftarAnggotaActivity" />
         <activity android:name=".DaftarAnggotaFasilitatorActivity" />
         <activity android:name=".TambahAnggotaActivity" />
@@ -145,10 +147,8 @@
         <activity android:name=".DaftarTraktorActivity" />
         <activity android:name=".TambahTraktorActivity" />
         <activity android:name=".EditTraktorActivity" />
-
         <activity android:name=".EditTokoActivity" />
         <activity android:name=".KontrakSimpanActivity" />
-
         <activity android:name=".WebViewActivity" />
         <activity android:name=".BuatTokoActivity" />
         <activity android:name=".MapPickerActivity" />
@@ -157,45 +157,41 @@
         <activity android:name=".HistoryActivity" />
         <activity android:name=".HistoryDetailActivity" />
         <activity android:name=".KontrakActivity" />
-
         <activity android:name=".AdminPoktanActivity" />
         <activity android:name=".AdminOfftakerActivity" />
         <activity android:name=".AdminFasilitatorActivity" />
         <activity android:name=".MapGeofencingActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".MapPetaniAllActivity" />
-        <activity android:name= ".UploadPanduanActivity" />
+        <activity android:name=".UploadPanduanActivity" />
         <activity android:name=".MapViewGeofencingActivity" />
         <activity android:name=".RiwayatKontrakActivity" />
         <activity android:name=".FormKontrakActivity" />
         <activity android:name=".IntroActivity" />
         <activity android:name=".PemberkasanActivity" />
         <activity android:name=".ExportReportActivity" />
-        <activity android:name=".ChatActivity"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ChatActivityPerusahaan"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ChatActivityPetaniAll"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ChatActivityPetani"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ChatActivityPetaniOfftaker"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ChatActivityFasilitator"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ChatActivityDariFasilitator"
-            android:windowSoftInputMode="adjustResize"/>
+
+        <!-- Chat activities -->
+        <activity android:name=".ChatActivity" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ChatActivityPerusahaan" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ChatActivityPetaniAll" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ChatActivityPetani" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ChatActivityPetaniOfftaker" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ChatActivityFasilitator" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ChatActivityDariFasilitator" android:windowSoftInputMode="adjustResize" />
 
         <activity android:name=".activities.FormTambahLahanActivity" android:exported="true" />
 
-        <!-- Optional font preload -->
+        <!-- Mapbox API Key dipindahkan ke local.properties -->
+        <!-- Hapus baris ini sebelum di-push ke GitHub -->
+        <!--
         <meta-data
             android:name="com.mapbox.token"
-            android:value="sk.eyJ1IjoiYXBpcHZheHMiLCJhIjoiY21jNHNjd3RvMGE5MTJpc2EzOWxtZXo4bSJ9.rqnsgFwXAnzPrII2XkBCSw" />
+            android:value="YOUR_MAPBOX_ACCESS_TOKEN" />
+        -->
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>
