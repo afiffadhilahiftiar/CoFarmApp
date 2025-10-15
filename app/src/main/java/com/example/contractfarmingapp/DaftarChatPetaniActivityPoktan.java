@@ -12,25 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.contractfarmingapp.adapters.ChatPetaniAdapter;
 import com.example.contractfarmingapp.models.ChatItem;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaftarChatPetaniActivity extends AppCompatActivity {
+public class DaftarChatPetaniActivityPoktan extends AppCompatActivity {
 
     private RecyclerView rvChats;
     private ChatPetaniAdapter adapter;
     private List<ChatItem> chatList = new ArrayList<>();
     private String companyId;
-    private Button btnChatPoktan;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,22 +36,21 @@ public class DaftarChatPetaniActivity extends AppCompatActivity {
         setContentView(R.layout.activity_daftar_chat_petani);
 
         rvChats = findViewById(R.id.rvChats);
-        btnChatPoktan = findViewById(R.id.btnChatPoktan);
         rvChats.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new ChatPetaniAdapter(chatList, item -> {
-            Intent intent = new Intent(DaftarChatPetaniActivity.this, ChatActivity.class);
+            Intent intent = new Intent(DaftarChatPetaniActivityPoktan.this, ChatActivityPerusahaan.class);
 
             try {
                 int receiverId = Integer.parseInt(item.getSenderId());
                 intent.putExtra("receiver_id", receiverId);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
-                Toast.makeText(DaftarChatPetaniActivity.this, "ID petani tidak valid", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DaftarChatPetaniActivityPoktan.this, "ID petani tidak valid", Toast.LENGTH_SHORT).show();
                 return; // jangan lanjutkan jika ID tidak valid
             }
 
-            intent.putExtra("nama_petani", item.getSenderName());
+            intent.putExtra("nama_admin", item.getSenderName());
             startActivity(intent);
         });
 
@@ -66,15 +63,11 @@ public class DaftarChatPetaniActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "ID perusahaan tidak tersedia", Toast.LENGTH_SHORT).show();
         }
-        btnChatPoktan.setOnClickListener(v -> {
-            Intent intent = new Intent(DaftarChatPetaniActivity.this, DaftarChatPetaniActivityPoktan.class);
-            intent.putExtra("company_id", companyId);
-            startActivity(intent);
-        });
+
     }
 
     private void loadChats() {
-        String url =  ApiConfig.BASE_URL + "get_messages_for_company.php?company_id=" + companyId;
+        String url =  ApiConfig.BASE_URL + "get_messages_for_company_poktan.php?company_id=" + companyId;
 
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,

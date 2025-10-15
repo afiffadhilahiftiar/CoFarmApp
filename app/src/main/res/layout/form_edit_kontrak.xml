@@ -81,16 +81,99 @@
             android:spinnerMode="dropdown" />
 
         <!-- Harga -->
-        <EditText
-            android:id="@+id/etHargaPerKg"
-            android:hint="Harga per satuan"
-            android:inputType="number"
-            android:textColor="@color/black"
-            android:textColorHint="@color/gray"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/edittext_background"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="0dp"
+            android:weightSum="2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etHargaPerKg"
+                android:hint="Harga per satuan"
+                android:inputType="number"
+                android:layout_weight="1"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/black"
+                android:layout_marginEnd="3dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edittext_background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/etHargaPerKgFinal"
+                android:hint="Harga+biaya layanan"
+                android:inputType="number"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edittext_background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="0dp"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etGradeB"
+                android:hint="Potongan Grade B (Contoh: 10%)"
+                android:layout_marginEnd="3dp"
+                android:inputType="number"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/black"
+                android:layout_weight="1"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edittext_background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/etHargaB"
+                android:hint="Harga Grade B"
+                android:inputType="number"
+                android:layout_weight="1"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/black"
+                android:enabled="false"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edittext_background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:padding="0dp"
+            android:weightSum="2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etGradeC"
+                android:hint="Potongan Grade C (Contoh: 20%)"
+                android:inputType="number"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edittext_background"
+                android:layout_weight="1"
+                android:layout_marginEnd="3dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/etHargaC"
+                android:hint="Harga Grade C"
+                android:inputType="number"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/black"
+                android:enabled="false"
+                android:layout_weight="1"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/edittext_background"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
         <!-- Waktu Dibutuhkan -->
         <EditText

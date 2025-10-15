@@ -242,13 +242,16 @@
 
                 <!-- Baris 1: Label Grade -->
                 <TableRow>
+
                     <TextView
-                        android:text="Grade"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:padding="4dp"
+                        android:layout_width="33dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/cell_border"
-                        android:textSize="14sp" />
+                        android:padding="4dp"
+                        android:text="Grade"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
                     <TextView
                         android:text="A"
                         android:textStyle="bold"
@@ -256,7 +259,7 @@
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:padding="4dp"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                     <TextView
                         android:text="B"
                         android:textStyle="bold"
@@ -264,7 +267,7 @@
                         android:background="@drawable/cell_border"
                         android:gravity="center"
                         android:padding="4dp"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                     <TextView
                         android:text="C"
                         android:textStyle="bold"
@@ -272,25 +275,27 @@
                         android:gravity="center"
                         android:padding="4dp"
                         android:background="@drawable/cell_border"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                 </TableRow>
 
                 <!-- Baris 2: Nilai Potongan -->
                 <TableRow>
                     <TextView
+                        android:layout_width="33dp"
+                        android:layout_height="wrap_content"
                         android:text="Potongan (%)"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:padding="4dp"
                         android:background="@drawable/cell_border"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                     <TextView
                         android:text="0 %"
                         android:textColor="@color/black"
                         android:gravity="center"
                         android:background="@drawable/cell_border"
                         android:padding="4dp"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvGradeB"
 
@@ -298,7 +303,7 @@
                         android:gravity="center"
                         android:background="@drawable/cell_border"
                         android:padding="4dp"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvGradeC"
 
@@ -306,16 +311,18 @@
                         android:gravity="center"
                         android:background="@drawable/cell_border"
                         android:padding="4dp"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                 </TableRow>
                 <TableRow>
                     <TextView
+                        android:layout_width="33dp"
+                        android:layout_height="wrap_content"
                         android:text="Harga (Rp)"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:padding="8dp"
                         android:background="@drawable/cell_border"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvHargaA"
 
@@ -323,7 +330,7 @@
                         android:gravity="center"
                         android:background="@drawable/cell_border"
                         android:padding="8dp"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvHargaB"
 
@@ -331,7 +338,7 @@
                         android:gravity="center"
                         android:background="@drawable/cell_border"
                         android:padding="8dp"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                     <TextView
                         android:id="@+id/tvHargaC"
 
@@ -339,7 +346,7 @@
                         android:gravity="center"
                         android:background="@drawable/cell_border"
                         android:padding="8dp"
-                        android:textSize="14sp" />
+                        android:textSize="12sp" />
                 </TableRow>
 
             </TableLayout>

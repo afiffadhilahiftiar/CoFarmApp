@@ -101,21 +101,34 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
+                                // Update nama ke Firebase Profile
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                         .setDisplayName(nama)
                                         .build();
 
                                 user.updateProfile(profileUpdates).addOnCompleteListener(updateTask -> {
                                     if (updateTask.isSuccessful()) {
-                                        Toast.makeText(this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show();
 
-                                        // Simpan ke MySQL
-                                        simpanKeMySQL(nama, email);
+                                        // 🔹 Kirim email verifikasi
+                                        user.sendEmailVerification()
+                                                .addOnSuccessListener(aVoid -> {
+                                                    Toast.makeText(this, "Verifikasi email telah dikirim ke " + email + ". Silakan cek inbox atau spam Anda.", Toast.LENGTH_LONG).show();
 
-                                        Intent intent = new Intent(this, ProfileActivity.class);
-                                        intent.putExtra("nama", editNama.getText().toString()); // kirim nama dari field input
-                                        startActivity(intent);
-                                        finish();
+                                                    // Simpan ke MySQL setelah berhasil kirim email verifikasi
+                                                    simpanKeMySQL(nama, email);
+
+                                                    // 🔹 Logout user agar tidak bisa langsung login
+                                                    mAuth.signOut();
+
+                                                    // Kembali ke halaman login
+                                                    Intent intent = new Intent(this, LoginActivity.class);
+                                                    startActivity(intent);
+                                                    finish();
+                                                })
+                                                .addOnFailureListener(e -> {
+                                                    Toast.makeText(this, "Gagal mengirim email verifikasi: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                                                });
+
                                     } else {
                                         Toast.makeText(this, "Gagal menyimpan nama pengguna", Toast.LENGTH_SHORT).show();
                                     }
@@ -125,6 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
                             String error = task.getException() != null ? task.getException().getMessage() : "Gagal registrasi";
                             Toast.makeText(this, "Error: " + error, Toast.LENGTH_LONG).show();
                         }
+
                     });
         });
 

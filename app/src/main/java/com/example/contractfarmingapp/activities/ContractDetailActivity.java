@@ -1062,8 +1062,17 @@ public class ContractDetailActivity extends AppCompatActivity {
         String namaPengguna = prefs.getString("nama_pengguna", "");
         String companyEmail = prefs.getString("company_email", "");
         String namaPerusahaan = tvNamaPerusahaan.getText().toString();
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String lokasiPetani = sharedPreferences.getString("alamat", ""); // ambil alamat petani
+        int fasilitatorId = sharedPreferences.getInt("fasilitator_id", -1);
         tvInfoAsuransi.setOnClickListener(v -> showDanaCadanganInfo());
-
+        if (fasilitatorId != -1 && fasilitatorId != 0) {
+            cbAsuransi.setVisibility(View.VISIBLE);
+            tvInfoAsuransi.setVisibility(View.VISIBLE);
+        } else {
+            cbAsuransi.setVisibility(View.GONE);
+            tvInfoAsuransi.setVisibility(View.GONE);
+        }
         etNama.setText(namaPengguna);
         tvNamaPerusahaanDialog.setText(namaPerusahaan);
         tvUserId.setText("User ID: " + user_id);
@@ -1148,19 +1157,15 @@ public class ContractDetailActivity extends AppCompatActivity {
                 "BAB IV – PENGELOLAAN RISIKO\n\n" +
                         "4.1 Risiko Gagal Panen\n" +
                         "- Petani wajib melaporkan kondisi pertanaman melalui aplikasi secara berkala.\n" +
+                        "- Admin poktan mengajukan klaim dana untuk petani\n" +
                         "- Fasilitator memverifikasi laporan lapangan atau melalui dokumentasi foto/video.\n" +
                         "- Jika terjadi gagal panen akibat cuaca ekstrem, hama, atau penyakit, dana cadangan dapat digunakan untuk menutupi sebagian atau seluruh kerugian Petani.\n" +
-                        "- Besaran bantuan dana cadangan disesuaikan dengan tingkat kerugian:\n" +
+                        "- Besaran bantuan dana cadangan disesuaikan dengan tingkat kerugian yang diajukan oleh admin poktan:\n" +
                         "  • Kerugian ringan (<30%) → ditanggung 30% oleh dana cadangan.\n" +
                         "  • Kerugian sedang (30–70%) → ditanggung 50% oleh dana cadangan.\n" +
                         "  • Kerugian berat (>70%) → dapat ditanggung hingga 100% sesuai saldo dana cadangan.\n\n" +
-                        "4.2 Risiko Fluktuasi Harga\n" +
-                        "- Aplikasi menyediakan harga pasar rata-rata sebagai acuan berdasarkan data dinas pertanian dan pasar lokal.\n" +
-                        "- Jika harga pasar turun drastis (>10%), dana cadangan dapat dipakai untuk menutupi sebagian selisih harga.\n" +
-                        "- Kompensasi dihitung dengan rumus:\n" +
-                        "  (Harga Kontrak - Harga Pasar) × Volume Belum Terjual × 50%\n\n" +
-                        "4.3 Risiko Keterlambatan Pasokan\n" +
-                        "- Penjadwalan ulang dilakukan otomatis melalui aplikasi dengan persetujuan kedua pihak.\n" +
+                        "4.2 Risiko Keterlambatan Pasokan\n" +
+                        "- Penjadwalan ulang dilakukan dengan persetujuan kedua pihak.\n" +
                         "- Jika keterlambatan menyebabkan kerugian bagi Offtaker, dana cadangan dapat menanggung hingga 50% dari total kerugian yang terverifikasi.\n" +
                         "- Fasilitator memediasi apabila penjadwalan ulang tidak mencukupi atau terjadi sengketa antar pihak.\n" +
                         "- Simulasi:\n" +
@@ -1175,19 +1180,19 @@ public class ContractDetailActivity extends AppCompatActivity {
                         "- Menutupi risiko kerugian bagi Petani maupun Offtaker sesuai kesepakatan.\n" +
                         "- Bersumber dari potongan 1% dari setiap transaksi kontrak atau sesuai persentase yang disepakati.\n\n" +
                         "5.2 Penggunaan\n" +
+                        "- Dana dapat digunakan hingga 100% dari saldo terkumpul untuk modal awal petani.\n" +
                         "- Dana dapat digunakan hingga 100% dari saldo terkumpul untuk menutupi kerugian terverifikasi.\n" +
                         "- Prioritas penggunaan:\n" +
                         "  1. Gagal panen (prioritas utama)\n" +
-                        "  2. Fluktuasi harga pasar ekstrem\n" +
-                        "  3. Keterlambatan pasokan\n" +
+                        "  2. Keterlambatan pasokan\n" +
+                        "  2. Modal awal\n" +
                         "- Setiap pencairan wajib melalui verifikasi dan persetujuan fasilitator.\n" +
-                        "- Seluruh pencairan dan saldo dicatat otomatis di aplikasi dan dapat diakses secara transparan.\n\n" +
+                        "- Setiap pengajuan modal awal, hasil kontrak akan otomatis terpotong untuk pembayaran pinjaman modal awal\n" +
+                        "- Pencairan dan saldo dikirim email dan diakses secara transparan.\n\n" +
                         "5.3 Pembagian Penggunaan Dana Cadangan\n" +
                         "- Jika saldo mencukupi:\n" +
-                        "  • Petani: dapat menutup hingga 100% kerugian gagal panen.\n" +
-                        "  • Offtaker: dapat menutup hingga 50% kerugian akibat keterlambatan/pasokan kurang.\n" +
-                        "- Jika saldo tidak mencukupi:\n" +
-                        "  • Kerugian dibagi proporsional: Petani 60%, Offtaker 40%.\n" +
+                        "  • Petani: dapat meminjam dan menutup hingga 100% kerugian gagal panen.\n" +
+                        "  • Offtaker: dapat menutup hingga 50% kerugian akibat keterlambatan/pasokan kurang sisanya tanggungjawab petani.\n" +
                         "- Fasilitator dapat mengajukan bantuan tambahan dari lembaga terkait (CSR, Dinas Pertanian, Universitas).\n\n" +
                         "5.4 Simulasi\n" +
                         "- Saldo awal dana cadangan: Rp10.000.000\n" +

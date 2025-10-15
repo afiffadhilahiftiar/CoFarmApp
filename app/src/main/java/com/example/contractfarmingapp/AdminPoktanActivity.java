@@ -573,6 +573,177 @@ public class AdminPoktanActivity extends AppCompatActivity implements PetaniAdap
         });
     }
 
+    public void onAjukanKeterlambatan(Petani petani) {
+        // Inflate layout pengajuan keterlambatan
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_klaim_dana, null);
+        EditText editJumlah = dialogView.findViewById(R.id.editJumlahDana);
+        EditText editAlasan = dialogView.findViewById(R.id.editCatatanDana);
+
+        editJumlah.setHint("Estimasi keterlambatan (hari)");
+        editJumlah.setTextSize(12);
+        editAlasan.setHint("Alasan keterlambatan");
+        editAlasan.setTextSize(12);
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Ajukan Keterlambatan Pengiriman")
+                .setView(dialogView)
+                .setPositiveButton("Buat PDF", null)
+                .setNegativeButton("Batal", (d, w) -> d.dismiss())
+                .create();
+
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            String jumlahStr = editJumlah.getText().toString().trim();
+            String alasan = editAlasan.getText().toString().trim();
+
+            if (jumlahStr.isEmpty()) {
+                Toast.makeText(this, "Harap masukkan estimasi keterlambatan!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int jumlahHari;
+            try {
+                jumlahHari = Integer.parseInt(jumlahStr);
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Estimasi hari tidak valid!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (jumlahHari <= 0) {
+                Toast.makeText(this, "Estimasi hari harus lebih besar dari 0!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Buat PDF pengajuan keterlambatan
+            File pdfFile = buatPdfKeterlambatan(petani, jumlahHari, alasan);
+            if (pdfFile != null) {
+                // Kirim PDF ke ChatActivity (receiver = offtaker)
+                kirimPdfKeChatKeterlambatan(petani, pdfFile);
+                kirimStatusValidasi(petani.user_id, petani.contract_id, "Permohonan keterlambatan", "");
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private File buatPdfKeterlambatan(Petani petani, int jumlahHari, String alasan) {
+        try {
+            SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            String companyName = sharedPreferences.getString("company_name", "Perusahaan Pertanian");
+            String lokasi = sharedPreferences.getString("lokasi", "-");
+
+            File pdfDir = new File(getExternalFilesDir(null), "pdf_keterlambatan");
+            if (!pdfDir.exists()) pdfDir.mkdirs();
+
+            File file = new File(pdfDir, "Keterlambatan_" + petani.nama + "_" + System.currentTimeMillis() + ".pdf");
+
+            PdfDocument document = new PdfDocument();
+            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create(); // A4
+            PdfDocument.Page page = document.startPage(pageInfo);
+            Canvas canvas = page.getCanvas();
+            Paint paint = new Paint();
+
+            // === KOP SURAT ===
+            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setTextSize(20);
+            paint.setFakeBoldText(true);
+            canvas.drawText(companyName.toUpperCase(), 297, 60, paint);
+
+            paint.setTextSize(14);
+            paint.setFakeBoldText(false);
+            canvas.drawText("Lokasi: " + lokasi, 297, 80, paint);
+
+            paint.setStrokeWidth(3);
+            canvas.drawLine(50, 90, 545, 90, paint);
+
+            // === JUDUL SURAT ===
+            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setTextSize(16);
+            paint.setFakeBoldText(true);
+            canvas.drawText("SURAT PENGAJUAN KETERLAMBATAN PENGIRIMAN", 297, 130, paint);
+
+            paint.setTextAlign(Paint.Align.LEFT);
+            paint.setTextSize(12);
+            paint.setFakeBoldText(false);
+
+            int y = 155;
+            int lineHeight = 25;
+            SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+
+            canvas.drawText("Kepada Yth,", 50, y, paint);
+            canvas.drawText("Bapak/Ibu " + petani.companyName, 50, y + lineHeight, paint);
+
+            y += 3 * lineHeight;
+            canvas.drawText("Dengan hormat,", 50, y, paint);
+            canvas.drawText("Dengan ini kami mengajukan pemberitahuan keterlambatan pengiriman barang sebagai berikut:", 50, y + lineHeight, paint);
+
+            // === TABEL INFORMASI ===
+            int tableTop = y + (3 * lineHeight);
+            int tableLeft = 50;
+            int tableRight = 545;
+            int rowHeight = 30;
+
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeWidth(1);
+            canvas.drawRect(tableLeft, tableTop, tableRight, tableTop + (5 * rowHeight), paint);
+
+            paint.setStyle(Paint.Style.FILL);
+            paint.setTextAlign(Paint.Align.LEFT);
+            String[] labels = {
+                    "Nama Petani", "Lahan", "Estimasi Keterlambatan (hari)", "Alasan", "Tanggal Pengajuan"
+            };
+            String[] values = {
+                    petani.nama,
+                    petani.lahan,
+                    jumlahHari + " hari",
+                    alasan.isEmpty() ? "-" : alasan,
+                    sdf.format(new Date())
+            };
+
+            for (int i = 0; i < labels.length; i++) {
+                int rowY = tableTop + (i * rowHeight) + 20;
+                canvas.drawText(labels[i], tableLeft + 10, rowY, paint);
+                canvas.drawLine(250, tableTop + (i * rowHeight), 250, tableTop + ((i + 1) * rowHeight), paint);
+                canvas.drawText(values[i], 260, rowY, paint);
+                if (i > 0) {
+                    canvas.drawLine(tableLeft, tableTop + (i * rowHeight), tableRight, tableTop + (i * rowHeight), paint);
+                }
+            }
+
+            // === PENUTUP SURAT ===
+            int endY = tableTop + (6 * rowHeight) + 30;
+            canvas.drawText("Demikian surat pengajuan keterlambatan ini kami sampaikan.", 50, endY, paint);
+            canvas.drawText("Atas perhatian dan pengertiannya, kami ucapkan terima kasih.", 50, endY + lineHeight, paint);
+
+            // === TANDA TANGAN ===
+            paint.setTextAlign(Paint.Align.RIGHT);
+            int signY = endY + 100;
+            canvas.drawText("Hormat Kami,", 540, signY, paint);
+            canvas.drawText(petani.nama, 540, signY + 60, paint);
+            canvas.drawLine(420, signY + 65, 540, signY + 65, paint);
+
+            document.finishPage(page);
+            document.writeTo(new FileOutputStream(file));
+            document.close();
+
+            Toast.makeText(this, "PDF pengajuan keterlambatan berhasil dibuat", Toast.LENGTH_SHORT).show();
+            return file;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Gagal membuat PDF keterlambatan", Toast.LENGTH_SHORT).show();
+            return null;
+        }
+    }
+
+    private void kirimPdfKeChatKeterlambatan(Petani petani, File pdfFile) {
+        Intent intent = new Intent(this, ChatActivityPerusahaan.class);
+        intent.putExtra("receiver_id", petani.oftaker_id); // Dikirim ke offtaker
+        intent.putExtra("nama_admin", petani.nama);
+        intent.putExtra("company_id", petani.companyId);
+        intent.putExtra("pdf_path", pdfFile.getAbsolutePath());
+        startActivity(intent);
+    }
 
     @Override
     public void onChatClick(Petani petani) {
@@ -588,9 +759,9 @@ public class AdminPoktanActivity extends AppCompatActivity implements PetaniAdap
         });
 
         builder.setNegativeButton("Chat Perusahaan", (dialog, which) -> {
-            Intent intent = new Intent(this, ChatActivity.class);
+            Intent intent = new Intent(this, ChatActivityPerusahaan.class);
             intent.putExtra("receiver_id", petani.oftaker_id); // ID oftaker/perusahaan
-            intent.putExtra("nama_petani", petani.companyName); // opsional
+            intent.putExtra("nama_admin", petani.companyName); // opsional
             intent.putExtra("company_id", petani.companyId);
             startActivity(intent);
         });

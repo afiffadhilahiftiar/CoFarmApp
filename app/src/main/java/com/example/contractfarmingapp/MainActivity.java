@@ -359,6 +359,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         String alamat = jsonResponse.getString("alamat");
                         String foto_profil = jsonResponse.getString("foto_profil");
                         int companyId = jsonResponse.getInt("company_id");
+                        int fasilitatorId = jsonResponse.getInt("fasilitator_id");
                         String companyEmail = jsonResponse.getString("company_email"); // Tambahkan ini
                         String namaPerusahaan = jsonResponse.getString("nama_perusahaan"); // Tambahkan ini
                         String idPoktan = jsonResponse.getString("id_poktan"); // Tambahkan ini
@@ -374,6 +375,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         editor.putString("nama_pengguna", nama);
                         editor.putString("alamat", alamat);
                         editor.putInt("company_id", companyId);
+                        editor.putInt("fasilitator_id", fasilitatorId);
                         editor.putString("company_email", companyEmail);
                         editor.putString("nama_poktan", namaPerusahaan);
                         editor.putString("id_poktan", idPoktan);

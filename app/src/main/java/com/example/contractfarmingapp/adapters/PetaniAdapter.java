@@ -14,13 +14,17 @@ import com.example.contractfarmingapp.R;
 import com.example.contractfarmingapp.models.Petani;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder> {
 
     private final List<Petani> petaniList;
     private final OnPetaniActionListener listener;
+    private long diffDays;
 
     public interface OnPetaniActionListener {
         void onItemClick(Petani petani);
@@ -32,6 +36,7 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
         void onValidasiLogistikClick(Petani petani);
         void onUpdateSopir(Petani petani);
         void onKlaimDanaClick(Petani petani);
+        void onAjukanKeterlambatan(Petani petani);
 
     }
 
@@ -59,11 +64,33 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
         holder.txtPerusahaan.setText("Perusahaan: " + petani.companyName);
         holder.txtLahan.setText("Lahan: " + petani.lahan);
         holder.txtProgres.setText("Progres: " + petani.progres);
+        holder.txtJumlah.setText("Jumlah Kebutuhan: " + petani.jumlahKebutuhan);
+        holder.txtWaktuDibutuhkan.setText("Waktu Dibutuhkan: " + petani.waktuDibutuhkan);
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            Date now = new Date();
+            Date target = sdf.parse(petani.waktuDibutuhkan);
+            long diffMillis = target.getTime() - now.getTime();
+            diffDays = TimeUnit.MILLISECONDS.toDays(diffMillis);
+
+            String jarakWaktu;
+            if (diffDays > 0) {
+                jarakWaktu = "Tersisa: " + diffDays + " hari";
+            } else if (diffDays == 0) {
+                jarakWaktu = "Hari ini";
+            } else {
+                jarakWaktu = "Lewat " + Math.abs(diffDays) + " hari";
+            }
+            holder.txtJarakWaktu.setText(jarakWaktu);
+        } catch (Exception e) {
+            holder.txtJarakWaktu.setText("-");
+        }
         holder.txtCatatan.setText("Catatan: " + petani.catatan);
 
         // Status & tombol validasi
         String status = petani.status != null ? petani.status : "";
         String statusKlaim = petani.statusKlaim != null ? petani.statusKlaim : "";
+
         holder.btnKlaimDana.setEnabled(true);
         switch (statusKlaim) {
             case "Klaim Dana":
@@ -117,14 +144,43 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
                 holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
                 holder.btnValidasi.setOnClickListener(null);
                 break;
-            case "Kontrak diterima oleh perusahaan":
-                holder.btnValidasi.setText("Diterima Offtaker");
+            case "Permohonan keterlambatan":
+                holder.btnValidasi.setText("Menunggu persetujuan keterlambatan");
                 holder.btnValidasi.setEnabled(false);
-                holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // oranye
+                holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
                 holder.btnValidasi.setOnClickListener(null);
-                holder.btnKlaimDana.setEnabled(true);
-                holder.btnKlaimDana.setVisibility(View.VISIBLE);
-
+                break;
+            case "Permohonan keterlambatan diterima":
+                holder.btnValidasi.setText("Permohonan keterlambatan diterima");
+                holder.btnValidasi.setEnabled(false);
+                holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50"))); // Biru
+                holder.btnValidasi.setOnClickListener(null);
+                break;
+            case "Permohonan keterlambatan ditolak":
+                holder.btnValidasi.setText("Permohonan keterlambatan ditolak");
+                holder.btnValidasi.setEnabled(false);
+                holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F44336"))); // Merah
+                holder.btnValidasi.setOnClickListener(null);
+                break;
+            case "Kontrak diterima oleh perusahaan":
+                if (diffDays < 3 && diffDays >= -7) {
+                    holder.btnValidasi.setText("Ajukan Keterlambatan");
+                    holder.btnValidasi.setEnabled(true);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
+                    holder.btnValidasi.setOnClickListener(v -> listener.onAjukanKeterlambatan(petani));
+                } else if (diffDays < -7) {
+                    holder.btnValidasi.setText("Gagal Kontrak");
+                    holder.btnValidasi.setEnabled(false);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F44336"))); // Merah
+                    holder.btnValidasi.setOnClickListener(null);
+                } else {
+                    holder.btnValidasi.setText("Diterima Offtaker");
+                    holder.btnValidasi.setEnabled(false);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // oranye
+                    holder.btnValidasi.setOnClickListener(null);
+                    holder.btnKlaimDana.setEnabled(true);
+                    holder.btnKlaimDana.setVisibility(View.VISIBLE);
+                }
                 break;
             case "Perusahaan tidak memproses kontrak lebih lanjut":
                 holder.btnValidasi.setText("Ditolak Offtaker");
@@ -163,10 +219,22 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
                 holder.btnValidasi.setOnClickListener(v -> listener.onBeriUlasan(petani));
                 break;
             case "Menunggu persetujuan admin poktan":
-                holder.btnValidasi.setText("Validasi");
-                holder.btnValidasi.setEnabled(true);
-                holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50"))); // hijau
-                holder.btnValidasi.setOnClickListener(v -> listener.onValidasiLogistikClick(petani));
+                if (diffDays < 3 && diffDays >= -7) {
+                    holder.btnValidasi.setText("Ajukan Keterlambatan");
+                    holder.btnValidasi.setEnabled(true);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
+                    holder.btnValidasi.setOnClickListener(v -> listener.onAjukanKeterlambatan(petani));
+                } else if (diffDays < -7) {
+                    holder.btnValidasi.setText("Gagal Kontrak");
+                    holder.btnValidasi.setEnabled(false);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F44336"))); // Merah
+                    holder.btnValidasi.setOnClickListener(null);
+                } else {
+                    holder.btnValidasi.setText("Validasi");
+                    holder.btnValidasi.setEnabled(true);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50"))); // hijau
+                    holder.btnValidasi.setOnClickListener(v -> listener.onValidasiLogistikClick(petani));
+                }
                 break;
             case "Pengiriman barang dilakukan":
                 holder.btnValidasi.setText("Update Sopir");
@@ -175,10 +243,22 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
                 holder.btnValidasi.setOnClickListener(v -> listener.onUpdateSopir(petani));
                 break;
             case "Memilih logistik":
+                if (diffDays < 3 && diffDays >= -15) {
+                    holder.btnValidasi.setText("Ajukan Keterlambatan");
+                    holder.btnValidasi.setEnabled(true);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
+                    holder.btnValidasi.setOnClickListener(v -> listener.onAjukanKeterlambatan(petani));
+                } else if (diffDays < -7) {
+                    holder.btnValidasi.setText("Gagal Kontrak");
+                    holder.btnValidasi.setEnabled(false);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F44336"))); // Merah
+                    holder.btnValidasi.setOnClickListener(null);
+                } else {
                 holder.btnValidasi.setText("Perusahaan sedang memilih logistik");
                 holder.btnValidasi.setEnabled(false);
                 holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye-kuning
                 holder.btnValidasi.setOnClickListener(v -> listener.onUpdateSopir(petani));
+                }
                 break;
             case "Pesanan sampai":
                 holder.btnValidasi.setText("Pesanan sampai");
@@ -187,10 +267,22 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
                 holder.btnValidasi.setOnClickListener(null);
                 break;
             case "Sedang dalam perjalanan":
-                holder.btnValidasi.setText("Sedang dalam perjalanan");
-                holder.btnValidasi.setEnabled(false);
-                holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye-kuning
-                holder.btnValidasi.setOnClickListener(v -> listener.onUpdateSopir(petani));
+                if (diffDays < 3 && diffDays >= -7) {
+                    holder.btnValidasi.setText("Ajukan Keterlambatan");
+                    holder.btnValidasi.setEnabled(true);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
+                    holder.btnValidasi.setOnClickListener(v -> listener.onAjukanKeterlambatan(petani));
+                } else if (diffDays < -7) {
+                    holder.btnValidasi.setText("Gagal Kontrak");
+                    holder.btnValidasi.setEnabled(false);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#F44336"))); // Merah
+                    holder.btnValidasi.setOnClickListener(null);
+                } else {
+                    holder.btnValidasi.setText("Sedang dalam perjalanan");
+                    holder.btnValidasi.setEnabled(false);
+                    holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye-kuning
+                    holder.btnValidasi.setOnClickListener(v -> listener.onUpdateSopir(petani));
+                }
                 break;
             case "Menunggu validasi admin poktan":
             default:
@@ -218,8 +310,8 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNama, txtHarga, txtPerusahaan, txtLahan, txtProgres, txtCatatan;
-        Button btnValidasi, btnChat, btnLihatKontrak, btnKlaimDana; // Tambah button klaim
+        TextView txtNama, txtHarga, txtPerusahaan, txtLahan, txtProgres, txtJumlah, txtWaktuDibutuhkan, txtCatatan, txtJarakWaktu;
+        Button btnValidasi, btnChat, btnLihatKontrak, btnKlaimDana;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -228,12 +320,16 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
             txtPerusahaan = itemView.findViewById(R.id.txtPerusahaan);
             txtLahan = itemView.findViewById(R.id.txtLahan);
             txtProgres = itemView.findViewById(R.id.txtProgres);
+            txtJumlah = itemView.findViewById(R.id.txtJumlah);
+            txtWaktuDibutuhkan = itemView.findViewById(R.id.txtWaktuDibutuhkan);
+            txtJarakWaktu = itemView.findViewById(R.id.txtJarakWaktu); // baru
             txtCatatan = itemView.findViewById(R.id.txtCatatan);
             btnValidasi = itemView.findViewById(R.id.btnValidasi);
             btnChat = itemView.findViewById(R.id.btnChat);
             btnLihatKontrak = itemView.findViewById(R.id.btnLihatKontrak);
-            btnKlaimDana = itemView.findViewById(R.id.btnKlaimDana); // Inisialisasi
+            btnKlaimDana = itemView.findViewById(R.id.btnKlaimDana);
         }
     }
+
 
 }

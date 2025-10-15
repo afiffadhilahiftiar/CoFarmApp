@@ -318,6 +318,53 @@ public class AdminOfftakerActivity extends AppCompatActivity implements PetaniAd
             }
         });
     }
+    @Override
+    public void onPersetujuanKeterlambatan(Petani petani) {
+        View view = getLayoutInflater().inflate(R.layout.dialog_validasi_keterlambatan, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Persetujuan keterlambatan");
+        builder.setView(view);
+        builder.setPositiveButton("Terima", null);
+        builder.setNegativeButton("Tolak", null);
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(v -> {
+            EditText editCatatan = view.findViewById(R.id.editCatatan);
+            String catatan = editCatatan.getText().toString().trim();
+            if (catatan.isEmpty()) {
+                Toast.makeText(this, "Harap isi alasan penolakan!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            kirimStatusValidasi(petani.user_id, petani.contract_id, "Permohonan keterlambatan ditolak", catatan);
+            dialog.dismiss();
+        });
+
+        List<CheckBox> checkBoxList = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            int resId = getResources().getIdentifier("check" + i, "id", getPackageName());
+            CheckBox checkBox = view.findViewById(resId);
+            if (checkBox != null) checkBoxList.add(checkBox);
+        }
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+            boolean semuaCentang = true;
+            for (CheckBox cb : checkBoxList) {
+                if (!cb.isChecked()) {
+                    semuaCentang = false;
+                    break;
+                }
+            }
+
+            if (semuaCentang) {
+                kirimStatusValidasi(petani.user_id, petani.contract_id, "Permohonan keterlambatan diterima", "");
+                dialog.dismiss();
+            } else {
+                Toast.makeText(this, "Harap centang semua poin persetujuan!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     public void onAjukanGantiRugiClick(Petani petani) {
         // Inflate layout pengajuan ganti rugi
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_klaim_dana, null);
@@ -363,7 +410,7 @@ public class AdminOfftakerActivity extends AppCompatActivity implements PetaniAd
                 kirimPdfKeChatPetani(petani.user_id, petani.companyId, petani.nama, pdfFile);
 
 // Kirim PDF ke chat Poktan
-                kirimPdfKeChatPoktan(petani.companyId, petani.companyId, petani.companyName, pdfFile);
+                kirimPdfKeChatPoktan(petani.companyId, petani.companyName, pdfFile);
 
 
                 dialog.dismiss();
@@ -491,12 +538,11 @@ public class AdminOfftakerActivity extends AppCompatActivity implements PetaniAd
         startActivity(intent);
     }
 
-    private void kirimPdfKeChatPoktan(int poktanId, int companyId, String nama, File pdfFile) {
-        Intent intent = new Intent(this, ChatActivity.class);
+    private void kirimPdfKeChatPoktan(int poktanId, String nama, File pdfFile) {
+        Intent intent = new Intent(this, ChatActivityPerusahaan.class);
         intent.putExtra("receiver_id", poktanId);
         intent.putExtra("pdf_path", pdfFile.getAbsolutePath());
-        intent.putExtra("nama_petani", nama);
-        intent.putExtra("company_id", companyId);
+        intent.putExtra("nama_admin", nama);
         startActivity(intent);
     }
 
@@ -514,10 +560,9 @@ public class AdminOfftakerActivity extends AppCompatActivity implements PetaniAd
         });
 
         builder.setNegativeButton("Chat Poktan", (dialog, which) -> {
-            Intent intent = new Intent(this, ChatActivity.class);
-            intent.putExtra("receiver_id", petani.companyId);
-            intent.putExtra("nama_petani", petani.companyName);
-            intent.putExtra("company_id", petani.companyId);
+            Intent intent = new Intent(this, ChatActivityPerusahaan.class);
+            intent.putExtra("nama_admin", petani.companyName);
+            intent.putExtra("receiver_id", petani.companyId); // ubah ke String
             startActivity(intent);
         });
 

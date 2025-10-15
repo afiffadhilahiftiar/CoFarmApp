@@ -19,8 +19,10 @@ public class ContractModel implements Serializable {
     private String lokasi;
     private String deskripsi;
     private String logoUrl;
+    private String gradeB; // baru
+    private String gradeC; // baru
 
-    // Constructor lengkap
+    // Constructor lengkap (dengan gradeB & gradeC)
     public ContractModel(String id,
                          String oftakerId,
                          String namaPerusahaan,
@@ -35,7 +37,9 @@ public class ContractModel implements Serializable {
                          String rating,
                          String lokasi,
                          String deskripsi,
-                         String logoUrl) {
+                         String logoUrl,
+                         String gradeB,
+                         String gradeC) {
         this.id = id;
         this.oftakerId = oftakerId;
         this.namaPerusahaan = namaPerusahaan;
@@ -51,6 +55,8 @@ public class ContractModel implements Serializable {
         this.lokasi = lokasi;
         this.deskripsi = deskripsi;
         this.logoUrl = logoUrl;
+        this.gradeB = gradeB;
+        this.gradeC = gradeC;
     }
 
     // Getter
@@ -69,6 +75,8 @@ public class ContractModel implements Serializable {
     public String getLokasi() { return lokasi; }
     public String getDeskripsi() { return deskripsi; }
     public String getLogoUrl() { return logoUrl; }
+    public String getGradeB() { return gradeB; } // baru
+    public String getGradeC() { return gradeC; } // baru
 
     // Setter
     public void setId(String id) { this.id = id; }
@@ -86,6 +94,8 @@ public class ContractModel implements Serializable {
     public void setLokasi(String lokasi) { this.lokasi = lokasi; }
     public void setDeskripsi(String deskripsi) { this.deskripsi = deskripsi; }
     public void setLogoUrl(String logoUrl) { this.logoUrl = logoUrl; }
+    public void setGradeB(String gradeB) { this.gradeB = gradeB; } // baru
+    public void setGradeC(String gradeC) { this.gradeC = gradeC; } // baru
 
     // toString() untuk debug
     @Override
@@ -106,6 +116,8 @@ public class ContractModel implements Serializable {
                 ", lokasi='" + lokasi + '\'' +
                 ", deskripsi='" + deskripsi + '\'' +
                 ", logoUrl='" + logoUrl + '\'' +
+                ", gradeB='" + gradeB + '\'' +
+                ", gradeC='" + gradeC + '\'' +
                 '}';
     }
 

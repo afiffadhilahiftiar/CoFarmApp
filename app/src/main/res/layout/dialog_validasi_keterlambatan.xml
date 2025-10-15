@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:id="@+id/checkboxContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:divider="?android:attr/dividerHorizontal"
+        android:dividerPadding="8dp"
+        android:showDividers="middle"
+        android:padding="4dp">
+
+        <TextView
+            android:id="@+id/validationTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Validasi Kontrak"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#222222"
+            android:paddingBottom="12dp" />
+
+        <CheckBox
+            android:id="@+id/check1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admin poktan sudah mengirimkan surat permohonan keterlambatan"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Ada catatan alasan keterlambatan dari petani (misal: cuaca ekstrem, banjir, gagal panen sebagian)"
+            android:textSize="15sp"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bukti foto/laporan kondisi lahan diunggah (jika diminta)."
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:paddingVertical="6dp" />
+
+        <CheckBox
+            android:id="@+id/check4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Perpanjangan waktu diterima"
+            android:textSize="15sp"
+            android:paddingVertical="6dp" />
+
+
+        <EditText
+            android:id="@+id/editCatatan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Masukkan alasan penolakan (opsional)"
+            android:textColor="@color/black"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:padding="8dp"
+            android:background="@drawable/edittext_background" />
+
+
+    </LinearLayout>
+</ScrollView>

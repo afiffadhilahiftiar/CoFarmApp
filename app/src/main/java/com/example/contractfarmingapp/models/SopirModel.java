@@ -14,10 +14,14 @@ public class SopirModel {
     private String fotoSim;
     private String fotoStnk;
 
+    // ✅ Tambahan baru: link lokasi Google Maps
+    private String linkLokasi;
+
     public SopirModel(String id, String nama, String noHp, String kendaraan,
                       String platNomor, String kapasitas,
                       String fotoSopir, String fotoKendaraan,
-                      String fotoSim, String fotoStnk) {
+                      String fotoSim, String fotoStnk,
+                      String linkLokasi) {
         this.id = id;
         this.nama = nama;
         this.noHp = noHp;
@@ -28,19 +32,24 @@ public class SopirModel {
         this.fotoSim = fotoSim;
         this.fotoStnk = fotoStnk;
         this.fotoKendaraan = fotoKendaraan;
-
+        this.linkLokasi = linkLokasi;
     }
 
     // Getter & Setter
     public String getId() { return id; }
+
     public String getNama() { return nama; }
     public void setNama(String nama) { this.nama = nama; }
+
     public String getNoHp() { return noHp; }
     public void setNoHp(String noHp) { this.noHp = noHp; }
+
     public String getKendaraan() { return kendaraan; }
     public void setKendaraan(String kendaraan) { this.kendaraan = kendaraan; }
+
     public String getPlatNomor() { return platNomor; }
     public void setPlatNomor(String platNomor) { this.platNomor = platNomor; }
+
     public String getKapasitas() { return kapasitas; }
     public void setKapasitas(String kapasitas) { this.kapasitas = kapasitas; }
 
@@ -52,8 +61,12 @@ public class SopirModel {
 
     public String getFotoStnk() { return fotoStnk; }
     public void setFotoStnk(String fotoStnk) { this.fotoStnk = fotoStnk; }
+
     public String getFotoKendaraan() { return fotoKendaraan; }
     public void setFotoKendaraan(String fotoKendaraan) { this.fotoKendaraan = fotoKendaraan; }
+
+    public String getLinkLokasi() { return linkLokasi; }
+    public void setLinkLokasi(String linkLokasi) { this.linkLokasi = linkLokasi; }
 
     @Override
     public String toString() {
@@ -61,6 +74,7 @@ public class SopirModel {
                 "No HP: " + noHp + "\n" +
                 "Kendaraan: " + kendaraan + "\n" +
                 "Plat Nomor: " + platNomor + "\n" +
-                "Kapasitas: " + kapasitas + " kg";
+                "Kapasitas: " + kapasitas + " kg\n" +
+                "Lokasi: " + linkLokasi;
     }
 }

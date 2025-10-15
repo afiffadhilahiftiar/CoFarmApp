@@ -404,7 +404,7 @@ public class PerusahaanFragment extends Fragment {
                         double gradeC = etGradeC.getText().toString().isEmpty() ? 0 : Double.parseDouble(etGradeC.getText().toString());
 
                         // Potongan tetap 0.5% untuk harga final
-                        double hargaFinal = hargaPerKg - (hargaPerKg * 0.5 / 100);
+                        double hargaFinal = hargaPerKg + (hargaPerKg * 0.5 / 100);
                         etHargaPerKgFinal.setText(String.format(Locale.getDefault(), "%.0f", hargaFinal));
 
                         // Hitung harga grade B dan C
@@ -595,7 +595,7 @@ public class PerusahaanFragment extends Fragment {
 
                 } else if (currentPeran != null && currentPeran.toLowerCase().contains("admin")) {
                     // Jika peran admin, buka ChatActivityFasilitator
-                    intent = new Intent(requireContext(), ChatActivityFasilitator.class);
+                    intent = new Intent(requireContext(), DaftarChatPoktanPetaniActivity.class);
                     intent.putExtra("fasilitator_id", fasilitatorId); // pastikan fasilitatorId sudah diambil
                     intent.putExtra("peran", currentPeran);
                     intent.putExtra("nama_admin", "Admin Kontrak");
@@ -885,7 +885,9 @@ public class PerusahaanFragment extends Fragment {
                                     obj.getString("rating"),
                                     obj.getString("lokasi"),
                                     obj.getString("deskripsi"),
-                                    obj.getString("logoUrl")
+                                    obj.getString("logoUrl"),
+                                    obj.getString("gradeB"),
+                                    obj.getString("gradeC")
                             );
 
                             contractList.add(contract);

@@ -12,19 +12,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.contractfarmingapp.adapters.ChatPetaniAdapter;
 import com.example.contractfarmingapp.models.ChatItem;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaftarChatPetaniActivity extends AppCompatActivity {
+public class DaftarChatPoktanPetaniActivity extends AppCompatActivity {
 
     private RecyclerView rvChats;
     private ChatPetaniAdapter adapter;
@@ -40,16 +38,16 @@ public class DaftarChatPetaniActivity extends AppCompatActivity {
         rvChats = findViewById(R.id.rvChats);
         btnChatPoktan = findViewById(R.id.btnChatPoktan);
         rvChats.setLayoutManager(new LinearLayoutManager(this));
-
+        btnChatPoktan.setText("Chat Fasilitator");
         adapter = new ChatPetaniAdapter(chatList, item -> {
-            Intent intent = new Intent(DaftarChatPetaniActivity.this, ChatActivity.class);
+            Intent intent = new Intent(DaftarChatPoktanPetaniActivity.this, ChatActivity.class);
 
             try {
                 int receiverId = Integer.parseInt(item.getSenderId());
                 intent.putExtra("receiver_id", receiverId);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
-                Toast.makeText(DaftarChatPetaniActivity.this, "ID petani tidak valid", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DaftarChatPoktanPetaniActivity.this, "ID petani tidak valid", Toast.LENGTH_SHORT).show();
                 return; // jangan lanjutkan jika ID tidak valid
             }
 
@@ -60,15 +58,17 @@ public class DaftarChatPetaniActivity extends AppCompatActivity {
         rvChats.setAdapter(adapter);
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         companyId = sharedPreferences.getString("company_id", null);
-
+        String fasilitatorId = sharedPreferences.getString("fasilitator_id", null);
         if (companyId != null) {
             loadChats();
         } else {
             Toast.makeText(this, "ID perusahaan tidak tersedia", Toast.LENGTH_SHORT).show();
         }
         btnChatPoktan.setOnClickListener(v -> {
-            Intent intent = new Intent(DaftarChatPetaniActivity.this, DaftarChatPetaniActivityPoktan.class);
+            Intent intent = new Intent(DaftarChatPoktanPetaniActivity.this, ChatActivityFasilitator.class);
             intent.putExtra("company_id", companyId);
+            intent.putExtra("fasilitator_id", fasilitatorId); // pastikan fasilitatorId sudah diambil
+            intent.putExtra("nama_admin", "Admin Kontrak");
             startActivity(intent);
         });
     }

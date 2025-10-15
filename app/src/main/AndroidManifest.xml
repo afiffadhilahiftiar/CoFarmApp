@@ -137,6 +137,8 @@
         <activity android:name=".KebijakanPenggunaActivity" />
         <activity android:name=".DaftarSopirActivity" />
         <activity android:name=".DaftarChatPetaniActivity" />
+        <activity android:name=".DaftarChatPoktanPetaniActivity" />
+        <activity android:name=".DaftarChatPetaniActivityPoktan" />
         <activity android:name=".DaftarChatPetaniAllActivity" />
         <activity android:name=".TambahSopirActivity" />
         <activity android:name=".EditSopirActivity" />
@@ -170,6 +172,8 @@
         <activity android:name=".PemberkasanActivity" />
         <activity android:name=".ExportReportActivity" />
         <activity android:name=".ChatActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ChatActivityPerusahaan"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".ChatActivityPetaniAll"
             android:windowSoftInputMode="adjustResize"/>

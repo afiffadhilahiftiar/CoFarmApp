@@ -57,7 +57,7 @@
 
         <EditText
             android:id="@+id/etJumlahKebutuhan"
-            android:hint="Jumlah Kebutuhan (Kg)"
+            android:hint="Jumlah Kebutuhan (Satuan)"
             android:inputType="number"
             android:textColorHint="@color/gray"
             android:textColor="@color/black"

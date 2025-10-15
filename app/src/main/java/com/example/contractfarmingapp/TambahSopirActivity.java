@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class TambahSopirActivity extends AppCompatActivity {
 
-    EditText etNama, etNoHp, etKendaraan, etPlatNomor, etKapasitas;
+    EditText etNama, etNoHp, etKendaraan, etPlatNomor, etKapasitas, etLinkLokasi;
     ImageView imgFotoSopir, imgFotoSim, imgFotoStnk, imgFotoKendaraan;
     Button btnFotoSopir, btnFotoSim, btnFotoStnk, btnFotoKendaraan, btnSimpan;
 
@@ -43,6 +43,7 @@ public class TambahSopirActivity extends AppCompatActivity {
         etNoHp = findViewById(R.id.etNoHp);
         etKendaraan = findViewById(R.id.etKendaraan);
         etPlatNomor = findViewById(R.id.etPlat);
+        etLinkLokasi = findViewById(R.id.etLinkLokasi);
         etKapasitas = findViewById(R.id.etKapasitas);
 
         // Image preview
@@ -138,6 +139,10 @@ public class TambahSopirActivity extends AppCompatActivity {
             etKapasitas.setError("Kapasitas wajib diisi");
             return false;
         }
+        if (TextUtils.isEmpty(etLinkLokasi.getText().toString().trim())) {
+            etLinkLokasi.setError("Link lokasi wajib diisi");
+            return false;
+        }
         if (bitmapSopir == null || bitmapSIM == null || bitmapSTNK == null || bitmapKendaraan == null) {
             Toast.makeText(this, "Semua foto wajib diunggah", Toast.LENGTH_SHORT).show();
             return false;
@@ -184,6 +189,7 @@ public class TambahSopirActivity extends AppCompatActivity {
                 params.put("no_hp", etNoHp.getText().toString().trim());
                 params.put("kendaraan", etKendaraan.getText().toString().trim());
                 params.put("plat_nomor", etPlatNomor.getText().toString().trim());
+                params.put("link_lokasi", etLinkLokasi.getText().toString().trim());
                 params.put("kapasitas", etKapasitas.getText().toString().trim());
 
                 params.put("foto_sopir", bitmapToBase64(bitmapSopir));

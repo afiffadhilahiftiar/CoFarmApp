@@ -33,7 +33,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black" />
-
+    <TextView
+        android:id="@+id/txtJumlah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/txtWaktuDibutuhkan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black" />
+    <TextView
+        android:id="@+id/txtJarakWaktu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jarak waktu"
+        android:textColor="@color/black" />
     <TextView
         android:id="@+id/txtProgres"
         android:layout_width="match_parent"

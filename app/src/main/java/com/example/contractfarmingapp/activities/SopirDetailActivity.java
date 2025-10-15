@@ -29,10 +29,10 @@ public class SopirDetailActivity extends AppCompatActivity {
 
     private TextView tvNama, tvNoHp, tvKendaraan, tvPlat, tvKapasitas;
     private ImageView ivFotoSopir, ivFotoKendaraan, ivFotoSim, ivFotoStnk;
-    private Button btnExportPdf;
+    private Button btnExportPdf, btnLihatLokasi;
 
     private String nama, noHp, kendaraan, platNomor, kapasitas;
-    private String fotoSopirUrl, fotoKendaraanUrl, fotoSimUrl, fotoStnkUrl;
+    private String fotoSopirUrl, fotoKendaraanUrl, fotoSimUrl, fotoStnkUrl, linkLokasi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class SopirDetailActivity extends AppCompatActivity {
         ivFotoStnk = findViewById(R.id.ivFotoStnk);
 
         btnExportPdf = findViewById(R.id.btnExportPdf);
-
+        btnLihatLokasi = findViewById(R.id.btnLihatLokasi); // tombol baru
         // Ambil data dari Intent
         Intent intent = getIntent();
         nama = intent.getStringExtra("nama");
@@ -64,13 +64,14 @@ public class SopirDetailActivity extends AppCompatActivity {
         fotoKendaraanUrl = intent.getStringExtra("foto_kendaraan");
         fotoSimUrl = intent.getStringExtra("foto_sim");
         fotoStnkUrl = intent.getStringExtra("foto_stnk");
+        linkLokasi = intent.getStringExtra("link_lokasi"); // ambil link Google Maps
 
         // Set text
         tvNama.setText("Nama: " + nama);
         tvNoHp.setText("No HP: " + noHp);
         tvKendaraan.setText("Kendaraan: " + kendaraan);
         tvPlat.setText("Plat Nomor: " + platNomor);
-        tvKapasitas.setText("Kapasitas: " + kapasitas + " kg");
+        tvKapasitas.setText("Kapasitas: " + kapasitas);
 
         // Load foto menggunakan Glide
         Glide.with(this).load(fotoSopirUrl).into(ivFotoSopir);
@@ -79,7 +80,37 @@ public class SopirDetailActivity extends AppCompatActivity {
         Glide.with(this).load(fotoStnkUrl).into(ivFotoStnk);
 
         btnExportPdf.setOnClickListener(v -> new Thread(this::exportToPdf).start());
+        btnLihatLokasi.setOnClickListener(v -> openGoogleMaps());
+
     }
+
+    private void openGoogleMaps() {
+        if (linkLokasi == null || linkLokasi.trim().isEmpty()) {
+            Toast.makeText(this, "Lokasi belum tersedia untuk sopir ini", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            Uri uri = Uri.parse(linkLokasi);
+
+            // Buat Intent tanpa setPackage supaya Android otomatis memilih app
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, uri);
+            mapIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Cek apakah ada aplikasi yang bisa handle Intent
+            if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(mapIntent);
+            } else {
+                // Fallback: buka di browser
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(browserIntent);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Gagal membuka lokasi", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     private void exportToPdf() {
         PdfDocument pdfDocument = new PdfDocument();
@@ -88,29 +119,27 @@ public class SopirDetailActivity extends AppCompatActivity {
         int pageWidth = 595;  // A4 (72 dpi)
         int pageHeight = 842;
 
-        int x = 40, y = 60;
-
-        // Buat halaman pertama
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create();
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
         Canvas canvas = page.getCanvas();
 
-        paint.setTextSize(36f);
-        canvas.drawText("Detail Sopir", x, y, paint);
-        y += 50;
-        paint.setTextSize(19f);
+        int margin = 40;
+        int x = margin;
+        int y = margin + 20;
+
+        // Judul
+        paint.setTextSize(28f);
+        paint.setFakeBoldText(true);
+        canvas.drawText("Laporan Detail Sopir", x, y, paint);
+        y += 40;
+
+        // Tabel informasi sopir
+        paint.setTextSize(16f);
+        paint.setFakeBoldText(false);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1.5f);
+        paint.setStrokeWidth(1.3f);
         paint.setColor(Color.BLACK);
 
-        int startX = 50;          // posisi kiri tabel
-        int endX = 550;           // posisi kanan tabel
-        int labelWidth = 180;     // lebar kolom label
-        int rowHeight = 40;       // tinggi tiap baris
-        int startY = y;           // posisi awal tabel
-        int currentY = startY;
-
-// 🔹 Data baris tabel
         String[][] data = {
                 {"Nama", nama},
                 {"No HP", noHp},
@@ -119,69 +148,126 @@ public class SopirDetailActivity extends AppCompatActivity {
                 {"Kapasitas", kapasitas + " kg"}
         };
 
-// 🔹 Hitung tinggi tabel
-        int totalRows = data.length;
-        int tableHeight = totalRows * rowHeight;
+        int startX = margin;
+        int endX = pageWidth - margin;
+        int labelWidth = 150;
+        int rowHeight = 35;
+        int tableTop = y;
 
-// 🔹 Gambar border luar tabel
-        canvas.drawRect(startX, startY, endX, startY + tableHeight, paint);
+        // Border tabel
+        canvas.drawRect(startX, tableTop, endX, tableTop + (data.length * rowHeight), paint);
+        canvas.drawLine(startX + labelWidth, tableTop, startX + labelWidth, tableTop + (data.length * rowHeight), paint);
 
-// 🔹 Gambar garis kolom (pemisah label dan nilai)
-        canvas.drawLine(startX + labelWidth, startY, startX + labelWidth, startY + tableHeight, paint);
-
-// 🔹 Gambar garis baris + isi teks
-        paint.setStyle(Paint.Style.FILL); // kembali ke isi teks
-        paint.setTextSize(18f);
-        int textPaddingX = 10;
-        int textPaddingY = 25;
-
-        for (int i = 0; i < totalRows; i++) {
-            // Gambar teks label dan isi
-            canvas.drawText(data[i][0], startX + textPaddingX, currentY + textPaddingY, paint);
-            canvas.drawText(": " + data[i][1], startX + labelWidth + textPaddingX, currentY + textPaddingY, paint);
-
-            // Gambar garis bawah antar baris (kecuali baris terakhir)
-            if (i < totalRows - 1) {
+        paint.setStyle(Paint.Style.FILL);
+        paint.setTextSize(15f);
+        for (int i = 0; i < data.length; i++) {
+            int textY = tableTop + (i * rowHeight) + 23;
+            canvas.drawText(data[i][0], startX + 10, textY, paint);
+            canvas.drawText(": " + data[i][1], startX + labelWidth + 10, textY, paint);
+            if (i < data.length - 1) {
                 paint.setStyle(Paint.Style.STROKE);
-                canvas.drawLine(startX, currentY + rowHeight, endX, currentY + rowHeight, paint);
+                canvas.drawLine(startX, tableTop + ((i + 1) * rowHeight), endX, tableTop + ((i + 1) * rowHeight), paint);
                 paint.setStyle(Paint.Style.FILL);
             }
-
-            currentY += rowHeight;
         }
 
-// 🔹 Update posisi Y setelah tabel
-        y = startY + tableHeight + 20;
+        y = tableTop + (data.length * rowHeight) + 30;
+
+        // Label foto
+        paint.setTextSize(18f);
+        paint.setFakeBoldText(true);
+        canvas.drawText("Foto Dokumen", x, y, paint);
+        y += 15;
+        paint.setFakeBoldText(false);
+
+        // Grid 2x2 foto kecil
+        int imageWidth = (pageWidth - (3 * margin)) / 2;  // dua kolom
+        int imageHeight = 150;
+        int spacing = 20;
+        y += 10;
+
+        // Daftar gambar dan label
+        String[] labels = {"Foto Sopir", "Foto Kendaraan", "Foto SIM", "Foto STNK"};
+        String[] urls = {fotoSopirUrl, fotoKendaraanUrl, fotoSimUrl, fotoStnkUrl};
+
+        for (int i = 0; i < urls.length; i++) {
+            try {
+                Bitmap bmp = Glide.with(this).asBitmap().load(urls[i]).submit().get();
+
+                // Skala biar muat di grid
+                Bitmap scaled = Bitmap.createScaledBitmap(bmp, imageWidth, imageHeight, true);
+
+                int col = i % 2;
+                int row = i / 2;
+                int imgX = margin + col * (imageWidth + margin / 2);
+                int imgY = y + row * (imageHeight + spacing + 20);
+
+                canvas.drawBitmap(scaled, imgX, imgY, null);
+
+                // Label bawah gambar
+                paint.setTextSize(14f);
+                paint.setColor(Color.BLACK);
+                canvas.drawText(labels[i], imgX, imgY + imageHeight + 15, paint);
+
+                bmp.recycle();
+                scaled.recycle();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         pdfDocument.finishPage(page);
 
-        // Tambah foto satu per satu ke halaman baru
-        y = addImagePage(pdfDocument, fotoSopirUrl, "Foto Sopir", pageWidth, pageHeight);
-        y = addImagePage(pdfDocument, fotoKendaraanUrl, "Foto Kendaraan", pageWidth, pageHeight);
-        y = addImagePage(pdfDocument, fotoSimUrl, "Foto SIM", pageWidth, pageHeight);
-        y = addImagePage(pdfDocument, fotoStnkUrl, "Foto STNK", pageWidth, pageHeight);
-
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                "Detail_Sopir_" + nama + ".pdf");
+        // Simpan PDF
+        String fileName = "Detail_Sopir_" + nama + ".pdf";
 
         try {
-            pdfDocument.writeTo(new FileOutputStream(file));
-            pdfDocument.close();
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                // Android 10 ke atas → MediaStore
+                android.content.ContentResolver resolver = getContentResolver();
+                android.content.ContentValues contentValues = new android.content.ContentValues();
+                contentValues.put(android.provider.MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+                contentValues.put(android.provider.MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
+                contentValues.put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
 
-            runOnUiThread(() ->
-                    Toast.makeText(this, "PDF berhasil disimpan: " + file.getAbsolutePath(), Toast.LENGTH_LONG).show()
-            );
+                Uri pdfUri = resolver.insert(android.provider.MediaStore.Files.getContentUri("external"), contentValues);
+                if (pdfUri != null) {
+                    try (java.io.OutputStream outputStream = resolver.openOutputStream(pdfUri)) {
+                        pdfDocument.writeTo(outputStream);
+                    }
+                    runOnUiThread(() -> Toast.makeText(this, "PDF disimpan di folder Download", Toast.LENGTH_LONG).show());
 
-            Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".provider", file);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(uri, "application/pdf");
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(pdfUri, "application/pdf");
+                    intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    startActivity(intent);
+                }
+            } else {
+                // Android 9 ke bawah
+                File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                if (!downloadsDir.exists()) downloadsDir.mkdirs();
+                File file = new File(downloadsDir, fileName);
+                pdfDocument.writeTo(new FileOutputStream(file));
 
-        } catch (IOException e) {
+                runOnUiThread(() ->
+                        Toast.makeText(this, "PDF disimpan di: " + file.getAbsolutePath(), Toast.LENGTH_LONG).show()
+                );
+
+                Uri uri = androidx.core.content.FileProvider.getUriForFile(this, getPackageName() + ".provider", file);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, "application/pdf");
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
             runOnUiThread(() ->
-                    Toast.makeText(this, "Gagal menyimpan PDF", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Gagal menyimpan PDF: " + e.getMessage(), Toast.LENGTH_SHORT).show()
             );
+        } finally {
+            pdfDocument.close();
         }
     }
 

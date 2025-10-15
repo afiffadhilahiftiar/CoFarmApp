@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class EditSopirActivity extends AppCompatActivity {
 
-    EditText etNama, etNoHp, etKendaraan, etPlat, etKapasitas;
+    EditText etNama, etNoHp, etKendaraan, etPlat, etKapasitas, etLinkLokasi;
     ImageView imgFotoSopir, imgFotoSim, imgFotoStnk, imgFotoKendaraan;
     Button btnSimpan, btnFotoSopir, btnFotoSim, btnFotoStnk, btnFotoKendaraan;
 
@@ -44,6 +44,9 @@ public class EditSopirActivity extends AppCompatActivity {
     private static final int PICK_STNK = 3;
     private static final int PICK_KENDARAAN = 4;
 
+    // URL lama untuk validasi jika user tidak upload ulang
+    private String oldFotoSopir = "", oldFotoSim = "", oldFotoStnk = "", oldFotoKendaraan = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +54,7 @@ public class EditSopirActivity extends AppCompatActivity {
 
         etNama = findViewById(R.id.etNama);
         etNoHp = findViewById(R.id.etNoHp);
+        etLinkLokasi = findViewById(R.id.etLinkLokasi);
         etKendaraan = findViewById(R.id.etKendaraan);
         etPlat = findViewById(R.id.etPlat);
         etKapasitas = findViewById(R.id.etKapasitas);
@@ -74,35 +78,23 @@ public class EditSopirActivity extends AppCompatActivity {
         etKendaraan.setText(intent.getStringExtra("kendaraan"));
         etPlat.setText(intent.getStringExtra("plat_nomor"));
         etKapasitas.setText(intent.getStringExtra("kapasitas"));
+        etLinkLokasi.setText(intent.getStringExtra("link_lokasi"));
+
+        // Simpan URL lama
+        oldFotoSopir = intent.getStringExtra("foto_sopir");
+        oldFotoSim = intent.getStringExtra("foto_sim");
+        oldFotoStnk = intent.getStringExtra("foto_stnk");
+        oldFotoKendaraan = intent.getStringExtra("foto_kendaraan");
 
         // Load foto dari URL intent pakai Glide
-        String fotoSopir = intent.getStringExtra("foto_sopir");
-        String fotoSim = intent.getStringExtra("foto_sim");
-        String fotoStnk = intent.getStringExtra("foto_stnk");
-        String fotoKendaraan = intent.getStringExtra("foto_kendaraan");
-
-        if (fotoSopir != null && !fotoSopir.isEmpty()) {
-            Glide.with(this)
-                    .load(fotoSopir)
-                    .into(imgFotoSopir);
-        }
-        if (fotoSim != null && !fotoSim.isEmpty()) {
-            Glide.with(this)
-                    .load(fotoSim)
-
-                    .into(imgFotoSim);
-        }
-        if (fotoStnk != null && !fotoStnk.isEmpty()) {
-            Glide.with(this)
-                    .load(fotoStnk)
-
-                    .into(imgFotoStnk);
-        }
-        if (fotoKendaraan != null && !fotoKendaraan.isEmpty()) {
-            Glide.with(this)
-                    .load(fotoKendaraan)
-                    .into(imgFotoKendaraan);
-        }
+        if (oldFotoSopir != null && !oldFotoSopir.isEmpty())
+            Glide.with(this).load(oldFotoSopir).into(imgFotoSopir);
+        if (oldFotoSim != null && !oldFotoSim.isEmpty())
+            Glide.with(this).load(oldFotoSim).into(imgFotoSim);
+        if (oldFotoStnk != null && !oldFotoStnk.isEmpty())
+            Glide.with(this).load(oldFotoStnk).into(imgFotoStnk);
+        if (oldFotoKendaraan != null && !oldFotoKendaraan.isEmpty())
+            Glide.with(this).load(oldFotoKendaraan).into(imgFotoKendaraan);
 
         // Tombol upload foto (gantikan gambar dengan baru)
         btnFotoSopir.setOnClickListener(v -> pilihGambar(PICK_SOPIR));
@@ -110,7 +102,9 @@ public class EditSopirActivity extends AppCompatActivity {
         btnFotoStnk.setOnClickListener(v -> pilihGambar(PICK_STNK));
         btnFotoKendaraan.setOnClickListener(v -> pilihGambar(PICK_KENDARAAN));
 
-        btnSimpan.setOnClickListener(v -> updateSopir());
+        btnSimpan.setOnClickListener(v -> {
+            if (validateInput()) updateSopir();
+        });
     }
 
     private void pilihGambar(int requestCode) {
@@ -157,19 +151,53 @@ public class EditSopirActivity extends AppCompatActivity {
         return Base64.encodeToString(imageBytes, Base64.DEFAULT);
     }
 
+    private boolean validateInput() {
+        if (TextUtils.isEmpty(etNama.getText().toString().trim())) {
+            etNama.setError("Nama wajib diisi");
+            return false;
+        }
+        if (TextUtils.isEmpty(etNoHp.getText().toString().trim())) {
+            etNoHp.setError("Nomor HP wajib diisi");
+            return false;
+        }
+        if (TextUtils.isEmpty(etKendaraan.getText().toString().trim())) {
+            etKendaraan.setError("Jenis kendaraan wajib diisi");
+            return false;
+        }
+        if (TextUtils.isEmpty(etPlat.getText().toString().trim())) {
+            etPlat.setError("Plat nomor wajib diisi");
+            return false;
+        }
+        if (TextUtils.isEmpty(etKapasitas.getText().toString().trim())) {
+            etKapasitas.setError("Kapasitas wajib diisi");
+            return false;
+        }
+        if (TextUtils.isEmpty(etLinkLokasi.getText().toString().trim())) {
+            etLinkLokasi.setError("Link lokasi wajib diisi");
+            return false;
+        }
+
+        // ✅ Validasi semua gambar wajib ada (baik baru upload atau dari URL lama)
+        if ((bitmapSopir == null && TextUtils.isEmpty(oldFotoSopir)) ||
+                (bitmapSim == null && TextUtils.isEmpty(oldFotoSim)) ||
+                (bitmapStnk == null && TextUtils.isEmpty(oldFotoStnk)) ||
+                (bitmapKendaraan == null && TextUtils.isEmpty(oldFotoKendaraan))) {
+            Toast.makeText(this, "Semua foto wajib tersedia", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
     private void updateSopir() {
         String nama = etNama.getText().toString().trim();
         String noHp = etNoHp.getText().toString().trim();
         String kendaraan = etKendaraan.getText().toString().trim();
         String plat = etPlat.getText().toString().trim();
         String kapasitas = etKapasitas.getText().toString().trim();
+        String linkLokasi = etLinkLokasi.getText().toString().trim();
 
-        if (TextUtils.isEmpty(nama) || TextUtils.isEmpty(noHp)) {
-            Toast.makeText(this, "Nama dan No HP wajib diisi", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Tambahkan +62 jika tidak diawali +
+        // Format nomor HP agar selalu +62
         if (!noHp.startsWith("+")) {
             noHp = "+62" + noHp.replaceFirst("^0+(?!$)", "");
         }
@@ -187,9 +215,7 @@ public class EditSopirActivity extends AppCompatActivity {
                         String status = jsonObject.getString("status");
                         String message = jsonObject.getString("message");
                         Toast.makeText(EditSopirActivity.this, message, Toast.LENGTH_SHORT).show();
-                        if (status.equals("success")) {
-                            finish();
-                        }
+                        if (status.equals("success")) finish();
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(EditSopirActivity.this, "Error parsing response", Toast.LENGTH_SHORT).show();
@@ -209,10 +235,14 @@ public class EditSopirActivity extends AppCompatActivity {
                 params.put("kendaraan", kendaraan);
                 params.put("plat_nomor", plat);
                 params.put("kapasitas", kapasitas);
+                params.put("link_lokasi", linkLokasi);
+
+                // Kirim base64 baru jika ada, kalau tidak kirim string kosong
                 params.put("foto_sopir", encodeImage(bitmapSopir));
                 params.put("foto_sim", encodeImage(bitmapSim));
                 params.put("foto_stnk", encodeImage(bitmapStnk));
                 params.put("foto_kendaraan", encodeImage(bitmapKendaraan));
+
                 return params;
             }
         };

@@ -42,6 +42,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Plat Nomor:"/>
+        <TextView
+            android:id="@+id/tvLinkLokasi"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Link Lokasi:"/>
 
         <TextView
             android:id="@+id/tvKapasitas"

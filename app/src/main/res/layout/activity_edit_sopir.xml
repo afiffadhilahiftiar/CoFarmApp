@@ -56,6 +56,15 @@
             android:textColorHint="@color/gray"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etLinkLokasi"
+            android:hint="Link Berbagi Lokasi Google Maps"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/edittext_background"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <EditText
             android:id="@+id/etKapasitas"

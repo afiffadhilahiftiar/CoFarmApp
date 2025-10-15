@@ -87,7 +87,8 @@ public class DaftarSopirActivity extends AppCompatActivity {
                                     sopir.getString("foto_sopir"),
                                     sopir.getString("foto_sim"),
                                     sopir.getString("foto_stnk"),
-                                    sopir.getString("foto_kendaraan")
+                                    sopir.getString("foto_kendaraan"),
+                                    sopir.getString("link_lokasi")
                             );
                             sopirList.add(model);
                         } catch (Exception e) {

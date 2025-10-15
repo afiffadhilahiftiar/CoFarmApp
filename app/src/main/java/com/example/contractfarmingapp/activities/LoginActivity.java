@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     private int userId;
     private int companyId;
     private String email;
+    private String ktp;
     boolean isPasswordVisible = false;
 
     private FirebaseAuth mAuth;
@@ -90,11 +91,28 @@ public class LoginActivity extends AppCompatActivity {
 
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    cekUserDiServer(email);
+                    // Ambil user aktif dari Firebase
+                    if (mAuth.getCurrentUser() != null) {
+                        if (mAuth.getCurrentUser().isEmailVerified()) {
+                            // Email sudah diverifikasi -> lanjut ke server
+                            cekUserDiServer(email);
+                        } else {
+                            // Email belum diverifikasi
+                            Toast.makeText(this, "Email belum diverifikasi. Silakan cek inbox atau spam Anda.", Toast.LENGTH_LONG).show();
+
+                            // Kirim ulang email verifikasi
+                            mAuth.getCurrentUser().sendEmailVerification()
+                                    .addOnSuccessListener(unused -> Toast.makeText(this, "Email verifikasi telah dikirim ulang.", Toast.LENGTH_SHORT).show())
+                                    .addOnFailureListener(e -> Toast.makeText(this, "Gagal mengirim email verifikasi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+
+                            mAuth.signOut(); // logout agar user tidak lanjut login
+                        }
+                    }
                 } else {
                     Toast.makeText(this, "Login gagal: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                 }
             });
+
         });
 
         // Google Sign-In
@@ -161,22 +179,32 @@ public class LoginActivity extends AppCompatActivity {
                             if ("terdaftar".equalsIgnoreCase(status)) {
                                 userId = json.getInt("id");
                                 companyId = json.getInt("company_id");
+                                ktp = json.optString("ktp", ""); // aman meski null
 
                                 SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
                                 SharedPreferences.Editor editor = prefs.edit();
-                                editor.putInt("id", userId);           // penting
+                                editor.putInt("id", userId);
                                 editor.putInt("company_id", companyId);
+                                editor.putString("ktp", ktp);
                                 editor.apply();
-
 
                                 // 🔹 Simpan token FCM user ke server
                                 saveFcmTokenToServer(email);
 
-                                // pindah ke MainActivity
-                                startActivity(new Intent(this, MainActivity.class));
-                                finish();
+                                // 🔹 Cek apakah KTP kosong
+                                if (ktp == null || ktp.trim().isEmpty() || ktp.equalsIgnoreCase("null")) {
+                                    Toast.makeText(this, "Lengkapi data profil Anda terlebih dahulu.", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(this, ProfileActivity.class);
+                                    intent.putExtra("email", email);
+                                    startActivity(intent);
+                                } else {
+                                    // Jika sudah punya KTP, langsung ke MainActivity
+                                    startActivity(new Intent(this, MainActivity.class));
+                                }
 
-                            } else if ("tidak_terdaftar".equalsIgnoreCase(status)) {
+                                finish();
+                            }
+                            else if ("tidak_terdaftar".equalsIgnoreCase(status)) {
                                 Intent intent = new Intent(this, RegisterActivity.class);
                                 intent.putExtra("google_email", email);
                                 startActivity(intent);

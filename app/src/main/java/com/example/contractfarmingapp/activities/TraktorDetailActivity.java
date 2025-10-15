@@ -1,12 +1,16 @@
 package com.example.contractfarmingapp.activities;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.widget.Button;
@@ -22,7 +26,8 @@ import com.example.contractfarmingapp.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.OutputStream;
+import java.util.concurrent.ExecutionException;
 
 public class TraktorDetailActivity extends AppCompatActivity {
 
@@ -45,7 +50,6 @@ public class TraktorDetailActivity extends AppCompatActivity {
         ivFotoTraktor = findViewById(R.id.ivFotoTraktor);
         btnExportPdf = findViewById(R.id.btnExportPdf);
 
-        // Ambil data dari Intent
         Intent intent = getIntent();
         jenisTraktor = intent.getStringExtra("jenis_traktor");
         kapasitas = intent.getStringExtra("kapasitas");
@@ -53,13 +57,11 @@ public class TraktorDetailActivity extends AppCompatActivity {
         noHp = intent.getStringExtra("no_hp");
         fotoTraktorUrl = intent.getStringExtra("foto_traktor");
 
-        // Set text
         tvJenisTraktor.setText("Jenis Traktor: " + jenisTraktor);
         tvKapasitas.setText("Kapasitas: " + kapasitas + " kg");
         tvNamaOperator.setText("Operator: " + namaOperator);
         tvNoHp.setText("No HP: " + noHp);
 
-        // Load foto
         Glide.with(this).load(fotoTraktorUrl).into(ivFotoTraktor);
 
         btnExportPdf.setOnClickListener(v -> new Thread(this::exportToPdf).start());
@@ -69,88 +71,133 @@ public class TraktorDetailActivity extends AppCompatActivity {
         PdfDocument pdfDocument = new PdfDocument();
         Paint paint = new Paint();
 
-        int pageWidth = 595;  // A4 (72 dpi)
+        int pageWidth = 595; // A4
         int pageHeight = 842;
-        int x = 40, y = 60;
+        int margin = 40;
+        int y = 80;
 
-        // Buat halaman pertama
         PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create();
         PdfDocument.Page page = pdfDocument.startPage(pageInfo);
         Canvas canvas = page.getCanvas();
 
-        paint.setTextSize(36f);
-        canvas.drawText("Detail Traktor", x, y, paint);
-        y += 50;
+        // Judul
+        paint.setTextSize(24f);
+        paint.setColor(Color.BLACK);
+        paint.setFakeBoldText(true);
+        canvas.drawText("Laporan Detail Traktor", margin, y, paint);
+        y += 40;
 
-        paint.setTextSize(19f);
-        canvas.drawText("Jenis Traktor: " + jenisTraktor, x, y, paint); y += 30;
-        canvas.drawText("Kapasitas: " + kapasitas + " kg", x, y, paint); y += 30;
-        canvas.drawText("Operator: " + namaOperator, x, y, paint); y += 30;
-        canvas.drawText("No HP: " + noHp, x, y, paint); y += 40;
+        paint.setFakeBoldText(false);
+        paint.setTextSize(16f);
+
+        // Data traktor (tabel sederhana)
+        String[][] data = {
+                {"Jenis Traktor", jenisTraktor},
+                {"Kapasitas", kapasitas + " kg"},
+                {"Operator", namaOperator},
+                {"No HP", noHp}
+        };
+
+        int startX = margin;
+        int endX = pageWidth - margin;
+        int labelWidth = 160;
+        int rowHeight = 30;
+
+        // Gambar garis tabel luar
+        paint.setStyle(Paint.Style.STROKE);
+        canvas.drawRect(startX, y, endX, y + data.length * rowHeight, paint);
+        // Garis pemisah kolom
+        canvas.drawLine(startX + labelWidth, y, startX + labelWidth, y + data.length * rowHeight, paint);
+
+        // Isi teks
+        paint.setStyle(Paint.Style.FILL);
+        for (int i = 0; i < data.length; i++) {
+            int textY = y + (i * rowHeight) + 20;
+            canvas.drawText(data[i][0], startX + 10, textY, paint);
+            canvas.drawText(": " + data[i][1], startX + labelWidth + 10, textY, paint);
+            if (i < data.length - 1) {
+                paint.setStyle(Paint.Style.STROKE);
+                canvas.drawLine(startX, y + (i + 1) * rowHeight, endX, y + (i + 1) * rowHeight, paint);
+                paint.setStyle(Paint.Style.FILL);
+            }
+        }
+
+        y += data.length * rowHeight + 40;
+
+        // Tambahkan foto dalam tabel mini
+        try {
+            Bitmap bmp = Glide.with(this).asBitmap().load(fotoTraktorUrl).submit().get();
+
+            int imgSize = 150; // ukuran kecil
+            Bitmap scaledBmp = Bitmap.createScaledBitmap(bmp, imgSize, imgSize, true);
+
+            // Kotak label dan gambar
+            paint.setStyle(Paint.Style.STROKE);
+            canvas.drawRect(startX, y, endX, y + imgSize + 30, paint);
+            paint.setStyle(Paint.Style.FILL);
+            paint.setTextSize(14f);
+            canvas.drawText("Foto Traktor:", startX + 10, y + 20, paint);
+
+            canvas.drawBitmap(scaledBmp, startX + 150, y + 10, paint);
+            scaledBmp.recycle();
+            bmp.recycle();
+
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
 
         pdfDocument.finishPage(page);
 
-        // Tambah halaman foto traktor
-        addImagePage(pdfDocument, fotoTraktorUrl, "Foto Traktor", pageWidth, pageHeight);
-
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-                "Detail_Traktor_" + jenisTraktor + ".pdf");
+        String fileName = "Detail_Traktor_" + jenisTraktor + ".pdf";
 
         try {
-            pdfDocument.writeTo(new FileOutputStream(file));
-            pdfDocument.close();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                // Android 10+ (gunakan MediaStore)
+                ContentResolver resolver = getContentResolver();
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(android.provider.MediaStore.MediaColumns.DISPLAY_NAME, fileName);
+                contentValues.put(android.provider.MediaStore.MediaColumns.MIME_TYPE, "application/pdf");
+                contentValues.put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
 
-            runOnUiThread(() ->
-                    Toast.makeText(this, "PDF berhasil disimpan: " + file.getAbsolutePath(), Toast.LENGTH_LONG).show()
-            );
+                Uri pdfUri = resolver.insert(android.provider.MediaStore.Files.getContentUri("external"), contentValues);
+                if (pdfUri != null) {
+                    try (OutputStream outputStream = resolver.openOutputStream(pdfUri)) {
+                        pdfDocument.writeTo(outputStream);
+                    }
+                    runOnUiThread(() ->
+                            Toast.makeText(this, "PDF disimpan di folder Download", Toast.LENGTH_LONG).show()
+                    );
 
-            Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".provider", file);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(uri, "application/pdf");
-            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setDataAndType(pdfUri, "application/pdf");
+                    intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    startActivity(intent);
+                }
+            } else {
+                // Android 9 ke bawah
+                File downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                if (!downloadsDir.exists()) downloadsDir.mkdirs();
+                File file = new File(downloadsDir, fileName);
+                pdfDocument.writeTo(new FileOutputStream(file));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            runOnUiThread(() ->
-                    Toast.makeText(this, "Gagal menyimpan PDF", Toast.LENGTH_SHORT).show()
-            );
-        }
-    }
+                runOnUiThread(() ->
+                        Toast.makeText(this, "PDF disimpan di: " + file.getAbsolutePath(), Toast.LENGTH_LONG).show()
+                );
 
-    private void addImagePage(PdfDocument pdfDocument, String url, String label,
-                              int pageWidth, int pageHeight) {
-        try {
-            Bitmap bmp = Glide.with(this).asBitmap().load(url).submit().get();
-
-            PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(pageWidth, pageHeight,
-                    pdfDocument.getPages().size() + 1).create();
-            PdfDocument.Page page = pdfDocument.startPage(pageInfo);
-            Canvas canvas = page.getCanvas();
-            Paint paint = new Paint();
-
-            int x = 40, y = 60;
-
-            paint.setTextSize(12f);
-            canvas.drawText(label, x, y, paint);
-            y += 20;
-
-            // Skala gambar supaya muat di A4
-            float scale = (float) (pageWidth - 80) / bmp.getWidth();
-            float scaledHeight = bmp.getHeight() * scale;
-
-            Matrix matrix = new Matrix();
-            matrix.postScale(scale, scale);
-            matrix.postTranslate(x, y);
-
-            canvas.drawBitmap(bmp, matrix, paint);
-
-            pdfDocument.finishPage(page);
-
-            bmp.recycle();
+                Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".provider", file);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(uri, "application/pdf");
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
+                startActivity(intent);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
+            runOnUiThread(() ->
+                    Toast.makeText(this, "Gagal menyimpan PDF: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+            );
+        } finally {
+            pdfDocument.close();
         }
     }
 }

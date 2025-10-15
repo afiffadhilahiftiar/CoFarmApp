@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +38,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHolder> {
@@ -113,7 +117,6 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
             context.startActivity(intent);
         });
         holder.btnEdit.setOnClickListener(v -> {
-            // Buat AlertDialog
             android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
             LayoutInflater inflater = LayoutInflater.from(context);
             View dialogView = inflater.inflate(R.layout.form_edit_kontrak, null);
@@ -127,6 +130,11 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
             EditText etJumlahKebutuhan = dialogView.findViewById(R.id.etJumlahKebutuhan);
             Spinner spinnerSatuan = dialogView.findViewById(R.id.spinnerSatuan);
             EditText etHargaPerKg = dialogView.findViewById(R.id.etHargaPerKg);
+            EditText etHargaPerKgFinal = dialogView.findViewById(R.id.etHargaPerKgFinal);
+            EditText etHargaB = dialogView.findViewById(R.id.etHargaB);
+            EditText etHargaC = dialogView.findViewById(R.id.etHargaC);
+            EditText etGradeB = dialogView.findViewById(R.id.etGradeB);
+            EditText etGradeC = dialogView.findViewById(R.id.etGradeC);
             EditText etWaktuDibutuhkan = dialogView.findViewById(R.id.etWaktuDibutuhkan);
             EditText etPersyaratan = dialogView.findViewById(R.id.etPersyaratan);
             EditText etDeskripsi = dialogView.findViewById(R.id.etDeskripsi);
@@ -138,6 +146,12 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
             etRating.setText(contract.getRating());
             etKebutuhan.setText(contract.getKebutuhan());
             etJumlahKebutuhan.setText(contract.getJumlahkebutuhan());
+            etGradeB.setText(contract.getGradeB() != null ? contract.getGradeB() : "0");
+            etGradeC.setText(contract.getGradeC() != null ? contract.getGradeC() : "0");
+            etHargaPerKg.setText(contract.getHargaPerKg());
+            etWaktuDibutuhkan.setText(contract.getWaktuDibutuhkan());
+            etPersyaratan.setText(contract.getPersyaratan());
+            etDeskripsi.setText(contract.getDeskripsi());
 
             // Spinner satuan
             ArrayAdapter<CharSequence> adapterSatuan = ArrayAdapter.createFromResource(
@@ -147,29 +161,75 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
             int spinnerPosition = adapterSatuan.getPosition(contract.getSatuan());
             spinnerSatuan.setSelection(spinnerPosition);
 
-            etHargaPerKg.setText(contract.getHargaPerKg());
-            etWaktuDibutuhkan.setText(contract.getWaktuDibutuhkan());
-            etPersyaratan.setText(contract.getPersyaratan());
-            etDeskripsi.setText(contract.getDeskripsi());
+            // Batasi input grade maksimum 100
+            InputFilter[] gradeFilter = new InputFilter[]{
+                    (source, start, end, dest, dstart, dend) -> {
+                        try {
+                            String newVal = dest.subSequence(0, dstart) + source.toString() + dest.subSequence(dend, dest.length());
+                            if (newVal.isEmpty()) return null;
+                            int value = Integer.parseInt(newVal);
+                            if (value >= 0 && value <= 100) return null;
+                        } catch (NumberFormatException ignored) {}
+                        return "";
+                    }
+            };
+            etGradeB.setFilters(gradeFilter);
+            etGradeC.setFilters(gradeFilter);
 
-            // Tampilkan dialog
+            // Listener harga final & grade
+            TextWatcher hargaWatcher = new TextWatcher() {
+                @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+                @Override public void onTextChanged(CharSequence s, int start, int before, int count) {}
+                @Override
+                public void afterTextChanged(Editable s) {
+                    try {
+                        double hargaPerKgVal = Double.parseDouble(etHargaPerKg.getText().toString());
+                        double gradeBVal = etGradeB.getText().toString().isEmpty() ? 0 : Double.parseDouble(etGradeB.getText().toString());
+                        double gradeCVal = etGradeC.getText().toString().isEmpty() ? 0 : Double.parseDouble(etGradeC.getText().toString());
+
+                        double hargaFinal = hargaPerKgVal + (hargaPerKgVal * 0.005);
+                        etHargaPerKgFinal.setText(String.format(Locale.getDefault(), "%.0f", hargaFinal));
+
+                        double hargaBVal = hargaFinal - (hargaFinal * gradeBVal / 100);
+                        double hargaCVal = hargaFinal - (hargaFinal * gradeCVal / 100);
+
+                        etHargaB.setText(String.format(Locale.getDefault(), "%.0f", hargaBVal));
+                        etHargaC.setText(String.format(Locale.getDefault(), "%.0f", hargaCVal));
+                    } catch (NumberFormatException e) {
+                        etHargaPerKgFinal.setText("");
+                        etHargaB.setText("");
+                        etHargaC.setText("");
+                    }
+                }
+            };
+
+            etHargaPerKg.addTextChangedListener(hargaWatcher);
+            etGradeB.addTextChangedListener(hargaWatcher);
+            etGradeC.addTextChangedListener(hargaWatcher);
+
             android.app.AlertDialog dialog = builder.create();
             dialog.show();
 
-            // Klik tombol submit → kirim update ke server
             btnSubmitKontrak.setOnClickListener(view -> {
-                String namaPerusahaan = etNamaPerusahaan.getText().toString();
-                String lokasi = etLokasi.getText().toString();
-                String rating = etRating.getText().toString();
-                String kebutuhan = etKebutuhan.getText().toString();
-                String jumlahKebutuhan = etJumlahKebutuhan.getText().toString();
+                String namaPerusahaan = etNamaPerusahaan.getText().toString().trim();
+                String lokasi = etLokasi.getText().toString().trim();
+                String rating = etRating.getText().toString().trim();
+                String kebutuhan = etKebutuhan.getText().toString().trim();
+                String jumlahKebutuhan = etJumlahKebutuhan.getText().toString().trim();
                 String satuan = spinnerSatuan.getSelectedItem().toString();
-                String hargaPerKg = etHargaPerKg.getText().toString();
-                String waktuDibutuhkan = etWaktuDibutuhkan.getText().toString();
-                String persyaratan = etPersyaratan.getText().toString();
-                String deskripsi = etDeskripsi.getText().toString();
+                String hargaPerKgVal = etHargaPerKg.getText().toString().trim();
+                String gradeBVal = etGradeB.getText().toString().trim();
+                String gradeCVal = etGradeC.getText().toString().trim();
+                String waktuDibutuhkan = etWaktuDibutuhkan.getText().toString().trim();
+                String persyaratan = etPersyaratan.getText().toString().trim();
+                String deskripsi = etDeskripsi.getText().toString().trim();
 
-                // Volley POST request
+                // Validasi wajib
+                if (namaPerusahaan.isEmpty() || kebutuhan.isEmpty() || jumlahKebutuhan.isEmpty() || hargaPerKgVal.isEmpty() || gradeBVal.isEmpty() || gradeCVal.isEmpty() || persyaratan.isEmpty() || deskripsi.isEmpty() || waktuDibutuhkan.isEmpty()) {
+                    Toast.makeText(context, "Isi semua field", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 String url = ApiConfig.BASE_URL + "update_kontrak.php";
                 RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -179,30 +239,35 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
                                 JSONObject json = new JSONObject(response);
                                 boolean success = json.getBoolean("success");
                                 String message = json.getString("message");
-
                                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
 
                                 if (success) {
-                                    // Update data lokal hanya jika sukses
                                     contract.setNamaPerusahaan(namaPerusahaan);
                                     contract.setLokasi(lokasi);
                                     contract.setRating(rating);
                                     contract.setKebutuhan(kebutuhan);
                                     contract.setJumlahkebutuhan(jumlahKebutuhan);
                                     contract.setSatuan(satuan);
-                                    contract.setHargaPerKg(hargaPerKg);
+
+                                    // Tambahkan 0,5% ke hargaPerKg (integer)
+                                    int hargaPerKgInt = Integer.parseInt(hargaPerKgVal);
+                                    hargaPerKgInt = hargaPerKgInt + (int)(hargaPerKgInt * 0.005); // 0,5% dibulatkan ke int
+                                    contract.setHargaPerKg(String.valueOf(hargaPerKgInt));
+
                                     contract.setWaktuDibutuhkan(waktuDibutuhkan);
                                     contract.setPersyaratan(persyaratan);
                                     contract.setDeskripsi(deskripsi);
+                                    contract.setGradeB(gradeBVal);
+                                    contract.setGradeC(gradeCVal);
                                     notifyItemChanged(position);
                                     dialog.dismiss();
                                 }
+
                             } catch (JSONException e) {
                                 e.printStackTrace();
                                 Toast.makeText(context, "Error parsing server response", Toast.LENGTH_LONG).show();
                             }
                         },
-
                         error -> Toast.makeText(context, "Gagal update: " + error.getMessage(), Toast.LENGTH_LONG).show()
                 ) {
                     @Override
@@ -215,7 +280,9 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
                         params.put("kebutuhan", kebutuhan);
                         params.put("jumlahkebutuhan", jumlahKebutuhan);
                         params.put("satuan", satuan);
-                        params.put("hargaPerKg", hargaPerKg);
+                        params.put("hargaPerKg", hargaPerKgVal);
+                        params.put("gradeB", gradeBVal);
+                        params.put("gradeC", gradeCVal);
                         params.put("waktuDibutuhkan", waktuDibutuhkan);
                         params.put("persyaratan", persyaratan);
                         params.put("deskripsi", deskripsi);
@@ -225,6 +292,7 @@ public class ContractAdapter extends RecyclerView.Adapter<ContractAdapter.ViewHo
                 queue.add(postRequest);
             });
         });
+
         holder.btnDelete.setBackgroundColor(Color.RED); // background merah
         holder.btnDelete.setTextColor(Color.WHITE);
         holder.btnDelete.setOnClickListener(v -> {

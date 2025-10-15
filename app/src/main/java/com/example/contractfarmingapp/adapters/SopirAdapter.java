@@ -57,6 +57,7 @@ public class SopirAdapter extends RecyclerView.Adapter<SopirAdapter.ViewHolder> 
         holder.tvHp.setText("No HP: " + sopir.getNoHp());
         holder.tvKendaraan.setText("Kendaraan: " + sopir.getKendaraan());
         holder.tvPlat.setText("Plat Nomor: " + sopir.getPlatNomor());
+        holder.tvLinkLokasi.setText("Lokasi Terkini: " + sopir.getLinkLokasi());
         holder.tvKapasitas.setText("Kapasitas: " + sopir.getKapasitas());
         if (!"admin".equalsIgnoreCase(userPeran)) {
             holder.btnEdit.setVisibility(View.GONE);
@@ -76,6 +77,7 @@ public class SopirAdapter extends RecyclerView.Adapter<SopirAdapter.ViewHolder> 
             intent.putExtra("foto_kendaraan", sopir.getFotoKendaraan());
             intent.putExtra("foto_sim", sopir.getFotoSim());
             intent.putExtra("foto_stnk", sopir.getFotoStnk());
+            intent.putExtra("link_lokasi", sopir.getLinkLokasi());
             intent.putExtra("company_id", companyId); // tambahkan
             context.startActivity(intent);
         });
@@ -160,7 +162,7 @@ public class SopirAdapter extends RecyclerView.Adapter<SopirAdapter.ViewHolder> 
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNama, tvHp, tvKendaraan, tvPlat, tvKapasitas;
+        TextView tvNama, tvHp, tvKendaraan, tvPlat, tvKapasitas, tvLinkLokasi;
         Button btnChat, btnEdit;
         ImageView btnHapus;
 
@@ -170,6 +172,7 @@ public class SopirAdapter extends RecyclerView.Adapter<SopirAdapter.ViewHolder> 
             tvHp = itemView.findViewById(R.id.tvNoHp);
             tvKendaraan = itemView.findViewById(R.id.tvKendaraan);
             tvPlat = itemView.findViewById(R.id.tvPlatNomor);
+            tvLinkLokasi = itemView.findViewById(R.id.tvLinkLokasi);
             tvKapasitas = itemView.findViewById(R.id.tvKapasitas);
             btnChat = itemView.findViewById(R.id.btnChat);
             btnHapus = itemView.findViewById(R.id.btnHapusSopir);

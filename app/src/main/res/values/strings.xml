@@ -66,8 +66,10 @@
         <item>Penggilingan</item>
         <item>Penyosohan</item>
         <item>Pengemasan</item>
+        <item>Permohonan keterlambatan</item>
         <item>Pengiriman</item>
         <item>Selesai</item>
+        <item>Lainnya</item>
         <item>Tidak Aktif</item>
     </string-array>
 
