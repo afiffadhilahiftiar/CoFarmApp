@@ -8,7 +8,7 @@
 
 ## 📖 Deskripsi Proyek
 
-**CoFarm** adalah platform **digital contract farming** berbasis Android yang menghubungkan **petani, offtaker (pembeli hasil panen), dan fasilitator** (dinas pertanian, TNI, universitas) dalam satu sistem terpadu.  
+**CoFarm** adalah platform **digital contract farming** berbasis Android yang menghubungkan **petani, offtaker (pembeli hasil panen), admin poktan, dan fasilitator** (dinas pertanian, TNI, universitas) dalam satu sistem terpadu.  
 Tujuan utama CoFarm adalah menciptakan **kemitraan pertanian yang adil, transparan, dan berkelanjutan**, dengan dukungan **AI, geospasial, dan smart contract digital**.
 
 🎯 **Masalah yang Diangkat:**
@@ -17,33 +17,48 @@ Tujuan utama CoFarm adalah menciptakan **kemitraan pertanian yang adil, transpar
 - Tidak ada **transparansi dan sistem pengawasan** yang efisien dari fasilitator.
 
 💡 **Solusi CoFarm:**
-Sebuah aplikasi kontrak digital dengan fitur:
-- Manajemen kontrak otomatis.
+Sebuah aplikasi kontrak digital yang transparan dengan fitur:
+- Analisis risiko kontrak berbasi AI dan rule based system.
 - Dana cadangan digital untuk mitigasi risiko.
-- Peta komoditas dan lahan berbasis Mapbox.
+- Peta komoditas, pelacakan pengguna, sopir dan lahan berbasis Mapbox.
 - Sistem chat dan notifikasi antar pihak.
-- Analisis risiko kontrak berbasis AI dan rule-based system.
+- Laporan dan Surat Otomatis.
 
 ---
 
-## 🚀 Fitur Utama
+## 🚀 Cara Kerja Aplikasi
 
 ### 👨‍🌾 Untuk Petani
-- Melihat daftar kontrak dan mengajukan kerja sama.
-- Memantau status lahan dan hasil panen di peta digital.
+- Bergabung dengan poktan dan mendaftarkan lahan pada admin poktan.
+- Melihat daftar kontrak dan analisi risiko dengan AI dan rule based.
+- Mengajukan kerja sama dengan lahan sendiri.
+- Memantau dan melaporkan status lahan dan hasil panen ke admin poktan.
 - Mengakses dana cadangan digital (asuransi bersama).
-- Mendapatkan notifikasi otomatis tentang jadwal tanam & panen.
+- Mendapatkan notifikasi otomatis tentang pembayaran 94% dan status kontrak.
+- Melihat peta sebaran komoditas, pengguna, dan lahan.
+
+### 👨‍🌾 Untuk Admin Poktan
+- Membuat lahan pada peta dengan kunjungan lapangan.
+- Melihat daftar kontrak dan mengajukan kerja sama dengan lahan petani.
+- Memantau, memvalidasi, dan melaporkan status lahan dan hasil panen kepada offtaker.
+- Mengakses dana cadangan digital (asuransi bersama).
+- Mendapatkan notifikasi otomatis tentang pembayaran, status kontrak, chat, dan petani yang memasuki area lahan.
+- Melihat peta sebaran komoditas, pengguna, dan perusahaan.
 
 ### 🏢 Untuk Offtaker
-- Melakukan pencarian lahan potensial berdasarkan komoditas dan lokasi.
-- Mengajukan kontrak digital dan memantau progres pasokan.
+- Melakukan pencarian lahan potensial berdasarkan komoditas dan lokasi pada peta.
+- Menawarkan kontrak digital dengan harga per grade dan memantau progres pasokan.
 - Mengajukan klaim ganti rugi otomatis jika pasokan terlambat.
-- Komunikasi langsung dengan petani melalui chat.
+- Komunikasi langsung dengan petani dan poktan melalui chat.
 
 ### 🧭 Untuk Fasilitator (Dinas/TNI/Universitas)
 - Menerima laporan otomatis tentang klaim, kontrak, dan jadwal pasokan.
 - Melakukan **mediasi digital** saat terjadi keterlambatan atau sengketa.
-- Mengelola dana cadangan dan verifikasi dokumen digital.
+- Mengelola dana cadangan dan verifikasi kontrak dan dokumen digital.
+- Menambahkan logistik dan traktor dibantu dengan offtaker dan admin poktan.
+- Melihat peta sebaran komoditas, pengguna, dan perusahaan.
+- Mendapatkan notifikasi otomatis tentang pembayaran, status kontrak, dan chat.
+
 
 ---
 
@@ -89,10 +104,10 @@ Sebuah aplikasi kontrak digital dengan fitur:
       <td style="text-align:center;">❌ Tidak</td>
     </tr>
     <tr>
-      <td>🗺️ <b>Peta Komoditas &amp; Lahan Digital</b></td>
+      <td>🗺️ <b>Peta Sebaran Pengguna, Poktan, Fasilitator, Offtaker, dan Komoditas &amp; Lahan Digital</b></td>
       <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
       <td style="text-align:center;">❌ Tidak</td>
-      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center; background-color:#E0F2F1;">❌ Tidak</td>
       <td style="text-align:center;">❌ Tidak</td>
     </tr>
     <tr>
