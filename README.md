@@ -109,6 +109,13 @@ Sebuah aplikasi kontrak digital yang transparan dengan fitur:
       <td style="text-align:center;">❌ Tidak</td>
       <td style="text-align:center; background-color:#E0F2F1;">❌ Tidak</td>
       <td style="text-align:center;">❌ Tidak</td>
+    </tr
+    <tr>
+      <td>🗺️ <b>Notifikasi masuk / keluar area dan Berbagi lokasi terkini</b></td>
+      <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center; background-color:#E0F2F1;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
     </tr>
     <tr>
       <td>📄 <b>Digital Claim Letter Automation</b></td>
@@ -183,25 +190,25 @@ Sebuah aplikasi kontrak digital yang transparan dengan fitur:
       <td>Subscription & hardwar, layanan premium, pemodalan</td>
     </tr>
     <tr>
-      <td>👥 <b>Peran Fasilitator</b></td>
-      <td style="background-color:#E0F2F1;">Mediates disputes & approves claims via chat</td>
+      <td>👥 <b>Peran Fasilitator dan Pendamping (Admin Poktan)</b></td>
+      <td style="background-color:#E0F2F1;">Mediasi kontrak, pengelolaan dana cadangan, pelatihan, sertifikasi, pengawasan & approves claims</td>
       <td>-</td>
       <td style="background-color:#E0F2F1;">Mediates kontrak</td>
       <td>-</td>
     </tr>
     <tr>
       <td>🔗 <b>Rantai Pasok</b></td>
-      <td style="background-color:#E0F2F1;">Petani → Offtaker → Distributor → Konsumen</td>
+      <td style="background-color:#E0F2F1;">Petani → Admin Poktan dan Fasilitator → Offtaker → Distributor/Logistik → Konsumen</td>
       <td>Petani → Konsumen</td>
-      <td style="background-color:#E0F2F1;">Petani → Offtaker</td>
+      <td style="background-color:#E0F2F1;">Petani → Offtaker  → Distributor/Logistik → Konsumen</td>
       <td>Petani ikan → Distributor → Konsumen</td>
     </tr>
     <tr>
       <td>🏦 <b>Pemodalan</b></td>
       <td style="background-color:#E0F2F1;">Dana cadangan bersama untuk menutupi risiko</td>
-      <td>Mandiri / pribadi</td>
-      <td style="background-color:#E0F2F1;">Tidak ada proteksi risiko khusus</td>
-      <td>Mandiri / investor</td>
+      <td>Mandiri / pribadi dan TaniFund</td>
+      <td style="background-color:#E0F2F1;">Kerja sama dengan lembaga keuangan</td>
+      <td>Mandiri</td>
     </tr>
   </tbody>
 </table>
@@ -209,32 +216,21 @@ Sebuah aplikasi kontrak digital yang transparan dengan fitur:
 ---
 
 ### 🏆 Ringkasan Keunggulan CoFarm
-✅ **Transparansi penuh** dari kontrak hingga distribusi hasil.  
-💬 **Mediasi otomatis** antara petani dan offtaker tanpa birokrasi.  
-🤖 **Analisis risiko cerdas (AI)** untuk prediksi potensi gagal panen.  
-🗺️ **Integrasi peta komoditas** untuk efisiensi distribusi logistik.  
-💰 **Dana cadangan digital** sebagai proteksi kerugian semua pihak.  
-
-> 📈 *CoFarm menjadi satu-satunya platform yang menyatukan aspek keuangan, teknologi, sosial, dan risiko pertanian digital dalam satu ekosistem di Indonesia.*
+🌾 Rantai pasok terintegrasi penuh — menghubungkan petani, fasilitator, offtaker, logistik, hingga konsumen dalam satu ekosistem digital.
+🧠 Manajemen risiko cerdas — memadukan rule-based & AI untuk analisis kontrak, harga, dan reputasi offtaker.
+💬 Kolaborasi real-time — chat, peta interaktif, dan laporan otomatis yang memperkuat komunikasi & transparansi.
+💰 Perlindungan finansial petani — lewat iuran & asuransi bersama yang bisa digunakan untuk modal awal dan klaim gagal panen.
+🚜 Dukungan operasional lengkap — manajemen armada traktor, logistik, dan administrasi digital (surat & laporan otomatis). 
 
 ---
-
-### 🏆 Ringkasan Keunggulan CoFarm
-✅ **Transparansi penuh** dari kontrak hingga distribusi hasil.  
-💬 **Mediasi otomatis** antara petani dan offtaker tanpa birokrasi.  
-🤖 **Analisis risiko cerdas (AI)** untuk prediksi potensi gagal panen.  
-🗺️ **Integrasi peta komoditas** untuk efisiensi distribusi logistik.  
-💰 **Dana cadangan digital** sebagai proteksi kerugian semua pihak.  
-
-> 📈 *CoFarm menjadi satu-satunya platform yang menyatukan aspek keuangan, teknologi, dan sosial dalam satu ekosistem pertanian digital di Indonesia.*
-
 
 ## 📍 Peta Komoditas
 
 CoFarm menyediakan peta interaktif untuk memantau:
 - Lokasi lahan berdasarkan **nama, komoditas, status, dan luas.**
-- Marker pengguna lain (petani, offtaker, fasilitator).
+- Marker pengguna lain dengan menampilkan nama, nama perusahaan, jarak pengguna (petani, offtaker, fasilitator).
 - Analisis spasial untuk distribusi dan prediksi produktivitas.
+- Sistem mendeteksi pergerakan petani secara real-time: Jika masuk atau keluar area polygon, otomatis mengirim notifikasi ke pendamping/admin poktan
 
 ---
 
@@ -244,22 +240,21 @@ Sistem tabungan bersama yang berfungsi seperti **asuransi gotong royong**, dapat
 - Menutupi kerugian petani akibat gagal panen.
 - Menanggung kerugian offtaker akibat keterlambatan pasokan.
 - Dikelola otomatis dan transparan oleh sistem aplikasi.
+- Modal awal petani
 
 **Simulasi:**
-- Saldo awal dana: Rp10.000.000  
-- Kerugian petani: Rp2.000.000 → Dicairkan otomatis  
+Petani dalam satu fasilitator untuk menyisihkan 1% dari nilai kontrak sebagai dana iuran bersama
+- Saldo awal dana cadangan terkumpul: Rp10.000.000  
+- Kerugian petani: Rp2.000.000 → Fasilitator mengelola dana untuk pemodalan petani dan klaim kerugian bagi offtaker dan petani 
 - Sisa saldo: Rp8.000.000  
-- Dana digunakan ulang bila ada risiko berikutnya.
-
+- Dana digunakan ulang bila ada klaim dana berikutnya.
 ---
 
 ## 🤖 AI & Analisis Risiko Kontrak
 
-Menggunakan kombinasi **rule-based system dan machine learning**, sistem ini menganalisis:
-- Cuaca dan risiko iklim.
-- Riwayat produksi petani.
-- Ketepatan jadwal tanam dan pengiriman.
-- Potensi fluktuasi harga pasar.
+- CoFarm menampilkan analisis risiko berbasis AI dan rule based
+- AI Analysis: menganalisis history kontrak sebelumnya — termasuk harga, jenis komoditas, dan riwayat pembayaran (invoice) dari offtaker.
+- Rule-Based System: menilai risiko berdasarkan harga pasar terkini, jenis komoditas, jarak lokasi, serta waktu kebutuhan, sesuai parameter yang ditetapkan oleh developer.
 
 Hasil analisis menghasilkan **tingkat risiko kontrak (Low, Medium, High)** secara otomatis.
 
@@ -268,23 +263,6 @@ Hasil analisis menghasilkan **tingkat risiko kontrak (Low, Medium, High)** secar
 ## 📽️ Video Demo
 
 🎬 [Tonton Demo CoFarm (YouTube)](https://youtu.be/your-demo-link)  
-Menampilkan:
-- Kasus nyata petani mengalami kerugian.
-- Solusi digital CoFarm.
-- Proses klaim dan mediasi otomatis.
-- Tampilan peta dan fitur chat antar pengguna.
-
----
-
-## 🗺️ Roadmap Pengembangan
-
-| Fase | Periode | Fokus Pengembangan |
-|------|----------|-------------------|
-| **Fase 1 – MVP (2025 Q4)** | Oktober – Desember 2025 | Integrasi kontrak digital, chat, dan peta komoditas |
-| **Fase 2 – Smart Risk AI (2026 Q1)** | Januari – Maret 2026 | Implementasi AI analisis risiko & klaim otomatis |
-| **Fase 3 – Financial Link (2026 Q2)** | April – Juni 2026 | Integrasi e-wallet, escrow, dan pembayaran digital |
-| **Fase 4 – National Expansion (2026 Q3)** | Juli – September 2026 | Ekspansi ke 10 provinsi dan kerja sama dengan dinas pertanian |
-| **Fase 5 – Global Scale (2027)** | 2027 | Integrasi ekspor hasil panen dan smart contract blockchain |
 
 ---
 
@@ -313,17 +291,16 @@ Menampilkan:
 
 | Nama | Peran | Institusi |
 |------|-------|------------|
-| Sistem Cerdas | Lead Developer & AI Engineer | Independent |
-| [Nama 2] | UI/UX Designer | [Universitas] |
-| [Nama 3] | Backend Engineer | [Organisasi] |
-| [Nama 4] | Field Coordinator | Dinas Pertanian |
+| Afif Fadhilah I. | Lead Developer & AI Engineer | Independent |
+| Zain Alif M. | UI/UX Designer | Independent |
+| Salwa Dian L. | Project Manager | Independent |
 
 ---
 
 ## 📬 Kontak
 
-📧 **Email:** cofarm.app@gmail.com  
-🌐 **Website:** [https://cofarm.id](https://cofarm.id)  
-📱 **LinkedIn:** [linkedin.com/company/cofarmapp](https://linkedin.com/company/cofarmapp)
+📧 **Email:** sistemcerdasindonesia@gmail.com  
+🌐 **Website:** https://sistemcerdasindonesia.com
+📱 **LinkedIn:** https://www.linkedin.com/company/sistem-cerdas-indonesia/
 
 ---
