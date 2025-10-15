@@ -262,7 +262,7 @@ Hasil analisis menghasilkan **tingkat risiko kontrak (Low, Medium, High)** secar
 
 ## 📽️ Video Demo
 
-🎬 [Tonton Demo CoFarm (YouTube)](https://youtu.be/your-demo-link)  
+🎬 [Tonton Demo CoFarm (YouTube)] https://youtube.com/shorts/iRyq3_7RYoY?si=in6CpolTLlB_aSOp
 
 ---
 
