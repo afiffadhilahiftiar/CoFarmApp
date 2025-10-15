@@ -119,6 +119,7 @@ Sebuah aplikasi kontrak digital yang transparan dengan fitur:
     </tr>
   </tbody>
 </table>
+  
 ## 📊 Perbandingan CoFarm dengan Kompetitor
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
@@ -134,23 +135,23 @@ Sebuah aplikasi kontrak digital yang transparan dengan fitur:
   <tbody>
     <tr>
       <td>🌾 <b>Fokus Utama</b></td>
-      <td style="background-color:#E0F2F1;">Digital Contract Farming + Risk Management</td>
+      <td style="background-color:#E0F2F1;">Digital Contract Farming + Akses Jaringan Pertanian + Risk Management</td>
       <td>Marketplace pertanian</td>
       <td style="background-color:#E0F2F1;">Contract Farming Digital</td>
-      <td>Automasi pemberian pakan ikan</td>
+      <td>Automasi pemberian pakan ikan dan penjualan ikan</td>
     </tr>
     <tr>
       <td>💡 <b>Nilai Tambah</b></td>
-      <td style="background-color:#E0F2F1;">Dana cadangan digital, AI risk analysis, chat + mediasi</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
+      <td style="background-color:#E0F2F1;">Dana cadangan digital, Informasi Berbasis Peta (SIG), AI risk analysis, chat + mediasi</td>
+      <td>- Penyediaan pembiayaan, akses pasar, dan pelatihan</td>
+      <td>- Memfasilitasi pemodalan bagi petani dan traceability </td>
+      <td>- Teknologi budidaya ikan, eFeeder, akses pinjaman, dan pemanfaatan AI</td>
     </tr>
     <tr>
       <td>❗ <b>Masalah yang Dipecahkan</b></td>
-      <td style="background-color:#E0F2F1;">Fluktuasi harga, gagal panen, keterlambatan pasokan, mediasi kontrak</td>
+      <td style="background-color:#E0F2F1;">Fluktuasi harga, masalah komoditas apa yang sesuai untuk ditanam, gagal panen, keterlambatan pasokan, mediasi kontrak</td>
       <td>Distribusi & jual beli produk</td>
-      <td style="background-color:#E0F2F1;">Manajemen kontrak petani & offtaker</td>
+      <td style="background-color:#E0F2F1;">Manajemen kontrak petani & offtaker, pemodalan dan pemasaran</td>
       <td>Efisiensi pakan & produksi ikan</td>
     </tr>
     <tr>
