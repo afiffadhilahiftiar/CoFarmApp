@@ -1,16 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">CoFarm</string>
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="default_web_client_id">830213695722-rea496epaaodrh7uc04do8ubank9g7ak.apps.googleusercontent.com</string>
-    <string name="mapbox_access_token" translatable="false" tools:ignore="UnusedResources">sk.eyJ1IjoiYXBpcHZheHMiLCJhIjoiY21jNHNjd3RvMGE5MTJpc2EzOWxtZXo4bSJ9.rqnsgFwXAnzPrII2XkBCSw</string>
+
+    <!-- Placeholder, jangan upload ID asli -->
+    <string name="default_web_client_id" translatable="false">YOUR_GOOGLE_CLIENT_ID_HERE</string>
+
+    <!-- Gunakan placeholder dan isi dari local.properties -->
+    <string name="mapbox_access_token" translatable="false" tools:ignore="UnusedResources">${MAPBOX_ACCESS_TOKEN}</string>
+
     <string-array name="notification_status_options">
         <item>Unread</item>
         <item>Read</item>
         <item>All</item>
     </string-array>
+
     <string-array name="report_types">
         <item>Laporan Kegiatan Penanaman</item>
         <item>Laporan Kegiatan Perawatan</item>
@@ -23,8 +28,8 @@
         <item>Kelompok Tani</item>
         <item>Offtaker</item>
         <item>Fasilitator</item>
-
     </string-array>
+
     <string-array name="polygon_colors">
         <item>Merah</item>
         <item>Kuning</item>
@@ -51,6 +56,7 @@
         <item>Selesai</item>
         <item>Tidak Aktif</item>
     </string-array>
+
     <string-array name="jenis_kegiatan">
         <item>Jenis Kegiatan</item>
         <item>Pengolahan Tanah (Siap Tanam)</item>
@@ -81,8 +87,10 @@
         <item>Butir</item>
         <item>Liter</item>
     </string-array>
+
     <string name="pilih_provinsi">Pilih Provinsi</string>
     <string name="pilih_kabupaten">Pilih Kabupaten/Kota</string>
+
     <string-array name="komoditas_array">
         <item>Padi</item>
         <item>Jagung</item>
@@ -95,6 +103,7 @@
         <item>Ikan</item>
         <item>Ruminansia</item>
     </string-array>
+
     <string-array name="jenis_bank">
         <item>BRI</item>
         <item>BNI</item>
