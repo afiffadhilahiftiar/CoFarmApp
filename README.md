@@ -177,10 +177,10 @@ Sebuah aplikasi kontrak digital yang transparan dengan fitur:
     </tr>
     <tr>
       <td>💰 <b>Model Pendapatan</b></td>
-      <td style="background-color:#E0F2F1;">Fee dari transaksi + potongan dana cadangan</td>
-      <td>Margin penjualan produk</td>
-      <td style="background-color:#E0F2F1;">Fee kontrak</td>
-      <td>Subscription & hardware</td>
+      <td style="background-color:#E0F2F1;">Fee dari transaksi + Penjualan API, Fitur premium, Merchandise</td>
+      <td>Margin penjualan produk, komisi, Pembiayaan dan Investasi, layanan distribusi, Kemitraan</td>
+      <td style="background-color:#E0F2F1;">Fee kontrak, layanan premium, pemodalan,</td>
+      <td>Subscription & hardwar, layanan premium, pemodalan</td>
     </tr>
     <tr>
       <td>👥 <b>Peran Fasilitator</b></td>
