@@ -30,11 +30,11 @@ Sebuah aplikasi kontrak digital yang transparan dengan fitur:
 
 ### 👨‍🌾 Untuk Petani
 - Bergabung dengan poktan dan mendaftarkan lahan pada admin poktan.
-- Melihat daftar kontrak dan analisi risiko dengan AI dan rule based.
+- Melihat daftar kontrak dan analisis risiko dengan AI dan rule based.
 - Mengajukan kerja sama dengan lahan sendiri.
 - Memantau dan melaporkan status lahan dan hasil panen ke admin poktan.
 - Mengakses dana cadangan digital (asuransi bersama).
-- Mendapatkan notifikasi otomatis tentang pembayaran 94% dan status kontrak.
+- Mendapatkan notifikasi otomatis tentang pembayaran dan status kontrak.
 - Melihat peta sebaran komoditas, pengguna, dan lahan.
 
 ### 👨‍🌾 Untuk Admin Poktan
