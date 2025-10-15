@@ -950,7 +950,7 @@ public class ContractDetailActivity extends AppCompatActivity {
 
                         Log.d(TAG, "Payload AI: " + payload.toString());
 
-                        String aiUrl = "https://sistemcerdasindonesia.com/ai/predict_contract_risk_ai";
+                        String aiUrl = "https://example/predict_contract_risk_ai";
                         JsonObjectRequest aiRequest = new JsonObjectRequest(
                                 Request.Method.POST,
                                 aiUrl,
