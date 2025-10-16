@@ -1,41 +1,41 @@
 {
   "project_info": {
-    "project_number": "830213695722",
-    "project_id": "contractfarmingapp",
-    "storage_bucket": "contractfarmingapp.firebasestorage.app"
+    "project_number": "YOUR_PROJECT_NUMBER",
+    "project_id": "YOUR_PROJECT_ID",
+    "storage_bucket": "YOUR_BUCKET.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:830213695722:android:3e7fb2f91852b7186acf93",
+        "mobilesdk_app_id": "YOUR_MOBILESDK_APP_ID",
         "android_client_info": {
-          "package_name": "com.example.contractfarmingapp"
+          "package_name": "YOUR_PACKAGE_NAME"
         }
       },
       "oauth_client": [
         {
-          "client_id": "830213695722-4ut8alppmptkqrs9ti9ftimmrbla9ss2.apps.googleusercontent.com",
+          "client_id": "YOUR_OAUTH_CLIENT_ID_1",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.contractfarmingapp",
-            "certificate_hash": "73e3d8110d7119e3baa8e6b58157f76d01a09002"
+            "package_name": "YOUR_PACKAGE_NAME",
+            "certificate_hash": "YOUR_CERTIFICATE_HASH"
           }
         },
         {
-          "client_id": "830213695722-rea496epaaodrh7uc04do8ubank9g7ak.apps.googleusercontent.com",
+          "client_id": "YOUR_OAUTH_CLIENT_ID_2",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDPAstLrKOFjmtP2HS8nMu05MrzJb8tnFs"
+          "current_key": "YOUR_API_KEY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "830213695722-rea496epaaodrh7uc04do8ubank9g7ak.apps.googleusercontent.com",
+              "client_id": "YOUR_OAUTH_CLIENT_ID_2",
               "client_type": 3
             }
           ]

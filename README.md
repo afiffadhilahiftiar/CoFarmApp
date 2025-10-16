@@ -8,7 +8,7 @@
 
 ## 📖 Deskripsi Proyek
 
-**CoFarm** adalah platform **digital contract farming** berbasis Android yang menghubungkan **petani, offtaker (pembeli hasil panen), dan fasilitator** (dinas pertanian, TNI, universitas) dalam satu sistem terpadu.  
+**CoFarm** adalah platform **digital contract farming** berbasis Android yang menghubungkan **petani, offtaker (pembeli hasil panen), admin poktan, dan fasilitator** (dinas pertanian, TNI, universitas) dalam satu sistem terpadu.  
 Tujuan utama CoFarm adalah menciptakan **kemitraan pertanian yang adil, transparan, dan berkelanjutan**, dengan dukungan **AI, geospasial, dan smart contract digital**.
 
 🎯 **Masalah yang Diangkat:**
@@ -17,33 +17,48 @@ Tujuan utama CoFarm adalah menciptakan **kemitraan pertanian yang adil, transpar
 - Tidak ada **transparansi dan sistem pengawasan** yang efisien dari fasilitator.
 
 💡 **Solusi CoFarm:**
-Sebuah aplikasi kontrak digital dengan fitur:
-- Manajemen kontrak otomatis.
+Sebuah aplikasi kontrak digital yang transparan dengan fitur:
+- Analisis risiko kontrak berbasi AI dan rule based system.
 - Dana cadangan digital untuk mitigasi risiko.
-- Peta komoditas dan lahan berbasis Mapbox.
+- Peta komoditas, pelacakan pengguna, sopir dan lahan berbasis Mapbox.
 - Sistem chat dan notifikasi antar pihak.
-- Analisis risiko kontrak berbasis AI dan rule-based system.
+- Laporan dan Surat Otomatis.
 
 ---
 
-## 🚀 Fitur Utama
+## 🚀 Cara Kerja Aplikasi
 
 ### 👨‍🌾 Untuk Petani
-- Melihat daftar kontrak dan mengajukan kerja sama.
-- Memantau status lahan dan hasil panen di peta digital.
+- Bergabung dengan poktan dan mendaftarkan lahan pada admin poktan.
+- Melihat daftar kontrak dan analisis risiko dengan AI dan rule based.
+- Mengajukan kerja sama dengan lahan sendiri.
+- Memantau dan melaporkan status lahan dan hasil panen ke admin poktan.
 - Mengakses dana cadangan digital (asuransi bersama).
-- Mendapatkan notifikasi otomatis tentang jadwal tanam & panen.
+- Mendapatkan notifikasi otomatis tentang pembayaran dan status kontrak.
+- Melihat peta sebaran komoditas, pengguna, dan lahan.
+
+### 👨‍🌾 Untuk Admin Poktan
+- Membuat lahan pada peta dengan kunjungan lapangan.
+- Melihat daftar kontrak dan mengajukan kerja sama dengan lahan petani.
+- Memantau, memvalidasi, dan melaporkan status lahan dan hasil panen kepada offtaker.
+- Mengakses dana cadangan digital (asuransi bersama).
+- Mendapatkan notifikasi otomatis tentang pembayaran, status kontrak, chat, dan petani yang memasuki area lahan.
+- Melihat peta sebaran komoditas, pengguna, dan perusahaan.
 
 ### 🏢 Untuk Offtaker
-- Melakukan pencarian lahan potensial berdasarkan komoditas dan lokasi.
-- Mengajukan kontrak digital dan memantau progres pasokan.
+- Melakukan pencarian lahan potensial berdasarkan komoditas dan lokasi pada peta.
+- Menawarkan kontrak digital dengan harga per grade dan memantau progres pasokan.
 - Mengajukan klaim ganti rugi otomatis jika pasokan terlambat.
-- Komunikasi langsung dengan petani melalui chat.
+- Komunikasi langsung dengan petani dan poktan melalui chat.
 
 ### 🧭 Untuk Fasilitator (Dinas/TNI/Universitas)
 - Menerima laporan otomatis tentang klaim, kontrak, dan jadwal pasokan.
 - Melakukan **mediasi digital** saat terjadi keterlambatan atau sengketa.
-- Mengelola dana cadangan dan verifikasi dokumen digital.
+- Mengelola dana cadangan dan verifikasi kontrak dan dokumen digital.
+- Menambahkan logistik dan traktor dibantu dengan offtaker dan admin poktan.
+- Melihat peta sebaran komoditas, pengguna, dan perusahaan.
+- Mendapatkan notifikasi otomatis tentang pembayaran, status kontrak, dan chat.
+
 
 ---
 
@@ -89,10 +104,17 @@ Sebuah aplikasi kontrak digital dengan fitur:
       <td style="text-align:center;">❌ Tidak</td>
     </tr>
     <tr>
-      <td>🗺️ <b>Peta Komoditas &amp; Lahan Digital</b></td>
+      <td>🗺️ <b>Peta Sebaran Pengguna, Poktan, Fasilitator, Offtaker, dan Komoditas &amp; Lahan Digital</b></td>
       <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
       <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center; background-color:#E0F2F1;">❌ Tidak</td>
+      <td style="text-align:center;">❌ Tidak</td>
+    </tr
+    <tr>
+      <td>🗺️ <b>Notifikasi masuk / keluar area dan Berbagi lokasi terkini</b></td>
       <td style="text-align:center; background-color:#E0F2F1;">✅ Ya</td>
+      <td style="text-align:center;">❌ Tidak</td>
+      <td style="text-align:center; background-color:#E0F2F1;">❌ Tidak</td>
       <td style="text-align:center;">❌ Tidak</td>
     </tr>
     <tr>
@@ -104,6 +126,7 @@ Sebuah aplikasi kontrak digital dengan fitur:
     </tr>
   </tbody>
 </table>
+  
 ## 📊 Perbandingan CoFarm dengan Kompetitor
 
 <table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
@@ -119,23 +142,23 @@ Sebuah aplikasi kontrak digital dengan fitur:
   <tbody>
     <tr>
       <td>🌾 <b>Fokus Utama</b></td>
-      <td style="background-color:#E0F2F1;">Digital Contract Farming + Risk Management</td>
+      <td style="background-color:#E0F2F1;">Digital Contract Farming + Akses Jaringan Pertanian + Risk Management</td>
       <td>Marketplace pertanian</td>
       <td style="background-color:#E0F2F1;">Contract Farming Digital</td>
-      <td>Automasi pemberian pakan ikan</td>
+      <td>Automasi pemberian pakan ikan dan penjualan ikan</td>
     </tr>
     <tr>
       <td>💡 <b>Nilai Tambah</b></td>
-      <td style="background-color:#E0F2F1;">Dana cadangan digital, AI risk analysis, chat + mediasi</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
+      <td style="background-color:#E0F2F1;">Dana cadangan digital, Informasi Berbasis Peta (SIG), AI risk analysis, chat + mediasi</td>
+      <td>- Penyediaan pembiayaan, akses pasar, dan pelatihan</td>
+      <td>- Memfasilitasi pemodalan bagi petani dan traceability </td>
+      <td>- Teknologi budidaya ikan, eFeeder, akses pinjaman, dan pemanfaatan AI</td>
     </tr>
     <tr>
       <td>❗ <b>Masalah yang Dipecahkan</b></td>
-      <td style="background-color:#E0F2F1;">Fluktuasi harga, gagal panen, keterlambatan pasokan, mediasi kontrak</td>
+      <td style="background-color:#E0F2F1;">Fluktuasi harga, masalah komoditas apa yang sesuai untuk ditanam, gagal panen, keterlambatan pasokan, mediasi kontrak</td>
       <td>Distribusi & jual beli produk</td>
-      <td style="background-color:#E0F2F1;">Manajemen kontrak petani & offtaker</td>
+      <td style="background-color:#E0F2F1;">Manajemen kontrak petani & offtaker, pemodalan dan pemasaran</td>
       <td>Efisiensi pakan & produksi ikan</td>
     </tr>
     <tr>
@@ -161,31 +184,31 @@ Sebuah aplikasi kontrak digital dengan fitur:
     </tr>
     <tr>
       <td>💰 <b>Model Pendapatan</b></td>
-      <td style="background-color:#E0F2F1;">Fee dari transaksi + potongan dana cadangan</td>
-      <td>Margin penjualan produk</td>
-      <td style="background-color:#E0F2F1;">Fee kontrak</td>
-      <td>Subscription & hardware</td>
+      <td style="background-color:#E0F2F1;">Fee dari transaksi + Penjualan API, Fitur premium, Merchandise</td>
+      <td>Margin penjualan produk, komisi, Pembiayaan dan Investasi, layanan distribusi, Kemitraan</td>
+      <td style="background-color:#E0F2F1;">Fee kontrak, layanan premium, pemodalan,</td>
+      <td>Subscription & hardwar, layanan premium, pemodalan</td>
     </tr>
     <tr>
-      <td>👥 <b>Peran Fasilitator</b></td>
-      <td style="background-color:#E0F2F1;">Mediates disputes & approves claims via chat</td>
+      <td>👥 <b>Peran Fasilitator dan Pendamping (Admin Poktan)</b></td>
+      <td style="background-color:#E0F2F1;">Mediasi kontrak, pengelolaan dana cadangan, pelatihan, sertifikasi, pengawasan & approves claims</td>
       <td>-</td>
       <td style="background-color:#E0F2F1;">Mediates kontrak</td>
       <td>-</td>
     </tr>
     <tr>
       <td>🔗 <b>Rantai Pasok</b></td>
-      <td style="background-color:#E0F2F1;">Petani → Offtaker → Distributor → Konsumen</td>
+      <td style="background-color:#E0F2F1;">Petani → Admin Poktan dan Fasilitator → Offtaker → Distributor/Logistik → Konsumen</td>
       <td>Petani → Konsumen</td>
-      <td style="background-color:#E0F2F1;">Petani → Offtaker</td>
+      <td style="background-color:#E0F2F1;">Petani → Offtaker  → Distributor/Logistik → Konsumen</td>
       <td>Petani ikan → Distributor → Konsumen</td>
     </tr>
     <tr>
       <td>🏦 <b>Pemodalan</b></td>
       <td style="background-color:#E0F2F1;">Dana cadangan bersama untuk menutupi risiko</td>
-      <td>Mandiri / pribadi</td>
-      <td style="background-color:#E0F2F1;">Tidak ada proteksi risiko khusus</td>
-      <td>Mandiri / investor</td>
+      <td>Mandiri / pribadi dan TaniFund</td>
+      <td style="background-color:#E0F2F1;">Kerja sama dengan lembaga keuangan</td>
+      <td>Mandiri</td>
     </tr>
   </tbody>
 </table>
@@ -193,32 +216,21 @@ Sebuah aplikasi kontrak digital dengan fitur:
 ---
 
 ### 🏆 Ringkasan Keunggulan CoFarm
-✅ **Transparansi penuh** dari kontrak hingga distribusi hasil.  
-💬 **Mediasi otomatis** antara petani dan offtaker tanpa birokrasi.  
-🤖 **Analisis risiko cerdas (AI)** untuk prediksi potensi gagal panen.  
-🗺️ **Integrasi peta komoditas** untuk efisiensi distribusi logistik.  
-💰 **Dana cadangan digital** sebagai proteksi kerugian semua pihak.  
-
-> 📈 *CoFarm menjadi satu-satunya platform yang menyatukan aspek keuangan, teknologi, sosial, dan risiko pertanian digital dalam satu ekosistem di Indonesia.*
+🌾 Rantai pasok terintegrasi penuh — menghubungkan petani, fasilitator, offtaker, logistik, hingga konsumen dalam satu ekosistem digital.
+🧠 Manajemen risiko cerdas — memadukan rule-based & AI untuk analisis kontrak, harga, dan reputasi offtaker.
+💬 Kolaborasi real-time — chat, peta interaktif, dan laporan otomatis yang memperkuat komunikasi & transparansi.
+💰 Perlindungan finansial petani — lewat iuran & asuransi bersama yang bisa digunakan untuk modal awal dan klaim gagal panen.
+🚜 Dukungan operasional lengkap — manajemen armada traktor, logistik, dan administrasi digital (surat & laporan otomatis). 
 
 ---
-
-### 🏆 Ringkasan Keunggulan CoFarm
-✅ **Transparansi penuh** dari kontrak hingga distribusi hasil.  
-💬 **Mediasi otomatis** antara petani dan offtaker tanpa birokrasi.  
-🤖 **Analisis risiko cerdas (AI)** untuk prediksi potensi gagal panen.  
-🗺️ **Integrasi peta komoditas** untuk efisiensi distribusi logistik.  
-💰 **Dana cadangan digital** sebagai proteksi kerugian semua pihak.  
-
-> 📈 *CoFarm menjadi satu-satunya platform yang menyatukan aspek keuangan, teknologi, dan sosial dalam satu ekosistem pertanian digital di Indonesia.*
-
 
 ## 📍 Peta Komoditas
 
 CoFarm menyediakan peta interaktif untuk memantau:
 - Lokasi lahan berdasarkan **nama, komoditas, status, dan luas.**
-- Marker pengguna lain (petani, offtaker, fasilitator).
+- Marker pengguna lain dengan menampilkan nama, nama perusahaan, jarak pengguna (petani, offtaker, fasilitator).
 - Analisis spasial untuk distribusi dan prediksi produktivitas.
+- Sistem mendeteksi pergerakan petani secara real-time: Jika masuk atau keluar area polygon, otomatis mengirim notifikasi ke pendamping/admin poktan
 
 ---
 
@@ -228,22 +240,21 @@ Sistem tabungan bersama yang berfungsi seperti **asuransi gotong royong**, dapat
 - Menutupi kerugian petani akibat gagal panen.
 - Menanggung kerugian offtaker akibat keterlambatan pasokan.
 - Dikelola otomatis dan transparan oleh sistem aplikasi.
+- Modal awal petani
 
 **Simulasi:**
-- Saldo awal dana: Rp10.000.000  
-- Kerugian petani: Rp2.000.000 → Dicairkan otomatis  
+Petani dalam satu fasilitator untuk menyisihkan 1% dari nilai kontrak sebagai dana iuran bersama
+- Saldo awal dana cadangan terkumpul: Rp10.000.000  
+- Kerugian petani: Rp2.000.000 → Fasilitator mengelola dana untuk pemodalan petani dan klaim kerugian bagi offtaker dan petani 
 - Sisa saldo: Rp8.000.000  
-- Dana digunakan ulang bila ada risiko berikutnya.
-
+- Dana digunakan ulang bila ada klaim dana berikutnya.
 ---
 
 ## 🤖 AI & Analisis Risiko Kontrak
 
-Menggunakan kombinasi **rule-based system dan machine learning**, sistem ini menganalisis:
-- Cuaca dan risiko iklim.
-- Riwayat produksi petani.
-- Ketepatan jadwal tanam dan pengiriman.
-- Potensi fluktuasi harga pasar.
+- CoFarm menampilkan analisis risiko berbasis AI dan rule based
+- AI Analysis: menganalisis history kontrak sebelumnya — termasuk harga, jenis komoditas, dan riwayat pembayaran (invoice) dari offtaker.
+- Rule-Based System: menilai risiko berdasarkan harga pasar terkini, jenis komoditas, jarak lokasi, serta waktu kebutuhan, sesuai parameter yang ditetapkan oleh developer.
 
 Hasil analisis menghasilkan **tingkat risiko kontrak (Low, Medium, High)** secara otomatis.
 
@@ -251,24 +262,7 @@ Hasil analisis menghasilkan **tingkat risiko kontrak (Low, Medium, High)** secar
 
 ## 📽️ Video Demo
 
-🎬 [Tonton Demo CoFarm (YouTube)](https://youtu.be/your-demo-link)  
-Menampilkan:
-- Kasus nyata petani mengalami kerugian.
-- Solusi digital CoFarm.
-- Proses klaim dan mediasi otomatis.
-- Tampilan peta dan fitur chat antar pengguna.
-
----
-
-## 🗺️ Roadmap Pengembangan
-
-| Fase | Periode | Fokus Pengembangan |
-|------|----------|-------------------|
-| **Fase 1 – MVP (2025 Q4)** | Oktober – Desember 2025 | Integrasi kontrak digital, chat, dan peta komoditas |
-| **Fase 2 – Smart Risk AI (2026 Q1)** | Januari – Maret 2026 | Implementasi AI analisis risiko & klaim otomatis |
-| **Fase 3 – Financial Link (2026 Q2)** | April – Juni 2026 | Integrasi e-wallet, escrow, dan pembayaran digital |
-| **Fase 4 – National Expansion (2026 Q3)** | Juli – September 2026 | Ekspansi ke 10 provinsi dan kerja sama dengan dinas pertanian |
-| **Fase 5 – Global Scale (2027)** | 2027 | Integrasi ekspor hasil panen dan smart contract blockchain |
+🎬 [Tonton Demo CoFarm (YouTube)] https://youtube.com/shorts/iRyq3_7RYoY?si=in6CpolTLlB_aSOp
 
 ---
 
@@ -297,17 +291,16 @@ Menampilkan:
 
 | Nama | Peran | Institusi |
 |------|-------|------------|
-| Sistem Cerdas | Lead Developer & AI Engineer | Independent |
-| [Nama 2] | UI/UX Designer | [Universitas] |
-| [Nama 3] | Backend Engineer | [Organisasi] |
-| [Nama 4] | Field Coordinator | Dinas Pertanian |
+| Afif Fadhilah I. | Lead Developer & AI Engineer | Independent |
+| Zain Alif M. | UI/UX Designer | Independent |
+| Salwa Dian L. | Project Manager | Independent |
 
 ---
 
 ## 📬 Kontak
 
-📧 **Email:** cofarm.app@gmail.com  
-🌐 **Website:** [https://cofarm.id](https://cofarm.id)  
-📱 **LinkedIn:** [linkedin.com/company/cofarmapp](https://linkedin.com/company/cofarmapp)
+📧 **Email:** sistemcerdasindonesia@gmail.com  
+🌐 **Website:** https://sistemcerdasindonesia.com
+📱 **LinkedIn:** https://www.linkedin.com/company/sistem-cerdas-indonesia/
 
 ---
