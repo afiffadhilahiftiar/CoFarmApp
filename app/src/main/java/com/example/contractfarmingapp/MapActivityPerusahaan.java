@@ -1,5 +1,6 @@
 package com.example.contractfarmingapp;
 
+import static android.view.View.GONE;
 import static com.mapbox.maps.plugin.gestures.GesturesUtils.getGestures;
 import static com.mapbox.maps.plugin.locationcomponent.LocationComponentUtils.getLocationComponent;
 
@@ -74,7 +75,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class MapActivity extends AppCompatActivity {
+public class MapActivityPerusahaan extends AppCompatActivity {
     public static class GeofenceArea {
         String name;
         String komoditas;
@@ -159,9 +160,9 @@ public class MapActivity extends AppCompatActivity {
         @Override
         public void onActivityResult(Boolean result) {
             if (result) {
-                Toast.makeText(MapActivity.this, "Permission Granted!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivityPerusahaan.this, "Permission Granted!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(MapActivity.this, "Permission not Granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivityPerusahaan.this, "Permission not Granted", Toast.LENGTH_SHORT).show();
             }
         }
     });
@@ -255,14 +256,14 @@ public class MapActivity extends AppCompatActivity {
 
 // Setup listener
         switchShareLocation.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            Intent serviceIntent = new Intent(MapActivity.this, LocationShareService.class);
+            Intent serviceIntent = new Intent(MapActivityPerusahaan.this, LocationShareService.class);
 
             if (isChecked) {
                 startForegroundService(serviceIntent);
-                Toast.makeText(MapActivity.this, "Berbagi lokasi dimulai", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivityPerusahaan.this, "Berbagi lokasi dimulai", Toast.LENGTH_SHORT).show();
             } else {
                 stopService(serviceIntent);
-                Toast.makeText(MapActivity.this, "Berbagi lokasi dihentikan", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivityPerusahaan.this, "Berbagi lokasi dihentikan", Toast.LENGTH_SHORT).show();
             }
 
             // Simpan status ke SharedPreferences
@@ -273,7 +274,7 @@ public class MapActivity extends AppCompatActivity {
 
         floatingActionButton = findViewById(R.id.focusMyLocation);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        if (ActivityCompat.checkSelfPermission(MapActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(MapActivityPerusahaan.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             activityResultLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION);
         }
 
@@ -294,10 +295,11 @@ public class MapActivity extends AppCompatActivity {
                         int receiverId = data.get("receiver_id").getAsInt();
                         String namaReceiver = data.get("nama").getAsString();
 
-                        Intent intent = new Intent(MapActivity.this, ChatActivityPetaniAll.class);
-                        intent.putExtra("receiver_id", receiverId);
+                        Intent intent = new Intent(MapActivityPerusahaan.this, PerusahaanActivity.class);
+                        intent.putExtra("company_id", String.valueOf(receiverId)); // ubah ke String
                         intent.putExtra("nama_petani", namaReceiver);
                         startActivity(intent);
+
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -360,14 +362,7 @@ public class MapActivity extends AppCompatActivity {
                 // Jika ingin animasi lebih smooth, bisa hapus delay
             });
             Button btnPetaPerusahaan = findViewById(R.id.btnPetaPerusahaan);
-            btnPetaPerusahaan.setOnClickListener(v -> {
-                Intent intent = new Intent(this, MapActivityPerusahaan.class);
-                intent.putExtra("company_id", companyId);
-                intent.putExtra("company_name", companyName);
-                startActivity(intent);
-
-                // Jika ingin animasi lebih smooth, bisa hapus delay
-            });
+            btnPetaPerusahaan.setVisibility(GONE);
             imgbtnChat.setOnClickListener(v -> {
                 Intent intent = new Intent(this, DaftarChatPetaniAllActivity.class);
                 startActivity(intent);
@@ -395,7 +390,7 @@ public class MapActivity extends AppCompatActivity {
 
             new Handler().postDelayed(() -> {
                 // simpan data ke singleton
-                ServiceDataHolder.getInstance().setData(geofenceAreas, getAllTargetEmails(), companyId, companyName);
+                ServiceDataHolderPerusahaan.getInstance().setData(geofenceAreas, getAllTargetEmails(), companyId, companyName);
 
                 // start service
                 Intent serviceIntent = new Intent(this, MapForegroundService.class);
@@ -417,7 +412,7 @@ public class MapActivity extends AppCompatActivity {
 
         String lowerKeyword = keyword.toLowerCase();
 
-        for (MapActivity.GeofenceArea area : geofenceAreas) {
+        for (MapActivityPerusahaan.GeofenceArea area : geofenceAreas) {
             if (keyword.isEmpty() ||
                     area.name.toLowerCase().contains(lowerKeyword) ||
                     area.komoditas.toLowerCase().contains(lowerKeyword) ||
@@ -707,7 +702,7 @@ public class MapActivity extends AppCompatActivity {
     private void fetchAndDisplayOtherUsers() {
         if (!showUserMarkers || pointAnnotationManager == null) return; // skip jika switch off
 
-        String url = ApiConfig.BASE_URL + "get_location.php";
+        String url = ApiConfig.BASE_URL + "get_location_perusahaan.php";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {
@@ -747,9 +742,9 @@ public class MapActivity extends AppCompatActivity {
                                 double lon = obj.getDouble("longitude");
                                 String nama = obj.getString("nama");
                                 String fotoProfil = obj.getString("foto_profil");
-                                String namaPerusahaan = obj.optString("nama_perusahaan", ""); // ambil nama perusahaan
+                                String jenisPerusahaan = obj.optString("jenis_perusahaan", ""); // ambil nama perusahaan
 
-                                updateUserMarker(user_id, email, lat, lon, nama, fotoProfil, namaPerusahaan);
+                                updateUserMarker(user_id, email, lat, lon, nama, fotoProfil, jenisPerusahaan);
                             }
 
                         }
@@ -772,8 +767,8 @@ public class MapActivity extends AppCompatActivity {
 
 
 
-    private void updateUserMarker(int userId, String email, double lat, double lon, String nama, String fotoProfilUrl, String namaPerusahaan) {
-        if (MapActivity.this.isFinishing() || MapActivity.this.isDestroyed()) return;
+    private void updateUserMarker(int userId, String email, double lat, double lon, String nama, String fotoProfilUrl, String jenisPerusahaan) {
+        if (MapActivityPerusahaan.this.isFinishing() || MapActivityPerusahaan.this.isDestroyed()) return;
 
         Point point = Point.fromLngLat(lon, lat);
 
@@ -792,14 +787,14 @@ public class MapActivity extends AppCompatActivity {
         } else {
             Glide.with(this)
                     .asBitmap()
-                    .load("https://sistemcerdasindonesia.com/contractfarming/uploads/profile/" + fotoProfilUrl)
+                    .load(fotoProfilUrl)
                     .circleCrop()
                     .placeholder(R.drawable.baseline_account_circle_24)
                     .error(R.drawable.baseline_account_circle_24)
                     .into(new com.bumptech.glide.request.target.CustomTarget<Bitmap>(100, 100) {
                         @Override
                         public void onResourceReady(@NonNull Bitmap resource, @Nullable com.bumptech.glide.request.transition.Transition<? super Bitmap> transition) {
-                            Bitmap markerBitmap = createMarkerBitmap(resource, nama, distanceInMeters, namaPerusahaan);
+                            Bitmap markerBitmap = createMarkerBitmap(resource, nama, distanceInMeters, jenisPerusahaan);
 
                             PointAnnotationOptions options = new PointAnnotationOptions()
                                     .withPoint(point)
@@ -827,7 +822,7 @@ public class MapActivity extends AppCompatActivity {
         }
     }
 
-    private Bitmap createMarkerBitmap(Bitmap profilePic, String name, float distance, String namaPerusahaan) {
+    private Bitmap createMarkerBitmap(Bitmap profilePic, String name, float distance, String jenisPerusahaan) {
         int width = 220;
         int height = 260;
 
@@ -854,7 +849,7 @@ public class MapActivity extends AppCompatActivity {
         // nama perusahaan (tosca)
         paint.setTextSize(20f);
         paint.setColor(Color.parseColor("#009688")); // tosca
-        canvas.drawText(namaPerusahaan, width / 2f, 175, paint);
+        canvas.drawText(jenisPerusahaan, width / 2f, 175, paint);
 
         // jarak
         paint.setTextSize(18f);

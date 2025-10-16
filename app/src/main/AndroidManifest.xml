@@ -133,6 +133,7 @@
         <activity android:name=".DaftarAnggotaFasilitatorActivity" />
         <activity android:name=".TambahAnggotaActivity" />
         <activity android:name=".LahanActivity" />
+        <activity android:name=".LahanActivityUser" />
         <activity android:name=".KebijakanPrivasiActivity" />
         <activity android:name=".KebijakanPenggunaActivity" />
         <activity android:name=".DaftarSopirActivity" />
@@ -163,6 +164,7 @@
         <activity android:name=".AdminFasilitatorActivity" />
         <activity android:name=".MapGeofencingActivity" />
         <activity android:name=".MapActivity" />
+        <activity android:name=".MapActivityPerusahaan" />
         <activity android:name=".MapPetaniAllActivity" />
         <activity android:name= ".UploadPanduanActivity" />
         <activity android:name=".MapViewGeofencingActivity" />

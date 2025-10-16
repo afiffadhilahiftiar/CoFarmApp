@@ -155,14 +155,14 @@ public class PerusahaanActivity extends AppCompatActivity {
 
         // Event tombol lahan
         btnLahan.setOnClickListener(v -> {
-            Intent intent = new Intent(PerusahaanActivity.this, LahanActivity.class);
+            Intent intent = new Intent(PerusahaanActivity.this, LahanActivityUser.class);
             intent.putExtra("peran", currentPeran);
             intent.putExtra("company_id", companyIdValue);
             intent.putExtra("company_name", currentCompanyName);
             startActivity(intent);
         });
         btnChat = findViewById(R.id.btnChat);
-
+        btnChat.setText("Chat");
         btnChat.setOnClickListener(v -> {
             Intent intent = new Intent(PerusahaanActivity.this, ChatActivityPetaniOfftaker.class);
             intent.putExtra("oftaker_id", companyIdValue);  // kirim company_id sebagai oftaker_id
@@ -279,8 +279,18 @@ public class PerusahaanActivity extends AppCompatActivity {
                             employeeCount.setVisibility(View.GONE);
                             tractorCount.setVisibility(View.GONE);
                             luasLahan.setVisibility(View.GONE);
-                        }
 
+                        }
+                        if ("Fasilitator".equalsIgnoreCase(jenis)) {
+                            layoutDaftarKaryawan.setVisibility(View.VISIBLE);
+                            layoutLahan.setVisibility(View.VISIBLE);
+                            layoutDaftarTraktor.setVisibility(View.VISIBLE);
+                            employeeCount.setVisibility(View.VISIBLE);
+                            tractorCount.setVisibility(View.GONE);
+                            logistikCount.setVisibility(View.GONE);
+                            companyRating.setVisibility(View.GONE);
+                            companyTerbayar.setVisibility(View.GONE);
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(this, "Gagal parsing data perusahaan", Toast.LENGTH_SHORT).show();

@@ -80,7 +80,7 @@ public class PemberkasanActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String namaPetani = extras.getString("nama_pengguna", "-");
-            int idPetani = extras.getInt("user_id", -1);
+            String idPetani = extras.getString("user_id", "-1");
             String perusahaan = extras.getString("nama_perusahaan", "-");
             String alamat = extras.getString("alamat", "-");
             String komoditas = extras.getString("kebutuhan", "-");

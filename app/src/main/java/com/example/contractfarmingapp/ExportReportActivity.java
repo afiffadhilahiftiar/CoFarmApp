@@ -65,7 +65,7 @@ public class ExportReportActivity extends AppCompatActivity {
     Spinner spinnerKegiatan;
 
     RecyclerView recyclerFoto;
-
+    String statusLahan;
     ArrayList<Bitmap> fotoList = new ArrayList<>();
     ImageAdapter adapter;
     private void writeFormField(DataOutputStream stream, String boundary, String name, String value) throws IOException {
@@ -281,7 +281,7 @@ public class ExportReportActivity extends AppCompatActivity {
         btnExportPdf.setOnClickListener(v -> {
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
             if (currentUser != null) {
-                String statusLahan = spinnerKegiatan.getSelectedItem().toString();
+                statusLahan = spinnerKegiatan.getSelectedItem().toString();
 
                 if (statusLahan.isEmpty()) {
                     Toast.makeText(this, "Pilih jenis kegiatan", Toast.LENGTH_SHORT).show();
@@ -293,7 +293,7 @@ public class ExportReportActivity extends AppCompatActivity {
 
                 // Setelah kirim, generate PDF
                 generatePdf();
-                updateStatusLahanToServer(statusLahan);
+
                 if (savedPdfFile == null || !savedPdfFile.exists()) {
                     Toast.makeText(this, "PDF belum tersedia", Toast.LENGTH_SHORT).show();
                     return;
@@ -490,7 +490,7 @@ public class ExportReportActivity extends AppCompatActivity {
             Uri uri = FileProvider.getUriForFile(this, getPackageName() + ".provider", savedPdfFile);
             openIntent.setDataAndType(uri, "application/pdf");
             openIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_ACTIVITY_NO_HISTORY);
-
+            updateStatusLahanToServer(statusLahan);
 
             try {
                 startActivity(openIntent);

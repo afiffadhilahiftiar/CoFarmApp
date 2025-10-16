@@ -128,9 +128,15 @@ public class PetaniAdapterOfftaker extends RecyclerView.Adapter<PetaniAdapterOff
                 holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#2196F3"))); // Biru
                 holder.btnValidasi.setOnClickListener(v -> listener.onBeriUlasan(petani));
                 break;
-            case "Permohonan keterlambatan":
+            case "Permohonan keterlambatan dikirim":
                 holder.btnValidasi.setText("Persetujuan keterlambatan");
                 holder.btnValidasi.setEnabled(true);
+                holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
+                holder.btnValidasi.setOnClickListener(v -> listener.onPersetujuanKeterlambatan(petani));
+                break;
+            case "Permohonan keterlambatan":
+                holder.btnValidasi.setText("Validasi keterlambatan dari admin poktan");
+                holder.btnValidasi.setEnabled(false);
                 holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
                 holder.btnValidasi.setOnClickListener(v -> listener.onPersetujuanKeterlambatan(petani));
                 break;

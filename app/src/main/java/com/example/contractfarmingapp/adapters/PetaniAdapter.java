@@ -145,9 +145,15 @@ public class PetaniAdapter extends RecyclerView.Adapter<PetaniAdapter.ViewHolder
                 holder.btnValidasi.setOnClickListener(null);
                 break;
             case "Permohonan keterlambatan":
-                holder.btnValidasi.setText("Menunggu persetujuan keterlambatan");
-                holder.btnValidasi.setEnabled(false);
+                holder.btnValidasi.setText("Validasi laporan keterlambatan petani");
+                holder.btnValidasi.setEnabled(true);
                 holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFA500"))); // Oranye
+                holder.btnValidasi.setOnClickListener(v -> listener.onAjukanKeterlambatan(petani));
+                break;
+            case "Permohonan keterlambatan dikirm":
+                holder.btnValidasi.setText("Validasi permohonan keterlambatan dari offtaker");
+                holder.btnValidasi.setEnabled(false);
+                holder.btnValidasi.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#4CAF50"))); // Biru
                 holder.btnValidasi.setOnClickListener(null);
                 break;
             case "Permohonan keterlambatan diterima":

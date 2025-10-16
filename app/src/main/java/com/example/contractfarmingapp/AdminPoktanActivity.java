@@ -620,7 +620,7 @@ public class AdminPoktanActivity extends AppCompatActivity implements PetaniAdap
             if (pdfFile != null) {
                 // Kirim PDF ke ChatActivity (receiver = offtaker)
                 kirimPdfKeChatKeterlambatan(petani, pdfFile);
-                kirimStatusValidasi(petani.user_id, petani.contract_id, "Permohonan keterlambatan", "");
+                kirimStatusValidasi(petani.user_id, petani.contract_id, "Permohonan keterlambatan dikirim", "");
                 dialog.dismiss();
             }
         });

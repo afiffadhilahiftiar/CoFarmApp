@@ -1073,7 +1073,7 @@ public class ContractDetailActivity extends AppCompatActivity {
             cbAsuransi.setVisibility(View.GONE);
             tvInfoAsuransi.setVisibility(View.GONE);
         }
-        etNama.setText(namaPengguna);
+
         tvNamaPerusahaanDialog.setText(namaPerusahaan);
         tvUserId.setText("User ID: " + user_id);
         tvCompanyId.setText("Company ID: " + companyId);
@@ -1108,7 +1108,7 @@ public class ContractDetailActivity extends AppCompatActivity {
                 }
         });
 
-        loadLahanList(spinnerLahan, etProgress);
+        loadLahanList(spinnerLahan, etProgress, etNama);
 
         builder.setPositiveButton("Kirim", (dialog, which) -> {
             String lahanDipilih = spinnerLahan.getSelectedItem().toString();
@@ -1139,10 +1139,27 @@ public class ContractDetailActivity extends AppCompatActivity {
             double totalHarga = hargaPerKg * jumlahInt;
             double potonganAsuransi = ikutAsuransi ? totalHarga * 0.01 : 0;
 
-            // Kirim ke server
-            sendKontrakDataToServer(user_id, namaPengguna, namaPerusahaan, companyId,
-                    lahanDipilih, progress, catatan, jumlah, satuan, ikutAsuransi, potonganAsuransi);
+            // 🟢 Ambil user_id dari spinner (hasil loadLahanList)
+            String[] selectedUserId = (String[]) spinnerLahan.getTag();
+            String lahanUserId = selectedUserId != null ? selectedUserId[0] : String.valueOf(user_id);
+            String namaPenggunaLahan = etNama.getText().toString().trim();
+
+            // 🟢 Kirim ke server
+            sendKontrakDataToServer(
+                    lahanUserId,            // user_id dari lahan
+                    namaPenggunaLahan,
+                    namaPerusahaan,
+                    companyId,
+                    lahanDipilih,
+                    progress,
+                    catatan,
+                    jumlah,
+                    satuan,
+                    ikutAsuransi,
+                    potonganAsuransi
+            );
         });
+
 
 
         builder.setNegativeButton("Batal", (dialog, which) -> dialog.dismiss());
@@ -1219,10 +1236,10 @@ public class ContractDetailActivity extends AppCompatActivity {
 
 
 
-    private void loadLahanList(Spinner spinnerLahan, EditText etProgress) {
+    private void loadLahanList(Spinner spinnerLahan, EditText etProgress, EditText etNama) {
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         final int companyId = prefs.getInt("company_id", -1);
-        final int userId = prefs.getInt("id", -1); // ambil userId dari prefs dan buat final
+        final int userId = prefs.getInt("id", -1);
 
         if (companyId <= 0 || userId <= 0) {
             Toast.makeText(this, "Company atau User tidak valid", Toast.LENGTH_SHORT).show();
@@ -1230,6 +1247,9 @@ public class ContractDetailActivity extends AppCompatActivity {
         }
 
         new AsyncTask<Void, Void, String[]>() {
+            String[] namaList;
+            String[] userIdList; // 🟢 Tambahkan array user_id
+
             @Override
             protected String[] doInBackground(Void... voids) {
                 try {
@@ -1245,15 +1265,31 @@ public class ContractDetailActivity extends AppCompatActivity {
                     }
                     reader.close();
 
-                    JSONArray array = new JSONArray(sb.toString());
+                    JSONObject response = new JSONObject(sb.toString());
+                    if (!response.getBoolean("success")) {
+                        return new String[]{};
+                    }
+
+                    JSONArray array = response.getJSONArray("data");
                     String[] lahanList = new String[array.length()];
                     statusList = new String[array.length()];
+                    namaList = new String[array.length()];
+                    userIdList = new String[array.length()]; // 🟢 Simpan user_id tiap lahan
 
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject obj = array.getJSONObject(i);
-                        lahanList[i] = obj.getString("name") + " - " + obj.getString("area_size") + " ha";
-                        statusList[i] = obj.getString("statuslahan");
+                        String nama = obj.optString("nama", "-");
+                        String name = obj.getString("name");
+                        String area = obj.getString("area_size");
+                        String status = obj.getString("statuslahan");
+                        String user_id = obj.getString("user_id"); // 🟢 Ambil user_id dari JSON
+
+                        lahanList[i] = name + " - " + area + " ha (" + nama + ")";
+                        statusList[i] = status;
+                        namaList[i] = nama;
+                        userIdList[i] = user_id;
                     }
+
                     return lahanList;
 
                 } catch (Exception e) {
@@ -1268,23 +1304,37 @@ public class ContractDetailActivity extends AppCompatActivity {
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(ContractDetailActivity.this, R.layout.spinner_item_1, result);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerLahan.setAdapter(adapter);
+
+                    // 🟢 Default data pertama
                     etProgress.setText(statusList[0]);
+                    etNama.setText(namaList[0]);
+                    final String[] selectedNama = {namaList[0]};
+                    final String[] selectedUserId = {userIdList[0]};
 
                     spinnerLahan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             etProgress.setText(statusList[position]);
+                            etNama.setText(namaList[position]);
+                            selectedUserId[0] = userIdList[position];
                         }
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parent) {}
                     });
+
+                    // 🟢 Simpan user_id lahan ke tag spinner supaya bisa diambil di showAjukanDialog
+                    spinnerLahan.setTag(selectedUserId);
+
                 } else {
                     Toast.makeText(ContractDetailActivity.this, "Gagal memuat daftar lahan", Toast.LENGTH_SHORT).show();
                 }
             }
         }.execute();
     }
+
+
+
 
     private void saveContractToServer() {
         SharedPreferences prefs = getSharedPreferences("MyPrefs", MODE_PRIVATE);
@@ -1356,7 +1406,7 @@ public class ContractDetailActivity extends AppCompatActivity {
         }.execute();
     }
 
-    private void sendKontrakDataToServer(int user_id, String nama, String perusahaan, int companyId,
+    private void sendKontrakDataToServer(String user_id, String nama, String perusahaan, int companyId,
                                          String lahan, String progress, String catatan, String jumlah,
                                          String satuan, boolean ikutAsuransi, double potonganAsuransi) {
 
@@ -1389,7 +1439,7 @@ public class ContractDetailActivity extends AppCompatActivity {
                 HttpURLConnection conn = null;
                 try {
                     // Encode semua field
-                    String postData = "user_id=" + URLEncoder.encode(String.valueOf(user_id), "UTF-8") +
+                    String postData = "user_id=" + URLEncoder.encode(user_id, "UTF-8") +
                             "&nama=" + URLEncoder.encode(nama, "UTF-8") +
                             "&perusahaan=" + URLEncoder.encode(perusahaan, "UTF-8") +
                             "&company_id=" + URLEncoder.encode(String.valueOf(companyId), "UTF-8") +
