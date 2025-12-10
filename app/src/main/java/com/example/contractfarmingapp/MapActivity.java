@@ -792,7 +792,7 @@ public class MapActivity extends AppCompatActivity {
         } else {
             Glide.with(this)
                     .asBitmap()
-                    .load("https://sistemcerdasindonesia.com/contractfarming/uploads/profile/" + fotoProfilUrl)
+                    .load(ApiConfig.BASEURL+"/uploads/profile/" + fotoProfilUrl)
                     .circleCrop()
                     .placeholder(R.drawable.baseline_account_circle_24)
                     .error(R.drawable.baseline_account_circle_24)
